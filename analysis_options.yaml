@@ -1,0 +1,62 @@
+include: package:lint/strict.yaml
+
+analyzer:
+  exclude:
+    - "**.freezed.dart"
+    - "**.g.dart"
+    - "**.config.dart"
+    - "test/.test_coverage.dart"
+    - "bin/cache/**"
+    - "lib/generated_plugin_registrant.dart"
+
+  language:
+    # strict-casts: true
+    strict-inference: true
+    strict-raw-types: false
+
+  errors:
+    # Treat missing required parameters as an error, not as a hint or a warning.
+    missing_required_param: error
+    # Treat missing returns as an error, not as a hint or a warning.
+    missing_return: error
+    # Allow self-reference to deprecated members. This is done because otherwise we have
+    # to annotate every member in every test, assert, etc., when we deprecate something.
+    deprecated_member_use_from_same_package: ignore
+    # DON'T assign new values to parameters of methods or functions.
+    parameter_assignments: warning
+    # Allow having TODOs in the code.
+    todo: ignore
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    unawaited_futures: true
+    avoid_classes_with_only_static_members: false
+    require_trailing_commas: false
+    avoid_positional_boolean_parameters: false
+    avoid_redundant_argument_values: false
+    prefer_constructors_over_static_methods: false
+    # prefer_const_constructors: true
+    close_sinks: true
+    #To group and make more readable
+    sort_pub_dependencies: false
+    #After changing files location these need of re ordering in every referenced file
+    directives_ordering: false
+    max-lines: 300
+    implicit_call_tearoffs: true
+
+    prefer_expression_function_bodies: false
+    omit_local_variable_types: false
+    always_put_control_body_on_new_line: false
+    always_put_required_named_parameters_first: false
+    avoid_annotating_with_dynamic: false
+    avoid_catches_without_on_clauses: false
+    avoid_types_on_closure_parameters: false
+    cascade_invocations: false
+    diagnostic_describe_all_properties: false
+    prefer_double_quotes: false
+    prefer_int_literals: false
+    sort_constructors_first: false
+    unnecessary_final: false
+
+

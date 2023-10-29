@@ -1,0 +1,89 @@
+{
+  "@@locale": "ru",
+  "start": "Начать",
+  "next": "Дальше",
+  "back": "Назад",
+  "cancel": "Отменить",
+  "confirm": "Подтверить",
+  "loading": "Загрузка",
+  "update": "Обновить",
+  "connection_error": "Нет интернет соединения",
+  "ru": "Русский",
+  "login": "Войти",
+  "register": "Зарегистрироваться",
+  "login_as_guest": "Или войти как гость",
+  "skip": "Пропустить",
+  "name_label": "Имя",
+  "surname_label": "Фамилия",
+  "agreement_text": "Я ознакомлен с Публичной офертой",
+  "sms_confirmation": "СМС подтверждение",
+  "send_code_again": "Отправить код ещё раз",
+  "send_code_timered_label": "Повторно запросить SMS-код можно через {time} секунд",
+  "@send_code_timered_label": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "default_error": "Произошла ошибка",
+  "connectivity_error_message": "Нет подключения к Интернету",
+  "timeout_message": "Превышено соединение с сервером. Проверьте подключение к Интернету",
+  "type_exception_message": "Произшла ошибка приложения. Повторите попытку или обратитесь к поддержке если ошибка сохраняетсся.",
+  "not_found_message": "Страница, которую вы запрашиваете не сущетсвует. Повторите попытку или обратитесь к поддержке если ошибка сохраняетсся.",
+  "unauth_message": "Вы не авторизованы",
+  "server_error_message": "Внутренняя ошибка сервера. Повторите попытку или обратитесь к поддержке если ошибка сохраняетсся.",
+  "unknown_error_message": "Произошла непредвиденная ошибка. Повторите попытку",
+  "open_link_error": "Не получилось открыть ссылку",
+  "home": "Главная",
+  "cost": "{amount} тг",
+  "@cost": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "bonuses_amount": "{amount} Б",
+  "@bonuses_amount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "about": "Описание",
+  "save": "Сохранить",
+  "add_to_cart": "Добавить в корзину",
+  "edit": "Редактировать",
+  "cart": "Корзина",
+  "total": "Итого",
+  "favourites": "Избранные",
+  "cart_empty": "Ваша корзина пуста",
+  "checkout_order": "Оформить заказ",
+  "clear_cart": "Очистить корзину",
+  "delete": "Удалить",
+  "apply": "Применить",
+  "notification": "Уведомления",
+  "notifications_empty": "Уведомлений нет",
+  "menu": "Меню",
+  "login_to_account": "Войти в аккаунт",
+  "bonuses": "Бонусы",
+  "copied": "Скопирован",
+  "order": "Заказ",
+  "status": "Статус",
+  "amount": "Cумма",
+  "delete_account": "Удалить аккаунт",
+  "account_deletion_confirmation_title": "Удалить аккаунт?",
+  "account_deletion_confirmation_message": "Удаление этого аккаунта приведет к потере все связанных с ним заказов, бонусов и других данных",
+  "app_language": "Язык приложения",
+  "help_contacts": "Помощь и контакты",
+  "logout": "Выйти",
+  "share": "Поделиться",
+  "authetificate_to_start_session": "Авторизируйтесь чтобы создать сессию",
+  "current_session": "Текущая сессия",
+  "establishment_title": "Название заведения",
+  "table": "Стол",
+  "no_session_message": "У вас сейчас нет сессии",
+  "create_session": "Начать сессию"
+}
