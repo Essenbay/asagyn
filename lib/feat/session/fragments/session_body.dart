@@ -18,93 +18,120 @@ class _SessionBody extends StatelessWidget {
           blurRadius: 15.0,
         ),
       ],
-      height: 125,
-      collapsed: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 5),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                width: 50,
-                height: 3,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.greyLight.withOpacity(.5)),
+      height: model.orders.isEmpty ? 0 : 125,
+      collapsed: _ReceiptCollapsed(total: model.orderTotal),
+      expandedBuilder: (controller) => _ReceiptExpanded(model: model),
+      body: Stack(
+        children: [
+          //Background Image
+          CachedNetworkImage(
+            imageUrl: model.backgroundImage,
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+            height: context.screenSize.height * .4,
+          ),
+          //Image shadow
+          Container(
+            height: context.screenSize.height * .3,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black.withOpacity(0.6),
+                  Colors.transparent,
+                ],
               ),
             ),
-            const SizedBox(height: 10),
-            Row(children: [
-              Text(
-                'Итого:',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          SingleChildScrollView(
+            child: Container(
+              width: context.screenSize.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          FloatingActionButton.small(
+                            onPressed: () {
+                              //CONSIDER: Add deeplink?
+                              Share.share(
+                                'Присоединяйся! Я в ${model.establishmentName}! Код заведения: ${model.establishmentCode}, Код стола: ${model.tableCode}',
+                                subject:
+                                    'Присоединяйся! Я в ${model.establishmentName}! Код заведения: ${model.establishmentCode}, Код стола: ${model.tableCode}',
+                              );
+                            },
+                            child: Icon(
+                              CupertinoIcons.share,
+                              size: 20,
+                            ),
+                          ),
+                          SessionPopupMenuButton(),
+                        ],
+                      )),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 16, right: 16, bottom: 30, top: 10),
+                    child: Text(
+                      model.establishmentName,
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        )),
+                    child: model.orders.isEmpty
+                        ? ConstrainedBox(
+                            constraints: BoxConstraints.tightFor(
+                                height: context.screenSize.height * .5),
+                            child: Center(
+                              child: MessagedScreen(
+                                //TODO: Change icon to like 'Empty order list'
+                                iconPath: CustomIcons.menu,
+                                message: 'Вы еще ничего не заказывали',
+                                buttonText: 'Перейти в меню',
+                                buttonOnTap: () => AutoTabsRouter.of(context)
+                                    .setActiveIndex(1),
+                              ),
+                            ),
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 20),
+                                child: Text('Заказы:',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w600)),
+                              ),
+                              Column(
+                                children: model.orders
+                                    .map((e) => OrderWidget(model: e))
+                                    .toList(),
+                              )
+                            ],
+                          ),
+                  ),
+                ],
               ),
-              const Spacer(),
-              Text(
-                '1550 ₸',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              )
-            ]),
-            const SizedBox(height: 10),
-            PrimaryFilledTextButton(onPressed: () {}, text: 'Попросить счет'),
-          ],
-        ),
-      ),
-      expandedBuilder: (controller) => Container(),
-      body: SingleChildScrollView(
-        child: Container(
-          width: context.screenSize.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.topCenter,
-              image: CachedNetworkImageProvider(estab_background),
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-                child: Text(
-                  'Title',
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    )),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text('Заказы:',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
-                      Column(
-                        children: [],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }

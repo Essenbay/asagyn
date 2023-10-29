@@ -23,8 +23,18 @@ class AppTheme {
         elevation: 0,
         foregroundColor: AppColors.black,
       ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.primary,
+      ),
       iconTheme: IconThemeData(color: AppColors.primary),
       splashColor: AppColors.primary200,
+      expansionTileTheme: ExpansionTileThemeData(
+          iconColor: AppColors.primary,
+          collapsedIconColor: AppColors.primary,
+          childrenPadding: EdgeInsets.symmetric(
+            horizontal: 16,
+          )),
       cupertinoOverrideTheme: const CupertinoThemeData(
           textTheme: CupertinoTextThemeData(
               textStyle: TextStyle(fontFamily: 'Montserrat'))),

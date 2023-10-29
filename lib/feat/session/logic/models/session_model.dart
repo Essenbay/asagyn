@@ -11,8 +11,15 @@ class SessionModel {
   final double servingPercentage;
   final int servingAmount;
   final List<OrderModel> orders;
+  final List<OrderItem> allItems;
+  final String establishmentCode;
+  final int tableCode;
+
   SessionModel(
       {required this.establishmentName,
+      required this.allItems,
+      required this.establishmentCode,
+      required this.tableCode,
       required this.backgroundImage,
       required this.total,
       required this.orderTotal,

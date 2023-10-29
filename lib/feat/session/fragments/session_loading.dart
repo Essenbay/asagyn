@@ -1,7 +1,7 @@
 part of '../session_screen.dart';
 
 class _SessionLoading extends StatelessWidget {
-  const _SessionLoading({super.key});
+  const _SessionLoading();
 
   @override
   Widget build(BuildContext context) {

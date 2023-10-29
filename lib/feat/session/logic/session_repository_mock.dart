@@ -8,8 +8,8 @@ import 'package:zakazflow/feat/session/logic/session_repository.dart';
 class SessionRepositoryMock implements SessionRepository {
   Future<Result<SessionModel?>> getSessionInfo() async {
     await Future<void>.delayed(const Duration(seconds: 2));
-    return Result.success(null);
-    final orders = [
+    // return Result.success(null);
+    final orders = <OrderModel>[
       OrderModel(
         status: OrderStatus.processing,
         id: 151,
@@ -84,7 +84,19 @@ class SessionRepositoryMock implements SessionRepository {
       ),
     ];
     final result = SessionModel(
+        allItems: [
+          OrderItem(
+            title: 'Бургер',
+            description:
+                'Говядина, с кользами свежих томатов и репчатого лука, с хрустящим айсбергом и плавленным сыром Чеддер, заправлленная фирменным соусом',
+            quantity: 5,
+            cost: 5500,
+            image: productImage,
+          ),
+        ],
         establishmentName: 'Мята Lounge',
+        establishmentCode: '4X89MMDI',
+        tableCode: 2,
         backgroundImage: estab_background,
         total: 10550,
         orderTotal: 9850,

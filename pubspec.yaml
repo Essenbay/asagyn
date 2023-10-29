@@ -23,7 +23,7 @@ dependencies:
   pie_chart: ^5.3.2
   loader_overlay: ^2.3.2
   bottom_sheet_bar: ^2.3.9
-  
+  expandable: ^5.0.1
   #notifications
   flutter_local_notifications: ^15.1.2
   firebase_core: ^2.17.0
@@ -64,10 +64,6 @@ dependencies:
   # Local Storage
   quiver: ^3.2.1
   shared_preferences: ^2.1.2
-  path_provider: ^2.0.8
-  path: ^1.8.2
-  sqlite3_flutter_libs: ^0.5.0
-  drift: ^2.8.0
   flutter_secure_storage: ^8.0.0
 
   # Features
@@ -93,7 +89,6 @@ dev_dependencies:
   json_serializable: ^6.0.1
   auto_route_generator: ^7.3.1
   injectable_generator: ^2.1.2
-  drift_dev: ^2.8.0
   lint: ^2.0.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.2

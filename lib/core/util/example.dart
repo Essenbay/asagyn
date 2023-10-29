@@ -1,4 +1,4 @@
 String estab_background =
     'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Frestolife.kz%2Fupload%2Finformation_system_6%2F1%2F1%2F4%2Fitem_11465%2Finformation_items_property_11042.jpg&f=1&nofb=1&ipt=e5a81cec4eb8dded6a1bff03f8d05cf90e8069cc0030eede8e3812a9395d0c31&ipo=images';
 String productImage =
-    'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpp.userapi.com%2Fc844616%2Fv844616350%2F1fd86c%2FmthMJDz2F78.jpg&f=1&nofb=1&ipt=8d1f1a930b4483ac0d3b818324e06f186f3824ec053a59ea8e28771a9ca874d7&ipo=images';
+    'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcatering-krym.ru%2Fwp-content%2Fuploads%2F2016%2F02%2F%25D0%2591%25D1%2583%25D1%2580%25D0%25B3%25D0%25B5%25D1%2580-%25D1%2581-%25D0%25B3%25D0%25BE%25D0%25B2%25D1%258F%25D0%25B4%25D0%25B8%25D0%25BD%25D0%25BE%25D0%25B9-%25D1%2581%25D1%258B%25D1%2580%25D0%25BE%25D0%25BC-%25D0%25B8-%25D0%25BF%25D0%25BE%25D0%25BC%25D0%25B8%25D0%25B4%25D0%25BE%25D1%2580%25D0%25B0%25D0%25BC%25D0%25B8.jpg&f=1&nofb=1&ipt=c0b26d58aabfc3fd93ecb2845b64ed8a58c4236f1fdab598cd5658da15367414&ipo=images';

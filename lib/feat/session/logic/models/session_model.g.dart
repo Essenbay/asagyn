@@ -8,6 +8,11 @@ part of 'session_model.dart';
 
 SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
       establishmentName: json['establishmentName'] as String,
+      allItems: (json['allItems'] as List<dynamic>)
+          .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      establishmentCode: json['establishmentCode'] as String,
+      tableCode: json['tableCode'] as int,
       backgroundImage: json['backgroundImage'] as String,
       total: (json['total'] as num).toDouble(),
       orderTotal: (json['orderTotal'] as num).toDouble(),
