@@ -1,9 +1,9 @@
 part of '../session_screen.dart';
 
 class _ReceiptCollapsed extends StatelessWidget {
-  final double total;
+  final SessionModel model;
 
-  const _ReceiptCollapsed({required this.total});
+  const _ReceiptCollapsed({required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +31,12 @@ class _ReceiptCollapsed extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '$total ₸',
+              '${model.total} ₸',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             )
           ]),
           const SizedBox(height: 10),
-          PrimaryFilledTextButton(onPressed: () {}, text: 'Попросить счет'),
+          AskBillButton(model: model),
         ],
       ),
     );

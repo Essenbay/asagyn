@@ -12,6 +12,7 @@ class SessionModel {
   final int servingAmount;
   final List<OrderModel> orders;
   final List<OrderItem> allItems;
+  final List<PaymentMethod> paymentMethods;
   final String establishmentCode;
   final int tableCode;
 
@@ -19,6 +20,7 @@ class SessionModel {
       {required this.establishmentName,
       required this.allItems,
       required this.establishmentCode,
+      required this.paymentMethods,
       required this.tableCode,
       required this.backgroundImage,
       required this.total,
@@ -28,6 +30,17 @@ class SessionModel {
       required this.servingAmount});
   factory SessionModel.fromJson(Map<String, Object?> json) =>
       _$SessionModelFromJson(json);
+}
+
+@JsonSerializable(createToJson: false)
+class PaymentMethod {
+  final int id;
+  final String name;
+
+  PaymentMethod({required this.id, required this.name});
+
+  factory PaymentMethod.fromJson(Map<String, Object?> json) =>
+      _$PaymentMethodFromJson(json);
 }
 
 enum OrderStatus {

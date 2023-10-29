@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
+import 'package:zakazflow/feat/widgets/custom_text_button.dart';
 
 class Util {
   static void showSnackBar(BuildContext context, String? message) {
@@ -12,7 +13,7 @@ class Util {
     );
   }
 
-  void showErrorAlert(BuildContext context, String? message) {
+  static void showErrorAlert(BuildContext context, String? message) {
     showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) {
@@ -37,7 +38,7 @@ class Util {
     );
   }
 
-  Future<bool> showConfirmationDialog(
+  static Future<bool> showConfirmationDialog(
       BuildContext context, String title, String message) async {
     final result = await showDialog<bool>(
       context: context,
@@ -78,5 +79,36 @@ class Util {
       },
     );
     return result ?? false;
+  }
+
+  static void showSuccessDialog(
+      BuildContext context, String title, String message) {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 60,
+              ),
+              Text(message),
+            ],
+          ),
+          actions: <Widget>[
+            CustomTextButton(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              text: 'Ok',
+            ),
+          ],
+        );
+      },
+    );
   }
 }

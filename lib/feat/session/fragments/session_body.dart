@@ -19,7 +19,7 @@ class _SessionBody extends StatelessWidget {
         ),
       ],
       height: model.orders.isEmpty ? 0 : 125,
-      collapsed: _ReceiptCollapsed(total: model.orderTotal),
+      collapsed: _ReceiptCollapsed(model: model),
       expandedBuilder: (controller) => _ReceiptExpanded(model: model),
       body: Stack(
         children: [

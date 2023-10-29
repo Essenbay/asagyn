@@ -58,7 +58,7 @@ class _ReceiptExpanded extends StatelessWidget {
                   ]),
                 )),
             const SizedBox(height: 10),
-            PrimaryFilledTextButton(onPressed: () {}, text: 'Попросить счет'),
+            AskBillButton(model: model),
           ],
         ),
       ),

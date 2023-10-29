@@ -12,6 +12,9 @@ SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
           .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       establishmentCode: json['establishmentCode'] as String,
+      paymentMethods: (json['paymentMethods'] as List<dynamic>)
+          .map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
+          .toList(),
       tableCode: json['tableCode'] as int,
       backgroundImage: json['backgroundImage'] as String,
       total: (json['total'] as num).toDouble(),
@@ -21,6 +24,12 @@ SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
           .toList(),
       servingPercentage: (json['servingPercentage'] as num).toDouble(),
       servingAmount: json['servingAmount'] as int,
+    );
+
+PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
+    PaymentMethod(
+      id: json['id'] as int,
+      name: json['name'] as String,
     );
 
 OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(

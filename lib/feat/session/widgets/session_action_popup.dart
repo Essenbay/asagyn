@@ -35,8 +35,10 @@ class SessionPopupMenuButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
-                      leading: Icon(CupertinoIcons.bell_circle_fill),
-                      title: Text('Поздвать официанта'),
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(CupertinoIcons.bell_circle_fill,
+                          color: AppColors.primary),
+                      title: Text('Позвать официанта'),
                       onTap: () {},
                     ),
                   ),

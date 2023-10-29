@@ -94,6 +94,10 @@ class SessionRepositoryMock implements SessionRepository {
             image: productImage,
           ),
         ],
+        paymentMethods: [
+          PaymentMethod(id: 1, name: 'Наличными'),
+          PaymentMethod(id: 2, name: 'Картой')
+        ],
         establishmentName: 'Мята Lounge',
         establishmentCode: '4X89MMDI',
         tableCode: 2,
