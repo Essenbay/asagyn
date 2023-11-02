@@ -60,6 +60,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                       constraints: BoxConstraints(maxHeight: 70),
                       margin: const EdgeInsets.only(
                           left: 16, right: 16, bottom: 10),
+                      padding: const EdgeInsets.only(left: 40),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -101,30 +102,32 @@ class _OrderWidgetState extends State<OrderWidget> {
                                     ),
                                   ],
                                 ),
-                                const Spacer(),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        e.description,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            color: AppColors.greyDark2),
-                                        overflow: TextOverflow.ellipsis,
+                                const SizedBox(height: 5),
+                                Expanded(
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          e.description,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              color: AppColors.greyDark2),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      e.cost.toString(),
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        e.cost.toString(),
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

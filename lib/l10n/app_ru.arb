@@ -85,5 +85,6 @@
   "establishment_title": "Название заведения",
   "table": "Стол",
   "no_session_message": "У вас сейчас нет сессии",
-  "create_session": "Начать сессию"
+  "create_session": "Начать сессию",
+  "my_sessions": "Мои сессии"
 }

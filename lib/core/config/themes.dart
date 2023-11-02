@@ -14,10 +14,12 @@ class AppTheme {
           fontFamily: 'Montserrat',
           bodyColor: AppColors.black,
           displayColor: AppColors.black),
-      colorScheme: const ColorScheme.light(
-        background: AppColors.white,
-        primary: AppColors.primary,
+      colorScheme: ColorScheme.fromSwatch(
+        accentColor: AppColors.primary,
+        backgroundColor: AppColors.white,
       ),
+      progressIndicatorTheme:
+          ProgressIndicatorThemeData(color: AppColors.primary),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,

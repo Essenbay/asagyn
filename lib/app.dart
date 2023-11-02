@@ -33,7 +33,7 @@ class ZakazFlowApp extends StatelessWidget {
         ),
       ),
       child: MaterialApp.router(
-        title: 'ZakazFlow',
+        title: 'AsAgyn',
         theme: AppTheme.lightTheme,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,

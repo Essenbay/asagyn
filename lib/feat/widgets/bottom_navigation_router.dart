@@ -17,7 +17,7 @@ class BottomNavigationRouter extends StatelessWidget {
       routes: const [
         SessionRoute(),
         MenuRoute(),
-        ProfileMenuRoute(),
+        SettingsRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,

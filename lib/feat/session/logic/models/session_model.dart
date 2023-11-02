@@ -11,6 +11,7 @@ class SessionModel {
   final double servingPercentage;
   final int servingAmount;
   final List<OrderModel> orders;
+  ///Products of orders at once
   final List<OrderItem> allItems;
   final List<PaymentMethod> paymentMethods;
   final String establishmentCode;

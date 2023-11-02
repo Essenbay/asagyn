@@ -6,7 +6,7 @@ import 'package:zakazflow/core/config/colors.dart';
 
 class BackIconLeadingAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  final IconData icon;
+  final IconData? icon;
   final List<Widget>? actions;
   final String? leadingText;
   final Color? foregroundColor;
@@ -14,16 +14,18 @@ class BackIconLeadingAppBar extends StatelessWidget
   const BackIconLeadingAppBar(
       {super.key,
       this.actions,
-      required this.icon,
+      this.icon,
       this.elevation = 0,
       this.leadingText,
       this.foregroundColor = AppColors.primary,
       this.title,
+      this.leadingWidth = 110,
       this.leadingPadding = 16,
       this.systemUiOverlayStyle});
   final double elevation;
   final double leadingPadding;
   final SystemUiOverlayStyle? systemUiOverlayStyle;
+  final double leadingWidth;
   @override
   Size get preferredSize => const Size.fromHeight(kMinInteractiveDimension);
 
@@ -31,7 +33,7 @@ class BackIconLeadingAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     void onPressed() => context.router.removeLast();
     final Widget iconWidget = Icon(
-      icon,
+      icon ?? CupertinoIcons.chevron_back,
       color: foregroundColor,
       size: 26,
     );
@@ -58,7 +60,7 @@ class BackIconLeadingAppBar extends StatelessWidget
             child: leading,
           ),
         ),
-        leadingWidth: 110,
+        leadingWidth: leadingWidth,
         title: Text(
           title ?? '',
           style: TextStyle(

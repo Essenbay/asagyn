@@ -13,6 +13,54 @@ class Util {
     );
   }
 
+  static Future<T?> showCustomModalBottomSheet<T>(
+      {required BuildContext context,
+      required Widget child,
+      Color? backgroundColor}) {
+    return showModalBottomSheet<T>(
+      context: context,
+      useSafeArea: true,
+      isScrollControlled: true,
+      clipBehavior: Clip.hardEdge,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return IntrinsicHeight(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              FractionallySizedBox(
+                widthFactor: 0.15,
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 12.0,
+                  ),
+                  child: Container(
+                    height: 5.0,
+                    decoration: BoxDecoration(
+                      color: AppColors.grey100,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(2.5)),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  color: backgroundColor ?? AppColors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15)),
+                ),
+                child: child,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   static void showErrorAlert(BuildContext context, String? message) {
     showDialog<dynamic>(
       context: context,

@@ -20,27 +20,31 @@ class MessagedScreen extends StatelessWidget {
     final space = context.screenSize.height * 0.02;
     return Center(
       child: Padding(
-        padding: EdgeInsets.only(
-            right: 40, left: 40, top: context.screenSize.height * .18),
-        child: Column(children: [
-          SvgPicture.asset(
-            iconPath,
-            height: 80,
-            colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
-          ),
-          SizedBox(height: space * 1),
-          Text(
-            message,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-          SizedBox(height: space),
-          PrimaryFilledTextButton(
-            onPressed: buttonOnTap,
-            text: buttonText,
-            borderRadius: 15,
-          )
-        ]),
+        padding: EdgeInsets.only(right: 40, left: 40),
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                iconPath,
+                height: 80,
+                colorFilter:
+                    ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+              ),
+              SizedBox(height: space * 1),
+              Text(
+                message,
+                textAlign: TextAlign.center,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: space),
+              PrimaryFilledTextButton(
+                onPressed: buttonOnTap,
+                text: buttonText,
+                borderRadius: 15,
+              )
+            ]),
       ),
     );
   }

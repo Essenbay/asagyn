@@ -10,7 +10,7 @@ class PrimaryFilledTextButton extends StatelessWidget {
       this.fontWeight = FontWeight.w600,
       this.borderRadius = 10,
       this.border,
-      this.height = 60,
+      this.height = 50,
       this.fontSize = 16,
       this.backgroundColor = AppColors.primary});
   final VoidCallback onPressed;
@@ -27,6 +27,7 @@ class PrimaryFilledTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       pressedOpacity: 0.4,
+      minSize: 33,
       onPressed: onPressed,
       padding: EdgeInsets.zero,
       borderRadius: BorderRadius.circular(borderRadius),
