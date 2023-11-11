@@ -144,6 +144,8 @@ class _OrderWidgetState extends State<OrderWidget> {
         OrderStatus.cooking => Icon(Icons.soup_kitchen_rounded, size: 30),
         OrderStatus.processing => Icon(Icons.pending_actions_sharp, size: 30),
         OrderStatus.served => Icon(Icons.room_service_rounded, size: 30),
-        OrderStatus.serving => Icon(Icons.table_bar, size: 30)
+        OrderStatus.serving => Icon(Icons.table_bar, size: 30),
+        OrderStatus.cancelled => Icon(Icons.cancel, size: 30),
+        OrderStatus.payed => const SizedBox(),
       };
 }

@@ -15,18 +15,12 @@ class OrderController extends ChangeNotifier {
     notifyListeners();
   }
 
-  double total = 0;
+  double _total = 0;
+
+  double get total => _total;
 
   OrderController({required List<ProductModel> products})
       : _products = products;
-
-  void addToCart(ProductModel newProduct, int quantity) {
-    newProduct.quantity = quantity;
-    _products.removeWhere((element) => element.id == newProduct.id);
-    _products.add(newProduct);
-    total = calculateTotalCost(_products);
-    notifyListeners();
-  }
 
   double calculateTotalCost(List<ProductModel> products) {
     double totalCost = 0.0;
@@ -38,12 +32,19 @@ class OrderController extends ChangeNotifier {
   }
 
   void changeProductQuantity(ProductModel product, int newVal) {
-    final index = _products.indexWhere((element) => element.id == product.id);
-    if (index == -1) {
-      product.quantity = newVal;
-      _products.add(product);
-    } else {}
-    final addedProd = product.quantity = newVal;
+    if (newVal == 0) {
+      _products.removeWhere((element) => element.id == product.id);
+    } else {
+      final listProduct =
+          _products.singleWhereOrNull((element) => element.id == product.id);
+      if (listProduct == null) {
+        product.quantity = newVal;
+        _products.add(product);
+      } else {
+        listProduct.quantity = newVal;
+      }
+    }
+    _total = calculateTotalCost(products);
     notifyListeners();
   }
 
@@ -56,6 +57,7 @@ class OrderController extends ChangeNotifier {
 
   void clearCart() {
     _products.clear();
+    _total = 0;
     notifyListeners();
   }
 }

@@ -14,14 +14,15 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i12;
 
-import '../../feat/menu/logic/menu_bloc.dart' as _i18;
+import '../../feat/menu/logic/create_order_bloc.dart' as _i17;
+import '../../feat/menu/logic/menu_bloc.dart' as _i19;
 import '../../feat/menu/logic/menu_repository.dart' as _i6;
 import '../../feat/menu/logic/menu_repository_mock.dart' as _i7;
-import '../../feat/session/logic/session_bloc.dart' as _i19;
+import '../../feat/session/logic/session_bloc.dart' as _i20;
 import '../../feat/session/logic/session_repository.dart' as _i14;
 import '../../feat/session/logic/session_repository_mock.dart' as _i15;
 import '../services/app_status/app_bloc.dart' as _i16;
-import '../services/language_provder/language_cubit.dart' as _i17;
+import '../services/language_provder/language_cubit.dart' as _i18;
 import '../services/network/interceptors/handler_interceptor.dart' as _i5;
 import '../services/network/interceptors/network_log_interceptor.dart' as _i8;
 import '../services/network/network_service.dart' as _i9;
@@ -59,11 +60,13 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i14.SessionRepository>(
         () => _i15.SessionRepositoryMock());
     gh.factory<_i16.AppBloc>(() => _i16.AppBloc(gh<_i13.SecureStorage>()));
-    gh.factory<_i17.LanguageCubit>(
-        () => _i17.LanguageCubit(gh<_i11.PreferencesService>()));
-    gh.factory<_i18.MenuBloc>(() => _i18.MenuBloc(gh<_i6.MenuRepository>()));
-    gh.factory<_i19.SessionBloc>(
-        () => _i19.SessionBloc(gh<_i14.SessionRepository>()));
+    gh.factory<_i17.CreateOrderBloc>(
+        () => _i17.CreateOrderBloc(gh<_i6.MenuRepository>()));
+    gh.factory<_i18.LanguageCubit>(
+        () => _i18.LanguageCubit(gh<_i11.PreferencesService>()));
+    gh.factory<_i19.MenuBloc>(() => _i19.MenuBloc(gh<_i6.MenuRepository>()));
+    gh.factory<_i20.SessionBloc>(
+        () => _i20.SessionBloc(gh<_i14.SessionRepository>()));
     return this;
   }
 }

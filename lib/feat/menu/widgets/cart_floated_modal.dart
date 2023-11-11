@@ -48,7 +48,7 @@ class _CartFloatedModal extends StatelessWidget {
                       onPressed: () {
                         final provider = context.read<OrderController>();
                         final result = context.router
-                            .push(CreateOrderDialogPage(provider: provider));
+                            .push(CreateOrderDialogPage());
                         if (result == true) {
                           provider.clearCart();
                         }

@@ -47,6 +47,8 @@ const _$OrderStatusEnumMap = {
   OrderStatus.cooking: 2,
   OrderStatus.serving: 3,
   OrderStatus.served: 4,
+  OrderStatus.payed: 5,
+  OrderStatus.cancelled: 6,
 };
 
 OrderItem _$OrderItemFromJson(Map<String, dynamic> json) => OrderItem(

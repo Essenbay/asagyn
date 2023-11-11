@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
       this.maxLines = 1,
       this.padding,
       this.textAlign = TextAlign.start,
-      this.textColor = AppColors.primary});
+      this.textColor = AppColors.black});
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final String? hintText;

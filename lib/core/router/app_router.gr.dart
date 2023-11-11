@@ -16,10 +16,9 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     CreateOrderDialogPage.name: (routeData) {
-      final args = routeData.argsAs<CreateOrderDialogPageArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: CreateOrderDialog(provider: args.provider),
+        child: WrappedRoute(child: CreateOrderDialog()),
       );
     },
     LauncherRoute.name: (routeData) {
@@ -52,6 +51,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MenuScreen(),
       );
     },
+    ProfileDetailRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProfileDetailScreen(),
+      );
+    },
     RegisterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -81,31 +86,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [CreateOrderDialog]
-class CreateOrderDialogPage extends PageRouteInfo<CreateOrderDialogPageArgs> {
-  CreateOrderDialogPage({
-    required OrderController provider,
-    List<PageRouteInfo>? children,
-  }) : super(
+class CreateOrderDialogPage extends PageRouteInfo<void> {
+  const CreateOrderDialogPage({List<PageRouteInfo>? children})
+      : super(
           CreateOrderDialogPage.name,
-          args: CreateOrderDialogPageArgs(provider: provider),
           initialChildren: children,
         );
 
   static const String name = 'CreateOrderDialogPage';
 
-  static const PageInfo<CreateOrderDialogPageArgs> page =
-      PageInfo<CreateOrderDialogPageArgs>(name);
-}
-
-class CreateOrderDialogPageArgs {
-  const CreateOrderDialogPageArgs({required this.provider});
-
-  final OrderController provider;
-
-  @override
-  String toString() {
-    return 'CreateOrderDialogPageArgs{provider: $provider}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -174,6 +164,20 @@ class MenuRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MenuRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileDetailScreen]
+class ProfileDetailRoute extends PageRouteInfo<void> {
+  const ProfileDetailRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileDetailRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileDetailRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

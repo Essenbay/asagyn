@@ -28,7 +28,7 @@ class BottomNavigationRouter extends StatelessWidget {
         final currentIndex =
             AutoTabsRouter.of(context, watch: true).activeIndex;
         return Scaffold(
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: true,
           backgroundColor: AppColors.white,
           body: child,
           bottomNavigationBar: BottomNavigationBar(

@@ -1,9 +1,14 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
+import 'package:zakazflow/core/router/app_router.dart';
+import 'package:zakazflow/core/services/language_provder/language_cubit.dart';
+import 'package:zakazflow/feat/profilemenu/language/language_modal.dart';
 import 'package:zakazflow/feat/profilemenu/widgets/menu_tile.dart';
-import 'package:zakazflow/feat/widgets/titled_app_bar.dart';
+
 import 'package:zakazflow/resources/resources.dart';
 
 @RoutePage()
@@ -68,22 +73,22 @@ class SettingsScreen extends StatelessWidget {
                           icon: CustomIcons.person,
                           text: 'Username Surname',
                           subText: '+7 747 777 77 77',
-                          onClick: () {}),
+                          onClick: () =>
+                              context.router.push(ProfileDetailRoute())),
                       MenuTile(
                         icon: CustomIcons.order,
                         text: context.localized.my_sessions,
                         onClick: () {},
                       ),
-                      MenuTile(
-                        icon: CustomIcons.globe,
-                        subText: 'Русский',
-                        text: context.localized.app_language,
-                        onClick: () {},
-                      ),
-                      MenuTile(
-                        icon: CustomIcons.question,
-                        text: context.localized.help_contacts,
-                        onClick: () {},
+                      BlocBuilder<LanguageCubit, Languages>(
+                        builder: (context, state) {
+                          return MenuTile(
+                            icon: CustomIcons.globe,
+                            subText: state.str,
+                            text: context.localized.app_language,
+                            onClick: () => showLanguageSelectModal(context),
+                          );
+                        },
                       ),
                       MenuTile(
                         icon: CustomIcons.logout,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/widgets/category_item.dart';
-import 'package:zakazflow/feat/menu/widgets/iconed_divider.dart';
 import 'package:zakazflow/feat/menu/widgets/product_detail.dart';
 import 'package:zakazflow/feat/menu/widgets/menu_product_grid_item.dart';
 
@@ -74,7 +73,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
               .map(
                 (category) => GridView.builder(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      const EdgeInsets.only(left: 10,right: 10,top: 8, bottom: 10),
                   itemCount: category.products.length,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 170,

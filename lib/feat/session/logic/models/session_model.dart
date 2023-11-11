@@ -52,7 +52,11 @@ enum OrderStatus {
   @JsonValue(3)
   serving,
   @JsonValue(4)
-  served;
+  served,
+  @JsonValue(5)
+  payed,
+  @JsonValue(6)
+  cancelled;
 }
 
 @JsonSerializable(createToJson: false)

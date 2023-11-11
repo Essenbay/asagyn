@@ -1,8 +1,13 @@
+// ignore_for_file: dead_code
+
 import 'package:injectable/injectable.dart';
+import 'package:zakazflow/core/services/network/exceptions/network_exception.dart';
+import 'package:zakazflow/core/services/network/exceptions/network_exception_type.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/util/example.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/menu_repository.dart';
+import 'package:zakazflow/feat/menu/logic/order_request.dart';
 
 @Injectable(as: MenuRepository)
 class MenuRepositoryMock implements MenuRepository {
@@ -26,7 +31,7 @@ class MenuRepositoryMock implements MenuRepository {
         minAge: 21,
         image: productImage,
         readyTime: '30 мин.',
-        cost: 1560,
+        cost: 1200,
         description:
             'Говядина, с кользами свежих томатов и репчатого лука, с хрустящим айсбергом и плавленным сыром Чеддер, заправлленная фирменным соусом',
       ),
@@ -35,7 +40,7 @@ class MenuRepositoryMock implements MenuRepository {
         name: 'Фирменный соус',
         minAge: null,
         image: productImage,
-        cost: 1560,
+        cost: 1500,
         description:
             'Говядина, с кользами свежих томатов и репчатого лука, с хрустящим айсбергом и плавленным сыром Чеддер, заправлленная фирменным соусом',
       ),
@@ -44,7 +49,7 @@ class MenuRepositoryMock implements MenuRepository {
         name: 'Каре молодого ягненка JOSPER',
         minAge: null,
         image: productImage,
-        cost: 1560,
+        cost: 700,
         readyTime: '20 мин.',
         description:
             'Говядина, с кользами свежих томатов и репчатого лука, с хрустящим айсбергом и плавленным сыром Чеддер, заправлленная фирменным соусом',
@@ -53,7 +58,7 @@ class MenuRepositoryMock implements MenuRepository {
         id: 5,
         name: 'Бургер',
         minAge: null,
-        cost: 1560,
+        cost: 2010,
         image: productImage,
         description:
             'Говядина, с кользами свежих томатов и репчатого лука, с хрустящим айсбергом и плавленным сыром Чеддер, заправлленная фирменным соусом',
@@ -72,5 +77,13 @@ class MenuRepositoryMock implements MenuRepository {
       allProducts: products,
     );
     return Result.success(menu);
+  }
+
+  @override
+  Future<Result<void>> createOrder(OrderRequest data) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    return Result.success(null);
+    return Result.failure(
+        exception: NetworkException(null, NetworkExceptionTypes.connectivity));
   }
 }

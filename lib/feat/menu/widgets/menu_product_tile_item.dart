@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:zakazflow/core/config/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
+import 'package:zakazflow/feat/menu/logic/order_controller.dart';
+import 'package:zakazflow/feat/menu/widgets/counter_widget.dart';
 
 class MenuProductTileItem extends StatelessWidget {
   const MenuProductTileItem({super.key, required this.model});
@@ -11,7 +13,7 @@ class MenuProductTileItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(maxHeight: 70),
-      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
+      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 15),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -32,42 +34,21 @@ class MenuProductTileItem extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        model.name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.theme.textTheme.titleSmall,
-                      ),
-                    ),
-                    Text(
-                      'x ${model.quantity}',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                    ),
-                  ],
+                Flexible(
+                  child: Text(
+                    model.name,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.theme.textTheme.titleSmall,
+                  ),
                 ),
-                const SizedBox(height: 5),
                 Expanded(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Flexible(
-                        child: Text(
-                          model.description,
-                          maxLines: 3,
-                          style: TextStyle(
-                              fontSize: 13, color: AppColors.greyDark2),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
                       Text(
-                        model.cost.toString(),
+                        '${model.cost}₸',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
@@ -76,6 +57,14 @@ class MenuProductTileItem extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          CounterView(
+            minNumber: 1,
+            counterCallback: (value) {
+              context.read<OrderController>().changeProductQuantity(model, value);
+            },
+            value: model.quantity,
+            isHorizontal: false,
           ),
         ],
       ),

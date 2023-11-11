@@ -59,6 +59,7 @@ class _ReceiptExpanded extends StatelessWidget {
                 )),
             const SizedBox(height: 10),
             AskBillButton(model: model),
+            const SizedBox(height: 10),
           ],
         ),
       ),

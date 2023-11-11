@@ -26,9 +26,9 @@ class ZakazFlowApp extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(10),
           child: Platform.isAndroid
-              ? const CircularProgressIndicator(color: AppColors.greyDark)
+              ? const CircularProgressIndicator(color: AppColors.primary)
               : const CupertinoActivityIndicator(
-                  color: AppColors.greyDark,
+                  color: AppColors.primary,
                 ),
         ),
       ),

@@ -69,9 +69,11 @@ class _SessionBody extends StatelessWidget {
                               size: 20,
                             ),
                           ),
+                          NotificationPopupButton(),
                           SessionPopupMenuButton(),
                         ],
                       )),
+                      
                   Padding(
                     padding: EdgeInsets.only(
                         left: 16, right: 16, bottom: 30, top: 10),

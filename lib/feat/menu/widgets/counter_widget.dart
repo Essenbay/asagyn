@@ -2,30 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
 
-class CounterView extends StatefulWidget {
-  final int initNumber;
+class CounterView extends StatelessWidget {
+  final int value;
   final void Function(int) counterCallback;
   final void Function()? increaseCallback;
   final void Function()? decreaseCallback;
   final int minNumber;
+  final bool isHorizontal;
 
   CounterView(
-      {this.initNumber = 0,
+      {
       required this.counterCallback,
+      this.isHorizontal = true,
       this.increaseCallback,
       this.decreaseCallback,
-      this.minNumber = 0});
-  @override
-  _CounterViewState createState() => _CounterViewState();
-}
-
-class _CounterViewState extends State<CounterView> {
-  late int _currentCount = widget.initNumber;
-
+      this.minNumber = 0, required this.value});
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120,
+      width: isHorizontal ? 120 : null,
+      height: isHorizontal ? null : 120,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -38,9 +34,15 @@ class _CounterViewState extends State<CounterView> {
         color: AppColors.grey100,
       ),
       padding: EdgeInsets.zero,
-      child: Row(
-        children: [
-          Expanded(
+      child: isHorizontal ? Row(
+        children: children,
+      ) : Column(
+        children: children,
+      ),
+    );
+  }
+
+   List<Widget> get children => [Expanded(
             child: _createIncrementDicrementButton(
                 CupertinoIcons.minus, () => _dicrement()),
           ),
@@ -48,35 +50,25 @@ class _CounterViewState extends State<CounterView> {
             child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  _currentCount.toString(),
+                  value.toString(),
                   style: TextStyle(fontSize: 16),
                 )),
           ),
           Expanded(
             child: _createIncrementDicrementButton(
                 CupertinoIcons.plus, () => _increment()),
-          ),
-        ],
-      ),
-    );
-  }
+          ),];
 
   void _increment() {
-    setState(() {
-      _currentCount++;
-      widget.counterCallback(_currentCount);
-      if (widget.increaseCallback != null) widget.increaseCallback!();
-    });
+    counterCallback(value + 1);
+      if (increaseCallback != null) increaseCallback!();
   }
 
   void _dicrement() {
-    setState(() {
-      if (_currentCount > widget.minNumber) {
-        _currentCount--;
-        widget.counterCallback(_currentCount);
-        if (widget.decreaseCallback != null) widget.decreaseCallback!();
+    if (value > minNumber) {
+        counterCallback(value - 1);
+        if (decreaseCallback != null) decreaseCallback!();
       }
-    });
   }
 
   Widget _createIncrementDicrementButton(

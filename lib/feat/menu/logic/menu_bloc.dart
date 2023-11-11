@@ -11,7 +11,7 @@ part 'menu_bloc.freezed.dart';
 sealed class MenuState with _$MenuState {
   const factory MenuState.loading() = _LoadingState;
 
-  const factory MenuState.success({required MenuModel? data}) = _SuccessState;
+  const factory MenuState.success({required MenuModel data}) = _SuccessState;
 
   const factory MenuState.failure(NetworkException exception) = _FailureState;
 }

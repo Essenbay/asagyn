@@ -6,7 +6,6 @@ import 'package:zakazflow/core/services/preference_service.dart';
 enum Languages {
   ru('Русский язык', Locale('ru', 'RU'), 'ru'),
   kz('Қазақ тілі', Locale('kk', 'KK'), 'kz');
-  // eng('English', Locale('en', 'US'), 'en');
 
   final String str;
   final Locale locale;

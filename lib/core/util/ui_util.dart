@@ -92,16 +92,19 @@ class Util {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: AppColors.greyBackground,
+          backgroundColor: AppColors.white,
           title: Text(
             title,
-            style: const TextStyle(color: AppColors.white),
+            style: const TextStyle(
+                color: AppColors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w500),
           ),
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
           content: Text(
             message,
-            style: const TextStyle(color: AppColors.white),
+            style: const TextStyle(color: AppColors.black),
           ),
           actions: [
             TextButton(
@@ -110,7 +113,7 @@ class Util {
               },
               child: Text(
                 context.localized.cancel,
-                style: const TextStyle(color: AppColors.white),
+                style: const TextStyle(color: AppColors.primary),
               ),
             ),
             TextButton(
@@ -119,7 +122,7 @@ class Util {
               },
               child: Text(
                 context.localized.confirm,
-                style: const TextStyle(color: AppColors.white),
+                style: const TextStyle(color: AppColors.red),
               ),
             ),
           ],

@@ -6,7 +6,6 @@ import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/order_controller.dart';
 import 'package:zakazflow/feat/menu/widgets/counter_widget.dart';
-import 'package:zakazflow/feat/menu/widgets/product_detail.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
 
 class MenuProductGridItem extends StatelessWidget {
@@ -131,20 +130,20 @@ class MenuProductGridItem extends StatelessWidget {
             Consumer<OrderController>(
               builder: (context, value, child) {
                 final quantity = value.getQuantityForProduct(model);
-                return quantity == null
+                return quantity == null || quantity < 1
                     ? PrimaryFilledTextButton(
                         height: 33,
                         borderRadius: 30,
                         fontSize: 14,
                         onPressed: () {
-                          value.addToCart(model, 1);
+                          value.changeProductQuantity(model, 1);
                         },
                         text: 'Добавить',
                       )
                     : CounterView(
-                        initNumber: quantity,
+                        value: quantity,
                         counterCallback: (newVal) =>
-                            value.addToCart(model, newVal),
+                            value.changeProductQuantity(model, newVal),
                       );
               },
             )

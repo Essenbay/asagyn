@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:zakazflow/feat/menu/widgets/sort_button.dart';
 
 @JsonSerializable()
 class MenuModel {
@@ -10,6 +11,24 @@ class MenuModel {
     required this.allProducts,
     required this.establishmentName,
   });
+
+  void sortProducts(SortValue sortType) {
+    switch (sortType) {
+      case SortValue.name:
+        allProducts.sort((a, b) => a.name.compareTo(b.name));
+        break;
+      case SortValue.cheapFirst:
+        allProducts.sort((a, b) => a.cost.compareTo(b.cost));
+        break;
+      case SortValue.expensiveFirst:
+        allProducts.sort((a, b) => b.cost.compareTo(a.cost));
+        break;
+    }
+    categories.forEach((element) {
+      element.sortProducts(sortType);
+    });
+  }
+  
 }
 
 @JsonSerializable()
@@ -19,6 +38,20 @@ class CategoryModel {
   final List<ProductModel> products;
   CategoryModel(
       {required this.products, required this.name, required this.image});
+
+  void sortProducts(SortValue sortType) {
+    switch (sortType) {
+      case SortValue.name:
+        products.sort((a, b) => a.name.compareTo(b.name));
+        break;
+      case SortValue.cheapFirst:
+        products.sort((a, b) => a.cost.compareTo(b.cost));
+        break;
+      case SortValue.expensiveFirst:
+        products.sort((a, b) => b.cost.compareTo(a.cost));
+        break;
+    }
+  }
 }
 
 @JsonSerializable()

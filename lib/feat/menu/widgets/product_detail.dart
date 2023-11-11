@@ -125,7 +125,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                   CounterView(
-                    initNumber: quantity,
+                    value: quantity,
                     minNumber: 1,
                     counterCallback: (value) => setState(() {
                       quantity = value;
@@ -143,7 +143,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 onPressed: () {
                   context
                       .read<OrderController>()
-                      .addToCart(widget.model, quantity);
+                      .changeProductQuantity(widget.model, quantity);
                   context.router.pop();
                 },
                 text: 'Добавить',
