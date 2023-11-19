@@ -115,7 +115,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                                           maxLines: 3,
                                           style: TextStyle(
                                               fontSize: 13,
-                                              color: AppColors.greyDark2),
+                                              color: AppColors.grey700),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),

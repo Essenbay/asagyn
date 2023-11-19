@@ -15,7 +15,7 @@ class BoardingInticators extends StatelessWidget {
           height: 8,
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
-              color: currentPage == i ? AppColors.primary : AppColors.greyDark,
+              color: currentPage == i ? AppColors.primary : AppColors.grey800,
               borderRadius: currentPage == i
                   ? BorderRadius.circular(10)
                   : BorderRadius.circular(50)),

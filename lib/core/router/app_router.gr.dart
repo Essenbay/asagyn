@@ -51,6 +51,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MenuScreen(),
       );
     },
+    MySessionsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MySessionsScreen(),
+      );
+    },
     ProfileDetailRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -164,6 +170,20 @@ class MenuRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MenuRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MySessionsScreen]
+class MySessionsRoute extends PageRouteInfo<void> {
+  const MySessionsRoute({List<PageRouteInfo>? children})
+      : super(
+          MySessionsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MySessionsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

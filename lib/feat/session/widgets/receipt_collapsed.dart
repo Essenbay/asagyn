@@ -20,7 +20,7 @@ class _ReceiptCollapsed extends StatelessWidget {
               height: 3,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: AppColors.greyLight.withOpacity(.5)),
+                  color: AppColors.grey400.withOpacity(.5)),
             ),
           ),
           const SizedBox(height: 10),

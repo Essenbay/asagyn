@@ -59,12 +59,6 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
                     .map((e) => Tab(child: Text(e.name)))
                     .toList(),
               ),
-        // IconedDivider(
-        //   isExpanded: false,
-        //   toggle: () => setState(() {
-        //     isCategoriesExpanded = !isCategoriesExpanded;
-        //   }),
-        // ),
         Expanded(
             child: TabBarView(
           physics: BouncingScrollPhysics(),
@@ -72,8 +66,8 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
           children: widget.model.categories
               .map(
                 (category) => GridView.builder(
-                  padding:
-                      const EdgeInsets.only(left: 10,right: 10,top: 8, bottom: 10),
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 8, bottom: 10),
                   itemCount: category.products.length,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 170,

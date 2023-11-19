@@ -3,6 +3,7 @@ part of 'resources.dart';
 class CustomIcons {
   CustomIcons._();
 
+  static const String appIcon = 'assets/svg/app_icon.svg';
   static const String bell = 'assets/svg/bell.svg';
   static const String card = 'assets/svg/card.svg';
   static const String cart = 'assets/svg/cart.svg';

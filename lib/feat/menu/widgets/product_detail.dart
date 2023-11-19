@@ -75,7 +75,7 @@ class _ProductDetailState extends State<ProductDetail> {
             ],
           ),
           height: context.screenSize.height * .2,
-          placeholder: (context, url) => ColoredBox(color: AppColors.greyLight),
+          placeholder: (context, url) => ColoredBox(color: AppColors.grey400),
         ),
         Container(
           color: AppColors.white,
@@ -96,25 +96,25 @@ class _ProductDetailState extends State<ProductDetail> {
                   children: [
                     Icon(
                       Icons.access_time,
-                      color: AppColors.greyDark,
+                      color: AppColors.grey800,
                       size: 21,
                     ),
                     const SizedBox(width: 5),
                     Text(
                       'Время приготовления:',
-                      style: TextStyle(color: AppColors.greyDark, fontSize: 15),
+                      style: TextStyle(color: AppColors.grey800, fontSize: 15),
                     ),
                     const SizedBox(width: 5),
                     Text(
                       widget.model.readyTime!,
-                      style: TextStyle(color: AppColors.greyDark, fontSize: 15),
+                      style: TextStyle(color: AppColors.grey800, fontSize: 15),
                     ),
                   ],
                 ),
               const SizedBox(height: 5),
               Text(
                 widget.model.description,
-                style: TextStyle(color: AppColors.greyDark2),
+                style: TextStyle(color: AppColors.grey700),
               ),
               const SizedBox(height: 10),
               Row(

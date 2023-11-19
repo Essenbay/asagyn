@@ -49,7 +49,7 @@ class BottomNavigationRouter extends StatelessWidget {
                       CupertinoIcons.doc_plaintext,
                       color: tabsRouter.activeIndex == 0
                           ? AppColors.primary400
-                          : AppColors.greyLight,
+                          : AppColors.grey400,
                       size: 22,
                     ),
                     label: ''),
@@ -58,7 +58,7 @@ class BottomNavigationRouter extends StatelessWidget {
                       Icons.menu_book,
                       color: tabsRouter.activeIndex == 1
                           ? AppColors.primary400
-                          : AppColors.greyLight,
+                          : AppColors.grey400,
                       size: 22,
                     ),
                     label: ''),
@@ -67,7 +67,7 @@ class BottomNavigationRouter extends StatelessWidget {
                       Icons.menu,
                       color: tabsRouter.activeIndex == 2
                           ? AppColors.primary400
-                          : AppColors.greyLight,
+                          : AppColors.grey400,
                       size: 22,
                     ),
                     label: ''),

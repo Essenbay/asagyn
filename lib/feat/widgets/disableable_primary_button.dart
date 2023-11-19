@@ -81,7 +81,7 @@ class _DisableablePrimaryButtonState extends State<DisableablePrimaryButton>
               onPressed: () => widget.isEnabled ? widget.onPressed() : null,
               padding: EdgeInsets.zero,
               borderRadius: BorderRadius.circular(10),
-              color: widget.isEnabled ? widget.color : AppColors.grey,
+              color: widget.isEnabled ? widget.color : AppColors.grey500,
               child: Container(
                 height: widget.height,
                 alignment: Alignment.center,

@@ -75,11 +75,11 @@ class MenuProductGridItem extends StatelessWidget {
                   ),
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
-                      ColoredBox(color: AppColors.greyLight),
+                      ColoredBox(color: AppColors.grey400),
                   errorWidget: (context, error, stackTrace) => Center(
                     child: Icon(
                       CupertinoIcons.exclamationmark_circle_fill,
-                      color: AppColors.grey,
+                      color: AppColors.grey500,
                     ),
                   ),
                 ),

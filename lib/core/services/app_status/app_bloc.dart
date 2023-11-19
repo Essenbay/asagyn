@@ -37,7 +37,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (token.isNotEmpty) {
       emit(AppState.authenticated);
     } else {
-      emit(AppState.authenticated);
+      emit(AppState.unauthenticated);
     }
   }
 

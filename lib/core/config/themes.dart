@@ -39,7 +39,9 @@ class AppTheme {
           )),
       cupertinoOverrideTheme: const CupertinoThemeData(
           textTheme: CupertinoTextThemeData(
-              textStyle: TextStyle(fontFamily: 'Montserrat'))),
+        textStyle: TextStyle(fontFamily: 'Montserrat'),
+        primaryColor: AppColors.primary,
+      )),
       unselectedWidgetColor: AppColors.primary300,
       dialogTheme: const DialogTheme(
           titleTextStyle: TextStyle(color: AppColors.black),

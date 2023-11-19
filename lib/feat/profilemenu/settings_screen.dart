@@ -1,10 +1,10 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/router/app_router.dart';
+import 'package:zakazflow/core/services/app_status/app_bloc.dart';
 import 'package:zakazflow/core/services/language_provder/language_cubit.dart';
 import 'package:zakazflow/feat/profilemenu/language/language_modal.dart';
 import 'package:zakazflow/feat/profilemenu/widgets/menu_tile.dart';
@@ -78,7 +78,9 @@ class SettingsScreen extends StatelessWidget {
                       MenuTile(
                         icon: CustomIcons.order,
                         text: context.localized.my_sessions,
-                        onClick: () {},
+                        onClick: () {
+                          context.router.push(MySessionsRoute());
+                        },
                       ),
                       BlocBuilder<LanguageCubit, Languages>(
                         builder: (context, state) {
@@ -93,7 +95,9 @@ class SettingsScreen extends StatelessWidget {
                       MenuTile(
                         icon: CustomIcons.logout,
                         text: context.localized.logout,
-                        onClick: () {},
+                        onClick: () {
+                          context.read<AppBloc>().add(AppEvent.logout());
+                        },
                       )
                     ],
                   ),

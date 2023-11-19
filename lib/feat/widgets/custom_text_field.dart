@@ -1,47 +1,64 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {super.key,
-      this.controller,
-      this.prefix,
-      this.keyboardType,
-      this.suffix,
-      this.hintText,
-      this.maxLines = 1,
-      this.padding,
-      this.textAlign = TextAlign.start,
-      this.textColor = AppColors.black});
+  const CustomTextField({
+    Key? key,
+    this.controller,
+    this.keyboardType,
+    this.hintText,
+    this.obscureText = false,
+    this.maxLines = 1,
+    this.padding,
+    this.textAlign = TextAlign.start,
+    this.textColor = AppColors.black,
+    this.labelText,
+    this.suffix,
+    this.prefix,
+  }) : super(key: key);
+
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final String? labelText;
   final String? hintText;
   final int maxLines;
   final Color textColor;
+  final bool obscureText;
   final TextAlign textAlign;
   final EdgeInsetsGeometry? padding;
   final Widget? suffix;
   final Widget? prefix;
   @override
   Widget build(BuildContext context) {
-    return CupertinoTextField(
+    return TextField(
       controller: controller,
       maxLines: maxLines,
-      suffix: suffix,
-      prefix: prefix,
       keyboardType: keyboardType,
-      placeholder: hintText,
-      textAlign: textAlign,
-      placeholderStyle: const TextStyle(
-        color: AppColors.grey,
-      ),
-      padding:
-          padding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-      style: TextStyle(color: textColor, fontSize: 16),
-      decoration: BoxDecoration(
-          color: AppColors.white,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          color: AppColors.black300,
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        labelStyle: const TextStyle(color: AppColors.black300, fontSize: 20),
+        labelText: labelText,
+        contentPadding:
+            padding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        fillColor: AppColors.white,
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: AppColors.primary)),
+          borderSide: BorderSide(color: AppColors.grey400),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(color: AppColors.primary),
+        ),
+        suffix: suffix,
+        prefix: prefix,
+      ),
+      textAlign: textAlign,
+      style: TextStyle(color: textColor, fontSize: 16),
     );
   }
 }

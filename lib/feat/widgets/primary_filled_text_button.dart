@@ -10,6 +10,7 @@ class PrimaryFilledTextButton extends StatelessWidget {
       this.fontWeight = FontWeight.w600,
       this.borderRadius = 10,
       this.border,
+      this.addShadow = false,
       this.height = 50,
       this.fontSize = 16,
       this.backgroundColor = AppColors.primary});
@@ -22,29 +23,42 @@ class PrimaryFilledTextButton extends StatelessWidget {
   final BoxBorder? border;
   final double height;
   final double fontSize;
-
+  final bool addShadow;
   @override
   Widget build(BuildContext context) {
-    return CupertinoButton(
-      pressedOpacity: 0.4,
-      minSize: 33,
-      onPressed: onPressed,
-      padding: EdgeInsets.zero,
-      borderRadius: BorderRadius.circular(borderRadius),
-      color: isLight ? AppColors.white : backgroundColor,
-      child: Container(
-        height: height,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
-          border: border,
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: isLight ? AppColors.primary : AppColors.white,
-            fontSize: fontSize,
-            fontWeight: fontWeight,
+    return Container(
+      decoration: addShadow
+          ? BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary200,
+                  blurRadius: 6.0,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            )
+          : null,
+      child: CupertinoButton(
+        pressedOpacity: 0.4,
+        minSize: 33,
+        onPressed: onPressed,
+        padding: EdgeInsets.zero,
+        borderRadius: BorderRadius.circular(borderRadius),
+        color: isLight ? AppColors.white : backgroundColor,
+        child: Container(
+          height: height,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius),
+            border: border,
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: isLight ? AppColors.primary : AppColors.white,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+            ),
           ),
         ),
       ),

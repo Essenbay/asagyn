@@ -5,6 +5,7 @@ import 'package:zakazflow/resources/resources.dart';
 
 void main() {
   test('custom_icons assets test', () {
+    expect(File(CustomIcons.appIcon).existsSync(), isTrue);
     expect(File(CustomIcons.bell).existsSync(), isTrue);
     expect(File(CustomIcons.card).existsSync(), isTrue);
     expect(File(CustomIcons.cart).existsSync(), isTrue);
