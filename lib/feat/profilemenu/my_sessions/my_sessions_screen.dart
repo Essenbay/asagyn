@@ -13,7 +13,7 @@ class MySessionsScreen extends StatelessWidget {
       appBar: BackIconLeadingAppBar(
         title: context.localized.my_sessions,
       ),
-      body: Column(),
+      body: const Column(),
     );
   }
 }

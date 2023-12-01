@@ -56,7 +56,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   top: 0,
                   right: 0,
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: AppColors.primary,
                         borderRadius:
                             BorderRadius.only(bottomLeft: Radius.circular(15))),
@@ -64,7 +64,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         top: 8, left: 10, right: 8, bottom: 10),
                     child: Text(
                       '${widget.model.minAge}+',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppColors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.w800,
@@ -75,7 +75,8 @@ class _ProductDetailState extends State<ProductDetail> {
             ],
           ),
           height: context.screenSize.height * .2,
-          placeholder: (context, url) => ColoredBox(color: AppColors.grey400),
+          placeholder: (context, url) =>
+              const ColoredBox(color: AppColors.grey400),
         ),
         Container(
           color: AppColors.white,
@@ -85,7 +86,7 @@ class _ProductDetailState extends State<ProductDetail> {
             children: [
               Text(
                 widget.model.name,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
@@ -94,27 +95,28 @@ class _ProductDetailState extends State<ProductDetail> {
               if (widget.model.readyTime != null)
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.access_time,
                       color: AppColors.grey800,
                       size: 21,
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      'Время приготовления:',
-                      style: TextStyle(color: AppColors.grey800, fontSize: 15),
+                      '${context.localized.cooking_time}:',
+                      style: const TextStyle(color: AppColors.grey800, fontSize: 15),
                     ),
                     const SizedBox(width: 5),
                     Text(
                       widget.model.readyTime!,
-                      style: TextStyle(color: AppColors.grey800, fontSize: 15),
+                      style: const TextStyle(
+                          color: AppColors.grey800, fontSize: 15),
                     ),
                   ],
                 ),
               const SizedBox(height: 5),
               Text(
                 widget.model.description,
-                style: TextStyle(color: AppColors.grey700),
+                style: const TextStyle(color: AppColors.grey700),
               ),
               const SizedBox(height: 10),
               Row(
@@ -122,7 +124,8 @@ class _ProductDetailState extends State<ProductDetail> {
                 children: [
                   Text(
                     '${widget.model.cost * quantity}₸',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                   CounterView(
                     value: quantity,
@@ -146,7 +149,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       .changeProductQuantity(widget.model, quantity);
                   context.router.pop();
                 },
-                text: 'Добавить',
+                text: context.localized.add,
               ),
             ],
           ),

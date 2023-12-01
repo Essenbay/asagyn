@@ -55,7 +55,7 @@ class MenuScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
                             value.data?.establishmentName ?? '',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),
                         ),
@@ -67,7 +67,7 @@ class MenuScreen extends StatelessWidget {
         body: BlocBuilder<SessionBloc, SessionState>(
           builder: (context, state) {
             return state.map(
-                loading: (value) => Center(
+                loading: (value) => const Center(
                       child: CircularProgressIndicator(),
                     ),
                 failure: (state) => Center(
@@ -81,13 +81,13 @@ class MenuScreen extends StatelessWidget {
                 success: (state) => state.data == null
                     ? MessagedScreen(
                         iconPath: CustomIcons.emptyTable,
-                        message: 'У вас нет никаких сессии',
+                        message: context.localized.empty_sessions,
                         buttonText: context.localized.create_session,
                         buttonOnTap: () {})
                     : BlocBuilder<MenuBloc, MenuState>(
                         builder: (context, state) {
                         return state.map(
-                          loading: (state) => Center(
+                          loading: (state) => const Center(
                             child: CircularProgressIndicator(),
                           ),
                           success: (state) => MenuSuccess(model: state.data),

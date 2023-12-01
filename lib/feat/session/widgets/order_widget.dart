@@ -6,15 +6,15 @@ import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 
-class OrderWidget extends StatefulWidget {
-  const OrderWidget({super.key, required this.model});
+class OrdersWidget extends StatefulWidget {
+  const OrdersWidget({super.key, required this.model});
   final OrderModel model;
 
   @override
-  State<OrderWidget> createState() => _OrderWidgetState();
+  State<OrdersWidget> createState() => _OrdersWidgetState();
 }
 
-class _OrderWidgetState extends State<OrderWidget> {
+class _OrdersWidgetState extends State<OrdersWidget> {
   final ExpandableController _controller = ExpandableController();
 
   @override
@@ -22,7 +22,7 @@ class _OrderWidgetState extends State<OrderWidget> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: ExpandablePanel(
-          theme: ExpandableThemeData(
+          theme: const ExpandableThemeData(
               useInkWell: true,
               tapBodyToExpand: true,
               iconColor: AppColors.primary,
@@ -39,13 +39,13 @@ class _OrderWidgetState extends State<OrderWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Заказ №${widget.model.id}',
-                        style: TextStyle(
+                        '${context.localized.order} №${widget.model.id}',
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        'Время подачи: ${DateFormat.Hm().format(widget.model.readyTime)}',
-                        style: TextStyle(fontSize: 14),
+                        '${context.localized.serve_time}: ${DateFormat.Hm().format(widget.model.readyTime)}',
+                        style: const TextStyle(fontSize: 14),
                       ),
                     ],
                   ),
@@ -57,7 +57,7 @@ class _OrderWidgetState extends State<OrderWidget> {
           expanded: Column(
             children: widget.model.items
                 .map((e) => Container(
-                      constraints: BoxConstraints(maxHeight: 70),
+                      constraints: const BoxConstraints(maxHeight: 70),
                       margin: const EdgeInsets.only(
                           left: 16, right: 16, bottom: 10),
                       padding: const EdgeInsets.only(left: 40),
@@ -96,7 +96,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                                     ),
                                     Text(
                                       'x ${e.quantity}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -113,7 +113,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                                         child: Text(
                                           e.description,
                                           maxLines: 3,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 13,
                                               color: AppColors.grey700),
                                           overflow: TextOverflow.ellipsis,
@@ -122,7 +122,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                                       const SizedBox(width: 10),
                                       Text(
                                         e.cost.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500),
                                       ),
@@ -141,11 +141,12 @@ class _OrderWidgetState extends State<OrderWidget> {
   }
 
   Widget getStatusIcon() => switch (widget.model.status) {
-        OrderStatus.cooking => Icon(Icons.soup_kitchen_rounded, size: 30),
-        OrderStatus.processing => Icon(Icons.pending_actions_sharp, size: 30),
-        OrderStatus.served => Icon(Icons.room_service_rounded, size: 30),
-        OrderStatus.serving => Icon(Icons.table_bar, size: 30),
-        OrderStatus.cancelled => Icon(Icons.cancel, size: 30),
+        OrderStatus.cooking => const Icon(Icons.soup_kitchen_rounded, size: 30),
+        OrderStatus.processing =>
+          const Icon(Icons.pending_actions_sharp, size: 30),
+        OrderStatus.served => const Icon(Icons.room_service_rounded, size: 30),
+        OrderStatus.serving => const Icon(Icons.table_bar, size: 30),
+        OrderStatus.cancelled => const Icon(Icons.cancel, size: 30),
         OrderStatus.payed => const SizedBox(),
       };
 }

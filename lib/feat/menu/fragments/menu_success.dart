@@ -18,9 +18,9 @@ class _MenuSuccessState extends State<MenuSuccess> {
             const SizedBox(width: 16),
             Expanded(
               child: CustomTextField(
-                hintText: 'Поиск',
-                prefix: Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                hintText: context.localized.search,
+                prefix: const Padding(
+                    padding: EdgeInsets.only(left: 5),
                     child: Icon(Icons.search)),
               ),
             ),
@@ -38,7 +38,7 @@ class _MenuSuccessState extends State<MenuSuccess> {
         ),
         const SizedBox(height: 10),
         Expanded(child: MenuTabBar(model: widget.model)),
-        _CartFloatedModal(),
+        const _CartFloatedModal(),
       ],
     );
   }

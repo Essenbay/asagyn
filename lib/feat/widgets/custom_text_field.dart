@@ -44,15 +44,15 @@ class CustomTextField extends StatelessWidget {
         labelStyle: const TextStyle(color: AppColors.black300, fontSize: 20),
         labelText: labelText,
         contentPadding:
-            padding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            padding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         fillColor: AppColors.white,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColors.grey400),
+          borderSide: const BorderSide(color: AppColors.grey400),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColors.primary),
+          borderSide: const BorderSide(color: AppColors.primary),
         ),
         suffixIcon: suffix,
         prefixIcon: prefix,

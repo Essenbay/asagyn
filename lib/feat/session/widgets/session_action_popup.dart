@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/extensions/context.dart';
 
 class SessionPopupMenuButton extends StatelessWidget {
   const SessionPopupMenuButton({super.key});
@@ -18,11 +19,11 @@ class SessionPopupMenuButton extends StatelessWidget {
             width: 55,
             child: InkWell(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.white,
                 ),
-                child: Icon(Icons.more_vert),
+                child: const Icon(Icons.more_vert),
               ),
             ),
           ),
@@ -36,9 +37,9 @@ class SessionPopupMenuButton extends StatelessWidget {
                     ),
                     child: ListTile(
                       contentPadding: EdgeInsets.zero,
-                      leading: Icon(CupertinoIcons.bell_circle_fill,
+                      leading: const Icon(CupertinoIcons.bell_circle_fill,
                           color: AppColors.primary),
-                      title: Text('Позвать официанта'),
+                      title: Text(context.localized.call_waiter),
                       onTap: () {},
                     ),
                   ),

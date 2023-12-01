@@ -44,7 +44,7 @@ class _LauncherScreenState extends State<LauncherScreen> {
             break;
         }
       },
-      child: Scaffold(),
+      child: const Scaffold(),
     );
   }
 }

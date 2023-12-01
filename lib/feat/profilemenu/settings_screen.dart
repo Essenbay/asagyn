@@ -20,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -36,21 +36,21 @@ class SettingsScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   alignment: Alignment.centerLeft,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Добро пожаловать,',
-                        style: TextStyle(
+                        '${context.localized.welcome},',
+                        style: const TextStyle(
                           fontSize: 28,
                           color: AppColors.white,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Firstname',
                         textAlign: TextAlign.end,
                         style: TextStyle(
@@ -64,7 +64,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
@@ -80,12 +80,12 @@ class SettingsScreen extends StatelessWidget {
                         text: 'Username Surname',
                         subText: '+7 747 777 77 77',
                         onClick: () =>
-                            context.router.push(ProfileDetailRoute())),
+                            context.router.push(const ProfileDetailRoute())),
                     MenuTile(
                       icon: CustomIcons.order,
                       text: context.localized.my_sessions,
                       onClick: () {
-                        context.router.push(MySessionsRoute());
+                        context.router.push(const MySessionsRoute());
                       },
                     ),
                     BlocBuilder<LanguageCubit, Languages>(
@@ -102,7 +102,7 @@ class SettingsScreen extends StatelessWidget {
                       icon: CustomIcons.logout,
                       text: context.localized.logout,
                       onClick: () {
-                        context.read<AppBloc>().add(AppEvent.logout());
+                        context.read<AppBloc>().add(const AppEvent.logout());
                       },
                     )
                   ],

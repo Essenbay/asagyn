@@ -56,7 +56,7 @@ abstract class Util {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     color: backgroundColor ?? AppColors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
                   ),
@@ -147,16 +147,24 @@ abstract class Util {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(title),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.check_circle,
                 color: Colors.green,
                 size: 60,
               ),
-              Text(message),
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(message, textAlign: TextAlign.center),
             ],
           ),
           actions: <Widget>[

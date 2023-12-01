@@ -31,7 +31,7 @@ class PrimaryFilledTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: addShadow
-          ? BoxDecoration(
+          ? const BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: AppColors.primary200,

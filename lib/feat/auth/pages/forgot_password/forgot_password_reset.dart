@@ -24,13 +24,13 @@ class __ResetPasswordState extends State<_ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             context.localized.reset_password,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 20),
           CustomTextField(

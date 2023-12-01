@@ -18,7 +18,7 @@ class _SessionBody extends StatelessWidget {
           blurRadius: 15.0,
         ),
       ],
-      height: model.orders.isEmpty ? 0 : 125,
+      height: model.orders.isEmpty ? 0 : 110,
       collapsed: _ReceiptCollapsed(model: model),
       expandedBuilder: (controller) => _ReceiptExpanded(model: model),
       body: Stack(
@@ -59,27 +59,31 @@ class _SessionBody extends StatelessWidget {
                             onPressed: () {
                               //CONSIDER: Add deeplink?
                               Share.share(
-                                'Присоединяйся! Я в ${model.establishmentName}! Код заведения: ${model.establishmentCode}, Код стола: ${model.tableCode}',
-                                subject:
-                                    'Присоединяйся! Я в ${model.establishmentName}! Код заведения: ${model.establishmentCode}, Код стола: ${model.tableCode}',
+                                context.localized.share_message(
+                                    model.establishmentCode,
+                                    model.establishmentName,
+                                    model.tableCode),
+                                subject: context.localized.share_message(
+                                    model.establishmentCode,
+                                    model.establishmentName,
+                                    model.tableCode),
                               );
                             },
-                            child: Icon(
+                            child: const Icon(
                               CupertinoIcons.share,
                               size: 20,
                             ),
                           ),
-                          NotificationPopupButton(),
-                          SessionPopupMenuButton(),
+                          const NotificationPopupButton(),
+                          const SessionPopupMenuButton(),
                         ],
                       )),
-                      
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: 16, right: 16, bottom: 30, top: 10),
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, bottom: 40, top: 10),
                     child: Text(
                       model.establishmentName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppColors.white,
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -88,7 +92,7 @@ class _SessionBody extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: AppColors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
@@ -102,8 +106,8 @@ class _SessionBody extends StatelessWidget {
                               child: MessagedScreen(
                                 //TODO: Change icon to like 'Empty order list'
                                 iconPath: CustomIcons.menu,
-                                message: 'Вы еще ничего не заказывали',
-                                buttonText: 'Перейти в меню',
+                                message: context.localized.orders_empty,
+                                buttonText: context.localized.to_menu,
                                 buttonOnTap: () => AutoTabsRouter.of(context)
                                     .setActiveIndex(1),
                               ),
@@ -115,16 +119,19 @@ class _SessionBody extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16, vertical: 20),
-                                child: Text('Заказы:',
+                                child: Text('${context.localized.orders}:',
                                     textAlign: TextAlign.start,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w600)),
                               ),
-                              Column(
-                                children: model.orders
-                                    .map((e) => OrderWidget(model: e))
-                                    .toList(),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 30),
+                                child: Column(
+                                  children: model.orders
+                                      .map((e) => OrdersWidget(model: e))
+                                      .toList(),
+                                ),
                               )
                             ],
                           ),

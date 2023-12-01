@@ -12,7 +12,7 @@ class MenuProductTileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxHeight: 70),
+      constraints: const BoxConstraints(maxHeight: 70),
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 15),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,7 +49,7 @@ class MenuProductTileItem extends StatelessWidget {
                     children: [
                       Text(
                         '${model.cost}₸',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                     ],
@@ -61,7 +61,9 @@ class MenuProductTileItem extends StatelessWidget {
           CounterView(
             minNumber: 1,
             counterCallback: (value) {
-              context.read<OrderController>().changeProductQuantity(model, value);
+              context
+                  .read<OrderController>()
+                  .changeProductQuantity(model, value);
             },
             value: model.quantity,
             isHorizontal: false,

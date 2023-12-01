@@ -82,8 +82,8 @@ class MenuRepositoryMock implements MenuRepository {
   @override
   Future<Result<void>> createOrder(OrderRequest data) async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    return Result.success(null);
-    return Result.failure(
+    return const Result.success(null);
+    return const Result.failure(
         exception: NetworkException(null, NetworkExceptionTypes.connectivity));
   }
 }

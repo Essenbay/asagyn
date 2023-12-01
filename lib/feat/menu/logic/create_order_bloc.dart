@@ -37,7 +37,7 @@ class CreateOrderBloc extends Bloc<CreateOrderEvent, CreateOrderState> {
     emit(const CreateOrderState.loading());
     final result = await _repository.createOrder(event.data);
     result.map(
-        success: (result) => emit(CreateOrderState.success()),
+        success: (result) => emit(const CreateOrderState.success()),
         failure: (result) => emit(CreateOrderState.failure(result.exception)));
   }
 }

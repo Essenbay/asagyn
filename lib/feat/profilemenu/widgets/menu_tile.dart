@@ -45,13 +45,13 @@ class MenuTile extends StatelessWidget {
                     ),
                   ),
                   if (subText != null)
-                    Text(subText ?? '', style: TextStyle(fontSize: 14)),
+                    Text(subText ?? '', style: const TextStyle(fontSize: 14)),
                 ]),
               ],
             ),
             IconButton(
                 onPressed: () => onClick(),
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.chevron_right,
                   size: 22,
                   color: AppColors.primary,

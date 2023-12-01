@@ -19,19 +19,19 @@ class AppTheme {
         backgroundColor: AppColors.white,
       ),
       progressIndicatorTheme:
-          ProgressIndicatorThemeData(color: AppColors.primary),
+          const ProgressIndicatorThemeData(color: AppColors.primary),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: AppColors.black,
       ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: AppColors.white,
         foregroundColor: AppColors.primary,
       ),
-      iconTheme: IconThemeData(color: AppColors.primary),
+      iconTheme: const IconThemeData(color: AppColors.primary),
       splashColor: AppColors.primary200,
-      expansionTileTheme: ExpansionTileThemeData(
+      expansionTileTheme: const ExpansionTileThemeData(
           iconColor: AppColors.primary,
           collapsedIconColor: AppColors.primary,
           childrenPadding: EdgeInsets.symmetric(

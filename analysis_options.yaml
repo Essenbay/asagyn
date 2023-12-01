@@ -36,7 +36,7 @@ linter:
     avoid_positional_boolean_parameters: false
     avoid_redundant_argument_values: false
     prefer_constructors_over_static_methods: false
-    # prefer_const_constructors: true
+    prefer_const_constructors: true
     close_sinks: true
     #To group and make more readable
     sort_pub_dependencies: false
@@ -58,5 +58,3 @@ linter:
     prefer_int_literals: false
     sort_constructors_first: false
     unnecessary_final: false
-
-

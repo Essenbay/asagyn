@@ -14,7 +14,7 @@ class IconedDivider extends StatelessWidget {
       onTap: toggle,
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: Divider(
               color: AppColors.primary,
               height: 20,
@@ -27,7 +27,7 @@ class IconedDivider extends StatelessWidget {
                 : CupertinoIcons.chevron_compact_down,
             size: 28,
           ),
-          Expanded(
+          const Expanded(
             child: Divider(
               color: AppColors.primary,
               height: 20,

@@ -40,9 +40,9 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           backgroundColor: AppColors.primary,
           systemOverlayStyle:
-              SystemUiOverlayStyle(statusBarColor: AppColors.primary),
+              const SystemUiOverlayStyle(statusBarColor: AppColors.primary),
           actions: [
-            ChangeLanguageDropdown(),
+            const ChangeLanguageDropdown(),
           ],
         ),
         body: ListView(
@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     height: context.screenSize.height * .3,
                     width: context.screenSize.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,

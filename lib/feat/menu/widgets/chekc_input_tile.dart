@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/extensions/context.dart';
 
 class CheckInput extends StatelessWidget {
   const CheckInput({super.key, required this.value, required this.onChange});
@@ -25,7 +26,7 @@ class CheckInput extends StatelessWidget {
                     borderRadius: BorderRadius.circular(3)),
                 onChanged: (_) => onChange(!value)),
             Text(
-              'Подать напитки сразу',
+              context.localized.give_drinks_imm,
               style: const TextStyle(),
             ),
           ],

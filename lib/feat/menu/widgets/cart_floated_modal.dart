@@ -32,14 +32,14 @@ class _CartFloatedModal extends StatelessWidget {
                     const SizedBox(height: 15),
                     Row(children: [
                       Text(
-                        'Итого:',
-                        style: TextStyle(
+                        '${context.localized.total}:',
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
                       Text(
                         '${value.total} ₸',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       )
                     ]),
@@ -47,14 +47,14 @@ class _CartFloatedModal extends StatelessWidget {
                     PrimaryFilledTextButton(
                       onPressed: () {
                         final provider = context.read<OrderController>();
-                        final result = context.router
-                            .push(CreateOrderDialogPage());
+                        final result =
+                            context.router.push(const CreateOrderDialogPage());
                         if (result == true) {
                           provider.clearCart();
                         }
                       },
                       height: 50,
-                      text: 'Заказать',
+                      text: context.localized.to_order,
                     )
                   ],
                 ),

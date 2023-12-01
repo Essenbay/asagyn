@@ -51,7 +51,7 @@ class CounterView extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   value.toString(),
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 )),
           ),
           Expanded(
@@ -75,7 +75,7 @@ class CounterView extends StatelessWidget {
       IconData icon, void Function() onPressed) {
     return RawMaterialButton(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      constraints: BoxConstraints(minWidth: 32.0, minHeight: 32.0),
+      constraints: const BoxConstraints(minWidth: 32.0, minHeight: 32.0),
       onPressed: onPressed,
       elevation: 0.0,
       fillColor: AppColors.grey200,

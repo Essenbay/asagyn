@@ -44,7 +44,7 @@ class ForgotPasswordBloc
       GetCodeEvent event, Emitter<ForgotPasswordState> emit) async {
     emit(const ForgotPasswordState.loading());
     await Future.delayed(const Duration(seconds: 1));
-    emit(ForgotPasswordState.success());
+    emit(const ForgotPasswordState.success());
 
     // final result = await _repository.getCode(phoneNumber: event.phoneNumber);
     // emit(ForgotPasswordState.success());
@@ -58,7 +58,7 @@ class ForgotPasswordBloc
       SendCodeEvent event, Emitter<ForgotPasswordState> emit) async {
     emit(const ForgotPasswordState.loading());
     await Future.delayed(const Duration(seconds: 1));
-    emit(ForgotPasswordState.codeSuccess('token'));
+    emit(const ForgotPasswordState.codeSuccess('token'));
 
     // final result = await _repository.sendCode(code: event.code);
     // result.map(
@@ -71,7 +71,7 @@ class ForgotPasswordBloc
       ChangePasswordEvent event, Emitter<ForgotPasswordState> emit) async {
     emit(const ForgotPasswordState.loading());
     await Future.delayed(const Duration(seconds: 1));
-    emit(ForgotPasswordState.success());
+    emit(const ForgotPasswordState.success());
 
     // final result = await _repository.changePassword(password: event.password);
     // result.map(

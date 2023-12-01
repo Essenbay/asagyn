@@ -16,7 +16,7 @@ class AskBillButton extends StatelessWidget {
         final result = await showDialog<PaymentMethod>(
           context: context,
           builder: (context) => AlertDialog(
-            contentPadding: EdgeInsets.all(15),
+            contentPadding: const EdgeInsets.all(15),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
@@ -30,11 +30,11 @@ class AskBillButton extends StatelessWidget {
           ),
         );
         if (result != null) {
-          Util.showSuccessDialog(context, 'Успешно',
-              'Скоро официант подойдет для совершения оплаты');
+          Util.showSuccessDialog(context, context.localized.success,
+              context.localized.waiters_will_be_soon);
         }
       },
-      text: 'Попросить счет',
+      text: context.localized.ask_bill,
     );
   }
 }
@@ -55,7 +55,7 @@ class _AskBillDialogContentState extends State<_AskBillDialogContent> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Оплата через:',
+        Text(context.localized.payment_by,
             textAlign: TextAlign.start,
             style: context.theme.textTheme.titleLarge),
         const SizedBox(height: 10),
@@ -67,7 +67,7 @@ class _AskBillDialogContentState extends State<_AskBillDialogContent> {
                   child: ChoiceChip.elevated(
                     label: Text(e.name),
                     selected: selectedPayment == e,
-                    side: BorderSide(color: AppColors.primary),
+                    side: const BorderSide(color: AppColors.primary),
                     backgroundColor: AppColors.white,
                     selectedColor: AppColors.primary,
                     labelStyle: TextStyle(
@@ -93,7 +93,7 @@ class _AskBillDialogContentState extends State<_AskBillDialogContent> {
               else
                 context.router.pop(selectedPayment);
             },
-            text: 'Оплатить'),
+            text: context.localized.pay),
       ],
     );
   }

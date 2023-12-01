@@ -26,6 +26,7 @@ class RegisterScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  //TODO: Add fullname
   final phoneNumberController =
       MaskedTextController(mask: '+7 (000) 000-00-00', text: '7');
   final loginController = TextEditingController();
@@ -42,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         appBar: AppBar(
           backgroundColor: AppColors.primary,
           systemOverlayStyle:
-              SystemUiOverlayStyle(statusBarColor: AppColors.primary),
+              const SystemUiOverlayStyle(statusBarColor: AppColors.primary),
         ),
         body: ListView(
           children: [
@@ -54,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Container(
                     height: context.screenSize.height * .3,
                     width: context.screenSize.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,

@@ -19,13 +19,13 @@ class _ForgotPasswordCodeState extends State<_ForgotPasswordCode> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             context.localized.enter_code,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 5),
           Text(context.localized.enter_code_description),
@@ -33,9 +33,9 @@ class _ForgotPasswordCodeState extends State<_ForgotPasswordCode> {
           Align(
             child: Pinput(
               controller: code,
-              defaultPinTheme: PinTheme(
+              defaultPinTheme: const PinTheme(
                   textStyle: TextStyle(fontFamily: 'Montserrat', fontSize: 16),
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  margin: EdgeInsets.symmetric(horizontal: 8),
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 18),
                   decoration: BoxDecoration(
                     border: Border(

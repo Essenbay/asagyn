@@ -34,7 +34,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 itemCount: widget.model.categories.length,
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 170,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
@@ -61,7 +61,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
               ),
         Expanded(
             child: TabBarView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           controller: _tabController,
           children: widget.model.categories
               .map(
@@ -69,7 +69,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
                   padding: const EdgeInsets.only(
                       left: 10, right: 10, top: 8, bottom: 10),
                   itemCount: category.products.length,
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 170,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/extensions/context.dart';
 
 enum SortValue {
   name,
@@ -21,11 +22,11 @@ class SortButton extends StatelessWidget {
           width: 55,
           child: InkWell(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.white,
               ),
-              child: Icon(Icons.sort),
+              child: const Icon(Icons.sort),
             ),
           ),
         ),
@@ -37,7 +38,7 @@ class SortButton extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text('По названию'),
+                  child: Text(context.localized.by_name),
                 ),
               ),
               PopupMenuItem<SortValue>(
@@ -47,7 +48,7 @@ class SortButton extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text('Сначало дешевые'),
+                  child: Text(context.localized.cheap_first),
                 ),
               ),
               PopupMenuItem<SortValue>(
@@ -57,7 +58,7 @@ class SortButton extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text('Сначало дорогие'),
+                  child: Text(context.localized.expensive_first),
                 ),
               ),
             ]);

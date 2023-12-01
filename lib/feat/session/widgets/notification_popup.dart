@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/extensions/context.dart';
 
 class NotificationPopupButton extends StatelessWidget {
   const NotificationPopupButton({Key? key});
@@ -18,11 +19,12 @@ class NotificationPopupButton extends StatelessWidget {
             width: 55,
             child: InkWell(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.white,
                 ),
-                child: Icon(CupertinoIcons.bell),
+                child:
+                    const Icon(CupertinoIcons.bell, color: AppColors.primary),
               ),
             ),
           ),
@@ -30,8 +32,8 @@ class NotificationPopupButton extends StatelessWidget {
                 PopupMenuItem<int>(
                   value: 1,
                   child: ListTile(
-                    leading: Icon(Icons.pending_actions_sharp),
-                    title: Text('Заказ создан'),
+                    leading: const Icon(Icons.pending_actions_sharp),
+                    title: Text(context.localized.order_created),
                     onTap: () {
                       Navigator.of(context).pop();
                     },
@@ -40,10 +42,10 @@ class NotificationPopupButton extends StatelessWidget {
                 PopupMenuItem<int>(
                   value: 2,
                   child: ListTile(
-                    leading: Icon(Icons.room_service),
-                    title: Text('Заказ подан'),
+                    leading: const Icon(Icons.room_service),
+                    title: Text(context.localized.order_served),
                     onTap: () {
-                      // Handle notification 2 tap
+                      //TODO: Handle notification 2 tap
                       Navigator.of(context).pop();
                     },
                   ),

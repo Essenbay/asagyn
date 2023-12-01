@@ -7,7 +7,7 @@ part 'login_cubit.freezed.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final AuthRepository _repository;
-  LoginCubit(this._repository) : super(LoginState.initial());
+  LoginCubit(this._repository) : super(const LoginState.initial());
 
   Future<void> login({required String login, required String password}) async {
     emit(const LoginState.loading());

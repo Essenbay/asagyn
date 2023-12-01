@@ -33,13 +33,13 @@ class SessionScreen extends StatelessWidget {
       body: BlocBuilder<SessionBloc, SessionState>(
         builder: (context, state) {
           return state.map(
-            loading: (value) => _SessionLoading(),
+            loading: (value) => const _SessionLoading(),
             failure: (state) =>
                 _SessionFailure(message: state.exception.message(context)),
             success: (state) => state.data == null
                 ? MessagedScreen(
                     iconPath: CustomIcons.emptyTable,
-                    message: 'У вас нет никаких сессии',
+                    message: context.localized.empty_sessions,
                     buttonText: context.localized.create_session,
                     buttonOnTap: () {})
                 : _SessionBody(model: state.data!),

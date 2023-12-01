@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/order_controller.dart';
 import 'package:zakazflow/feat/menu/widgets/counter_widget.dart';
@@ -27,7 +28,7 @@ class MenuProductGridItem extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.all(6),
+        padding: const EdgeInsets.all(6),
         margin: const EdgeInsets.symmetric(horizontal: 4),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +56,7 @@ class MenuProductGridItem extends StatelessWidget {
                           top: 0,
                           right: 0,
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(15))),
@@ -63,7 +64,7 @@ class MenuProductGridItem extends StatelessWidget {
                                 top: 4, left: 6, right: 4, bottom: 6),
                             child: Text(
                               '${model.minAge}+',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: AppColors.white,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,
@@ -75,8 +76,8 @@ class MenuProductGridItem extends StatelessWidget {
                   ),
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
-                      ColoredBox(color: AppColors.grey400),
-                  errorWidget: (context, error, stackTrace) => Center(
+                      const ColoredBox(color: AppColors.grey400),
+                  errorWidget: (context, error, stackTrace) => const Center(
                     child: Icon(
                       CupertinoIcons.exclamationmark_circle_fill,
                       color: AppColors.grey500,
@@ -104,7 +105,7 @@ class MenuProductGridItem extends StatelessWidget {
                     if (model.readyTime != null)
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.access_time,
                             color: AppColors.black,
                             size: 16,
@@ -112,15 +113,15 @@ class MenuProductGridItem extends StatelessWidget {
                           const SizedBox(width: 5),
                           Text(
                             model.readyTime!,
-                            style: TextStyle(fontSize: 14),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ],
                       ),
                     const SizedBox(height: 5),
                     Text(
                       '${model.cost}₸',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(height: 5),
                   ],
@@ -138,7 +139,7 @@ class MenuProductGridItem extends StatelessWidget {
                         onPressed: () {
                           value.changeProductQuantity(model, 1);
                         },
-                        text: 'Добавить',
+                        text: context.localized.add,
                       )
                     : CounterView(
                         value: quantity,

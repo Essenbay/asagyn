@@ -25,13 +25,15 @@ class _ReceiptExpanded extends StatelessWidget {
             const SizedBox(height: 10),
             Row(children: [
               Text(
-                'Итого:',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                '${context.localized.total}:',
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               const Spacer(),
               Text(
                 '${model.total} ₸',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               )
             ]),
             const Divider(),
@@ -40,20 +42,20 @@ class _ReceiptExpanded extends StatelessWidget {
                   child: Row(children: [
                     Text(
                       'x${e.quantity}',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(width: 10),
                     Text(
                       e.title,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
                     ),
                     const Spacer(),
                     Text(
                       '${e.cost} ₸',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
                     ),
                   ]),
                 )),

@@ -6,6 +6,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/di/injection_container.dart';
+import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/ui_util.dart';
 import 'package:zakazflow/feat/menu/logic/create_order_bloc.dart';
 import 'package:zakazflow/feat/menu/logic/menu_repository.dart';
@@ -25,11 +26,11 @@ class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BackIconLeadingAppBar(
-        title: 'Ваш заказ',
+        title: context.localized.your_order,
         leadingWidth: 80,
         actions: [
           PrimaryButton(
-              child: Icon(
+              child: const Icon(
                 CupertinoIcons.delete,
                 color: AppColors.black,
               ),
@@ -46,8 +47,9 @@ class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                'Блюда:',
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500),
+                '${context.localized.dishes}:',
+                style:
+                    const TextStyle(fontSize: 21, fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(height: 5),
@@ -60,15 +62,16 @@ class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                'Заметка:',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                '${context.localized.note}:',
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: CustomTextField(
-                hintText: 'Введите свою заметку',
+                hintText: context.localized.enter_note,
                 maxLines: 5,
                 controller: value.noteController,
               ),
@@ -110,7 +113,7 @@ class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
                     .read<CreateOrderBloc>()
                     .add(CreateOrderEvent.create(data));
               },
-              text: 'Подтвердить заказ'),
+              text: context.localized.confirm_order),
         ),
       ),
     );

@@ -25,7 +25,7 @@ class ChangeLanguageDropdown extends StatelessWidget {
             Center(
               child: Text(
                 Languages.ru.str,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -35,7 +35,7 @@ class ChangeLanguageDropdown extends StatelessWidget {
             Center(
               child: Text(
                 Languages.kz.str,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,

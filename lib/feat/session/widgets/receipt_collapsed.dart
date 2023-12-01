@@ -12,7 +12,6 @@ class _ReceiptCollapsed extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 5),
           Align(
             alignment: Alignment.center,
             child: Container(
@@ -26,13 +25,13 @@ class _ReceiptCollapsed extends StatelessWidget {
           const SizedBox(height: 10),
           Row(children: [
             Text(
-              'Итого:',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              '${context.localized.total}:',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             const Spacer(),
             Text(
               '${model.total} ₸',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             )
           ]),
           const SizedBox(height: 10),

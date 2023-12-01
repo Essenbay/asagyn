@@ -20,7 +20,7 @@ class MessagedScreen extends StatelessWidget {
     final space = context.screenSize.height * 0.02;
     return Center(
       child: Padding(
-        padding: EdgeInsets.only(right: 40, left: 40),
+        padding: const EdgeInsets.only(right: 40, left: 40),
         child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +29,7 @@ class MessagedScreen extends StatelessWidget {
                 iconPath,
                 height: 80,
                 colorFilter:
-                    ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+                    const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
               ),
               SizedBox(height: space * 1),
               Text(

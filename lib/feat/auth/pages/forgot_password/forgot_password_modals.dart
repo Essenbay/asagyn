@@ -22,14 +22,14 @@ Future<void> showForgotPassword(BuildContext context) async {
       context: context,
       child: BlocProvider(
         create: (context) => ForgotPasswordBloc(getIt()),
-        child: _ForgotPasswordEnterLogin(),
+        child: const _ForgotPasswordEnterLogin(),
       ));
   if (result == true) {
     final resultToken = await Util.showCustomModalBottomSheet<String?>(
         context: context,
         child: BlocProvider(
           create: (context) => ForgotPasswordBloc(getIt()),
-          child: _ForgotPasswordCode(),
+          child: const _ForgotPasswordCode(),
         ));
     if (resultToken != null) {
       await Util.showCustomModalBottomSheet<bool?>(
