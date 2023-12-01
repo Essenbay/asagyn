@@ -33,9 +33,9 @@ class AppRouter extends _$AppRouter {
               AutoRoute(page: MenuRoute.page),
               AutoRoute(page: CreateOrderDialogPage.page),
               AutoRoute(page: ProfileDetailRoute.page),
-              AutoRoute(page: MySessionsRoute.page),
             ]),
           ],
         ),
+        AutoRoute(page: MySessionsRoute.page),
       ];
 }

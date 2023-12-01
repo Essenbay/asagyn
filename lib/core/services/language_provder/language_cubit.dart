@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/services/preference_service.dart';
 
 enum Languages {
@@ -31,5 +32,9 @@ class LanguageCubit extends Cubit<Languages> {
 
   void setLanguage(Languages newLan, BuildContext context) {
     _prefs.setLanguageCode(newLan.serverCode).then((value) => emit(newLan));
+    emit(switch (newLan) {
+      Languages.ru => Languages.kz,
+      Languages.kz => Languages.ru,
+    });
   }
 }

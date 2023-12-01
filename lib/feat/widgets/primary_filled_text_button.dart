@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
 
 class PrimaryFilledTextButton extends StatelessWidget {
@@ -6,6 +7,7 @@ class PrimaryFilledTextButton extends StatelessWidget {
       {super.key,
       required this.onPressed,
       required this.text,
+      this.isLoading = false,
       this.isLight = false,
       this.fontWeight = FontWeight.w600,
       this.borderRadius = 10,
@@ -24,6 +26,7 @@ class PrimaryFilledTextButton extends StatelessWidget {
   final double height;
   final double fontSize;
   final bool addShadow;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,14 +55,18 @@ class PrimaryFilledTextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
             border: border,
           ),
-          child: Text(
-            text,
-            style: TextStyle(
-              color: isLight ? AppColors.primary : AppColors.white,
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-            ),
-          ),
+          child: isLoading
+              ? CircularProgressIndicator(
+                  color: isLight ? AppColors.primary : AppColors.white,
+                )
+              : Text(
+                  text,
+                  style: TextStyle(
+                    color: isLight ? AppColors.primary : AppColors.white,
+                    fontSize: fontSize,
+                    fontWeight: fontWeight,
+                  ),
+                ),
         ),
       ),
     );

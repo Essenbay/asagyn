@@ -105,10 +105,10 @@ dev_dependencies:
 
 flutter_launcher_icons:
   min_sdk_android: 21
-  android: "ic_launcher"
+  android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/images/app_icon.png"
+  image_path: "assets/icons/png/icon.png"
 
 flutter_native_splash:
   color: "#F84C0A"

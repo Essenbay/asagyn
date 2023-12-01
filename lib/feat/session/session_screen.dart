@@ -29,24 +29,22 @@ class SessionScreen extends StatelessWidget {
   const SessionScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: BlocBuilder<SessionBloc, SessionState>(
-          builder: (context, state) {
-            return state.map(
-              loading: (value) => _SessionLoading(),
-              failure: (state) =>
-                  _SessionFailure(message: state.exception.message(context)),
-              success: (state) => state.data == null
-                  ? MessagedScreen(
-                      iconPath: CustomIcons.emptyTable,
-                      message: 'У вас нет никаких сессии',
-                      buttonText: context.localized.create_session,
-                      buttonOnTap: () {})
-                  : _SessionBody(model: state.data!),
-            );
-          },
-        ),
+    return Scaffold(
+      body: BlocBuilder<SessionBloc, SessionState>(
+        builder: (context, state) {
+          return state.map(
+            loading: (value) => _SessionLoading(),
+            failure: (state) =>
+                _SessionFailure(message: state.exception.message(context)),
+            success: (state) => state.data == null
+                ? MessagedScreen(
+                    iconPath: CustomIcons.emptyTable,
+                    message: 'У вас нет никаких сессии',
+                    buttonText: context.localized.create_session,
+                    buttonOnTap: () {})
+                : _SessionBody(model: state.data!),
+          );
+        },
       ),
     );
   }

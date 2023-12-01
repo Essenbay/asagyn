@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/router/app_router.dart';
+import 'package:zakazflow/feat/auth/pages/forgot_password/forgot_password_modals.dart';
+import 'package:zakazflow/feat/auth/widgets/change_language_button.dart.dart';
 import 'package:zakazflow/feat/widgets/custom_text_button.dart';
 import 'package:zakazflow/feat/widgets/custom_text_field.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
@@ -39,6 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
           backgroundColor: AppColors.primary,
           systemOverlayStyle:
               SystemUiOverlayStyle(statusBarColor: AppColors.primary),
+          actions: [
+            ChangeLanguageDropdown(),
+          ],
         ),
         body: ListView(
           children: [
@@ -110,8 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: context.localized.forgot_password,
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w500),
-                          onTap: () =>
-                              context.router.push(const RegisterRoute())),
+                          onTap: () => showForgotPassword(context)),
                     ],
                   ),
                   const SizedBox(height: 10),

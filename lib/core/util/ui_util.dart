@@ -3,7 +3,7 @@ import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/feat/widgets/custom_text_button.dart';
 
-class Util {
+abstract class Util {
   static void showSnackBar(BuildContext context, String? message) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -16,45 +16,54 @@ class Util {
   static Future<T?> showCustomModalBottomSheet<T>(
       {required BuildContext context,
       required Widget child,
+      bool isDissmissable = true,
+      bool isScrollControlled = true,
       Color? backgroundColor}) {
     return showModalBottomSheet<T>(
       context: context,
-      useSafeArea: true,
-      isScrollControlled: true,
+      useSafeArea: false,
+      isDismissible: isDissmissable,
+      isScrollControlled: isScrollControlled,
       clipBehavior: Clip.hardEdge,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return IntrinsicHeight(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              FractionallySizedBox(
-                widthFactor: 0.15,
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 12.0,
-                  ),
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                FractionallySizedBox(
+                  widthFactor: 0.15,
                   child: Container(
-                    height: 5.0,
-                    decoration: BoxDecoration(
-                      color: AppColors.grey100,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(2.5)),
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 9.0,
+                    ),
+                    child: Container(
+                      height: 5.0,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey100,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(2.5)),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  color: backgroundColor ?? AppColors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
+                Container(
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    color: backgroundColor ?? AppColors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)),
+                  ),
+                  child: child,
                 ),
-                child: child,
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
