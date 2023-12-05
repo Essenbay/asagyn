@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:zakazflow/feat/auth/pages/login/login_screen.dart';
 import 'package:zakazflow/feat/auth/pages/register/register_screen.dart';
 import 'package:zakazflow/feat/auth/pages/start/start_screen.dart';
 import 'package:zakazflow/feat/menu/fragments/create_order_dialog.dart';
+import 'package:zakazflow/feat/profilemenu/my_sessions/my_session_detail_screen.dart';
 import 'package:zakazflow/feat/profilemenu/my_sessions/my_sessions_screen.dart';
 import 'package:zakazflow/feat/profilemenu/profile_detail/profile_detail_screen.dart';
 import 'package:zakazflow/feat/session/session_screen.dart';
@@ -33,10 +35,10 @@ class AppRouter extends _$AppRouter {
               AutoRoute(page: MenuRoute.page),
               AutoRoute(page: CreateOrderDialogPage.page),
             ]),
-
           ],
         ),
         AutoRoute(page: MySessionsRoute.page),
+        AutoRoute(page: MySessionDetailRoute.page),
         AutoRoute(page: ProfileDetailRoute.page),
       ];
 }

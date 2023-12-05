@@ -18,7 +18,7 @@ class SecureStorage {
     if (_tokenKey.isNotEmpty) {
       return _tokenKey;
     } else {
-      return await storage.read(key: _tokenKeyKey) ?? '';
+      return await storage.read(key: _tokenKeyKey) ?? ''; 
     }
   }
 

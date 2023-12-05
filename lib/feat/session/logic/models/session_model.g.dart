@@ -11,12 +11,15 @@ SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
       allItems: (json['allItems'] as List<dynamic>)
           .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
           .toList(),
+      sessionDate: json['sessionDate'] == null
+          ? null
+          : DateTime.parse(json['sessionDate'] as String),
       establishmentCode: json['establishmentCode'] as String,
       paymentMethods: (json['paymentMethods'] as List<dynamic>)
           .map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
           .toList(),
       tableCode: json['tableCode'] as int,
-      backgroundImage: json['backgroundImage'] as String,
+      backgroundImage: json['backgroundImage'] as String?,
       total: (json['total'] as num).toDouble(),
       orderTotal: (json['orderTotal'] as num).toDouble(),
       orders: (json['orders'] as List<dynamic>)

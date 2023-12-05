@@ -51,10 +51,21 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MenuScreen(),
       );
     },
+    MySessionDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<MySessionDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(
+            child: MySessionDetailScreen(
+          key: args.key,
+          id: args.id,
+        )),
+      );
+    },
     MySessionsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MySessionsScreen(),
+        child: WrappedRoute(child: const MySessionsScreen()),
       );
     },
     ProfileDetailRoute.name: (routeData) {
@@ -172,6 +183,44 @@ class MenuRoute extends PageRouteInfo<void> {
   static const String name = 'MenuRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MySessionDetailScreen]
+class MySessionDetailRoute extends PageRouteInfo<MySessionDetailRouteArgs> {
+  MySessionDetailRoute({
+    Key? key,
+    required int id,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MySessionDetailRoute.name,
+          args: MySessionDetailRouteArgs(
+            key: key,
+            id: id,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MySessionDetailRoute';
+
+  static const PageInfo<MySessionDetailRouteArgs> page =
+      PageInfo<MySessionDetailRouteArgs>(name);
+}
+
+class MySessionDetailRouteArgs {
+  const MySessionDetailRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'MySessionDetailRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

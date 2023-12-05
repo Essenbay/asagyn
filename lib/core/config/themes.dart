@@ -18,6 +18,7 @@ class AppTheme {
         accentColor: AppColors.primary,
         backgroundColor: AppColors.white,
       ),
+      
       progressIndicatorTheme:
           const ProgressIndicatorThemeData(color: AppColors.primary),
       appBarTheme: const AppBarTheme(

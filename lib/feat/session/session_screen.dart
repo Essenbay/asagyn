@@ -1,17 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bottom_sheet_bar/bottom_sheet_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/example.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/logic/session_bloc.dart';
 import 'package:zakazflow/feat/session/widgets/ask_bill_button.dart';
-import 'package:zakazflow/feat/session/widgets/notification_popup.dart';
 import 'package:zakazflow/feat/session/widgets/order_widget.dart';
 import 'package:zakazflow/feat/session/widgets/session_action_popup.dart';
 import 'package:zakazflow/feat/widgets/error_widget.dart';

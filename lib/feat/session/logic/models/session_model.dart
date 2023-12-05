@@ -5,11 +5,12 @@ part 'session_model.g.dart';
 @JsonSerializable(createToJson: false)
 class SessionModel {
   final String establishmentName;
-  final String backgroundImage;
+  final String? backgroundImage;
   final double total;
   final double orderTotal;
   final double servingPercentage;
   final int servingAmount;
+  final DateTime? sessionDate;
   final List<OrderModel> orders;
   ///Products of orders at once
   final List<OrderItem> allItems;
@@ -20,6 +21,7 @@ class SessionModel {
   SessionModel(
       {required this.establishmentName,
       required this.allItems,
+      this.sessionDate,
       required this.establishmentCode,
       required this.paymentMethods,
       required this.tableCode,

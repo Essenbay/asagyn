@@ -35,6 +35,7 @@ class CustomTextField extends StatelessWidget {
       maxLines: maxLines,
       keyboardType: keyboardType,
       obscureText: obscureText,
+      cursorColor: AppColors.primary200,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: const TextStyle(
@@ -50,6 +51,7 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(color: AppColors.grey400),
         ),
+        prefixIconColor: AppColors.primary,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: const BorderSide(color: AppColors.primary),

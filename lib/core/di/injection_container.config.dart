@@ -21,7 +21,8 @@ import '../../feat/menu/logic/create_order_bloc.dart' as _i19;
 import '../../feat/menu/logic/menu_bloc.dart' as _i21;
 import '../../feat/menu/logic/menu_repository.dart' as _i8;
 import '../../feat/menu/logic/menu_repository_mock.dart' as _i9;
-import '../../feat/session/logic/session_bloc.dart' as _i22;
+import '../../feat/profilemenu/my_sessions/logic/my_sessions_bloc.dart' as _i22;
+import '../../feat/session/logic/session_bloc.dart' as _i23;
 import '../../feat/session/logic/session_repository.dart' as _i16;
 import '../../feat/session/logic/session_repository_mock.dart' as _i17;
 import '../services/app_status/app_bloc.dart' as _i18;
@@ -71,8 +72,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i20.LanguageCubit>(
         () => _i20.LanguageCubit(gh<_i13.PreferencesService>()));
     gh.factory<_i21.MenuBloc>(() => _i21.MenuBloc(gh<_i8.MenuRepository>()));
-    gh.factory<_i22.SessionBloc>(
-        () => _i22.SessionBloc(gh<_i16.SessionRepository>()));
+    gh.factory<_i22.MySessionsBloc>(
+        () => _i22.MySessionsBloc(gh<_i16.SessionRepository>()));
+    gh.factory<_i23.SessionBloc>(
+        () => _i23.SessionBloc(gh<_i16.SessionRepository>()));
     return this;
   }
 }
