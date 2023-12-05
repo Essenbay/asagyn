@@ -47,7 +47,6 @@ class _BottomNavAnimatedState extends State<BottomNavAnimated>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.white,
       child: ColorFiltered(
         colorFilter: ColorFilter.mode(
           widget.groupValue == widget.value

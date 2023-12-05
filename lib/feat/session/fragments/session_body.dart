@@ -91,8 +91,6 @@ class _SessionBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Container(
-                  constraints: BoxConstraints.tightFor(
-                      height: context.screenSize.height * .5),
                   decoration: const BoxDecoration(
                       color: AppColors.white,
                       borderRadius: BorderRadius.only(
@@ -100,14 +98,18 @@ class _SessionBody extends StatelessWidget {
                         topRight: Radius.circular(30),
                       )),
                   child: model.orders.isEmpty
-                      ? Center(
-                          child: MessagedScreen(
-                            //TODO: Change icon to like 'Empty order list'
-                            iconPath: CustomIcons.menu,
-                            message: context.localized.orders_empty,
-                            buttonText: context.localized.to_menu,
-                            buttonOnTap: () =>
-                                AutoTabsRouter.of(context).setActiveIndex(1),
+                      ? ConstrainedBox(
+                          constraints: BoxConstraints.tightFor(
+                              height: context.screenSize.height * .5),
+                          child: Center(
+                            child: MessagedScreen(
+                              //TODO: Change icon to like 'Empty order list'
+                              iconPath: CustomIcons.menu,
+                              message: context.localized.orders_empty,
+                              buttonText: context.localized.to_menu,
+                              buttonOnTap: () =>
+                                  AutoTabsRouter.of(context).setActiveIndex(1),
+                            ),
                           ),
                         )
                       : Column(

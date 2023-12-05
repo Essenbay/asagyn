@@ -92,6 +92,7 @@ class SettingsScreen extends StatelessWidget {
                       builder: (context, state) {
                         return MenuTile(
                           icon: CustomIcons.globe,
+                          showArrow: false,
                           subText: state.str,
                           text: context.localized.app_language,
                           onClick: () => showLanguageSelectModal(context),
@@ -101,6 +102,7 @@ class SettingsScreen extends StatelessWidget {
                     MenuTile(
                       icon: CustomIcons.logout,
                       text: context.localized.logout,
+                      showArrow: false,
                       onClick: () {
                         context.read<AppBloc>().add(const AppEvent.logout());
                       },
