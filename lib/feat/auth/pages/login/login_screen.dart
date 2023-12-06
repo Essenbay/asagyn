@@ -7,7 +7,9 @@ import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/router/app_router.dart';
 import 'package:zakazflow/feat/auth/pages/forgot_password/forgot_password_modals.dart';
+import 'package:zakazflow/feat/auth/widgets/auth_header_animation.dart';
 import 'package:zakazflow/feat/auth/widgets/change_language_button.dart.dart';
+import 'package:zakazflow/feat/auth/widgets/staggered_animation.dart';
 import 'package:zakazflow/feat/widgets/custom_text_button.dart';
 import 'package:zakazflow/feat/widgets/custom_text_field.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
@@ -75,14 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: context.screenSize.height * .13,
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      context.localized.login,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.white,
-                      ),
+                    AuthHeaderAnimation(
+                      text: context.localized.login,
                     ),
                   ],
                 )
@@ -93,17 +89,23 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  CustomTextField(
-                    controller: loginController,
-                    labelText: context.localized.login_lable,
-                    hintText: context.localized.enter_login,
+                  CustomStaggeredAnimated(
+                    position: 0,
+                    child: CustomTextField(
+                      controller: loginController,
+                      labelText: context.localized.login_lable,
+                      hintText: context.localized.enter_login,
+                    ),
                   ),
                   const SizedBox(height: 30),
-                  CustomTextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    labelText: context.localized.password,
-                    hintText: context.localized.enter_password,
+                  CustomStaggeredAnimated(
+                    position: 1,
+                    child: CustomTextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      labelText: context.localized.password,
+                      hintText: context.localized.enter_password,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Row(

@@ -37,11 +37,12 @@ class _CartFloatedModal extends StatelessWidget {
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
-                      Text(
-                        '${value.total} ₸',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      )
+                      CountUpTotal(total: value.total),
+                      // Text(
+                      //   '${value.total} ₸',
+                      //   style: const TextStyle(
+                      //       fontSize: 16, fontWeight: FontWeight.w500),
+                      // )
                     ]),
                     const SizedBox(height: 10),
                     PrimaryFilledTextButton(

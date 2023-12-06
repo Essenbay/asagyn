@@ -6,11 +6,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/router/app_router.dart';
+import 'package:zakazflow/feat/auth/widgets/auth_header_animation.dart';
+import 'package:zakazflow/feat/auth/widgets/change_language_button.dart.dart';
+import 'package:zakazflow/feat/auth/widgets/staggered_animation.dart';
 import 'package:zakazflow/feat/widgets/custom_text_button.dart';
 import 'package:zakazflow/feat/widgets/custom_text_field.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
 import 'package:zakazflow/resources/resources.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 @RoutePage()
 class RegisterScreen extends StatefulWidget implements AutoRouteWrapper {
@@ -44,6 +48,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           backgroundColor: AppColors.primary,
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarColor: AppColors.primary),
+          actions: [
+            const ChangeLanguageDropdown(),
+          ],
         ),
         body: ListView(
           children: [
@@ -75,14 +82,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: context.screenSize.height * .13,
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      context.localized.register,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.white,
-                      ),
+                    AuthHeaderAnimation(
+                      text: context.localized.register,
                     ),
                   ],
                 )
@@ -91,63 +92,77 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(height: space * 2),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  CustomTextField(
-                    controller: phoneNumberController,
-                    labelText: context.localized.phone_number,
-                    hintText: context.localized.enter_phone_number,
-                    keyboardType: TextInputType.phone,
-                  ),
-                  const SizedBox(height: 30),
-                  CustomTextField(
-                    controller: loginController,
-                    labelText: context.localized.login_lable,
-                    hintText: context.localized.enter_login,
-                  ),
-                  const SizedBox(height: 30),
-                  CustomTextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    labelText: context.localized.password,
-                    hintText: context.localized.enter_password,
-                  ),
-                  const SizedBox(height: 30),
-                  CustomTextField(
-                    controller: confirmPassword,
-                    obscureText: true,
-                    labelText: context.localized.confirm_password,
-                    hintText: context.localized.enter_password,
-                  ),
-                  const SizedBox(height: 30),
-                  PrimaryFilledTextButton(
-                    onPressed: () {
-                      context.router.pushAndPopUntil(const MainRoute(),
-                          predicate: ModalRoute.withName('/'));
-                    },
-                    text: context.localized.register,
-                    addShadow: true,
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        context.localized.or,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
+              child: AnimationLimiter(
+                child: Column(
+                  children: [
+                    CustomStaggeredAnimated(
+                      position: 0,
+                      child: CustomTextField(
+                        controller: phoneNumberController,
+                        labelText: context.localized.phone_number,
+                        hintText: context.localized.enter_phone_number,
+                        keyboardType: TextInputType.phone,
                       ),
-                      CustomTextButton(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          text: context.localized.login,
+                    ),
+                    const SizedBox(height: 30),
+                    CustomStaggeredAnimated(
+                      position: 1,
+                      child: CustomTextField(
+                        controller: loginController,
+                        labelText: context.localized.login_lable,
+                        hintText: context.localized.enter_login,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    CustomStaggeredAnimated(
+                      position: 2,
+                      child: CustomTextField(
+                        controller: passwordController,
+                        obscureText: true,
+                        labelText: context.localized.password,
+                        hintText: context.localized.enter_password,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    CustomStaggeredAnimated(
+                      position: 3,
+                      child: CustomTextField(
+                        controller: confirmPassword,
+                        obscureText: true,
+                        labelText: context.localized.confirm_password,
+                        hintText: context.localized.enter_password,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    PrimaryFilledTextButton(
+                      onPressed: () {
+                        context.router.pushAndPopUntil(const MainRoute(),
+                            predicate: ModalRoute.withName('/'));
+                      },
+                      text: context.localized.register,
+                      addShadow: true,
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          context.localized.or,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w500),
-                          onTap: () =>
-                              context.router.replace(const LoginRoute())),
-                    ],
-                  ),
-                ],
+                        ),
+                        CustomTextButton(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            text: context.localized.login,
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w500),
+                            onTap: () =>
+                                context.router.replace(const LoginRoute())),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             const Spacer(),

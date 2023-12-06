@@ -103,7 +103,8 @@ class _ProductDetailState extends State<ProductDetail> {
                     const SizedBox(width: 5),
                     Text(
                       '${context.localized.cooking_time}:',
-                      style: const TextStyle(color: AppColors.grey800, fontSize: 15),
+                      style: const TextStyle(
+                          color: AppColors.grey800, fontSize: 15),
                     ),
                     const SizedBox(width: 5),
                     Text(

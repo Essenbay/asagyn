@@ -31,7 +31,8 @@ class _BottomNavAnimatedState extends State<BottomNavAnimated>
 
   @override
   void didUpdateWidget(covariant BottomNavAnimated oldWidget) {
-    if (widget.value == widget.groupValue) {
+    if (widget.value == widget.groupValue &&
+        widget.groupValue != oldWidget.groupValue) {
       _settingController.reset();
       _settingController.forward();
     }

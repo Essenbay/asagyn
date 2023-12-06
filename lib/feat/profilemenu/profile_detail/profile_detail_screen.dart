@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/ui_util.dart';
+import 'package:zakazflow/feat/auth/widgets/staggered_animation.dart';
 import 'package:zakazflow/feat/widgets/back_leading_app_bar.dart';
 import 'package:zakazflow/feat/widgets/custom_text_field.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
@@ -35,29 +36,52 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            Text(context.localized.surname_label,
-                style: ProfileDetailScreen.textStyle),
-            const SizedBox(height: 5),
-            CustomTextField(
-              controller: fullnameController,
-              keyboardType: TextInputType.name,
-            ),
+            CustomStaggeredAnimated(
+                position: 0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(context.localized.surname_label,
+                        style: ProfileDetailScreen.textStyle),
+                    const SizedBox(height: 5),
+                    CustomTextField(
+                      controller: fullnameController,
+                      keyboardType: TextInputType.name,
+                    ),
+                  ],
+                )),
             const SizedBox(height: 10),
-            Text(context.localized.login_lable,
-                style: ProfileDetailScreen.textStyle),
-            const SizedBox(height: 5),
-            CustomTextField(
-              controller: loginController,
-              keyboardType: TextInputType.name,
-            ),
+            CustomStaggeredAnimated(
+                position: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(context.localized.login_lable,
+                        style: ProfileDetailScreen.textStyle),
+                    const SizedBox(height: 5),
+                    CustomTextField(
+                      controller: loginController,
+                    ),
+                  ],
+                )),
             const SizedBox(height: 10),
-            Text(context.localized.phone_number,
-                style: ProfileDetailScreen.textStyle),
-            const SizedBox(height: 5),
-            CustomTextField(
-              controller: phoneNumberController,
-              keyboardType: TextInputType.name,
-            ),
+            CustomStaggeredAnimated(
+                position: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(context.localized.phone_number,
+                        style: ProfileDetailScreen.textStyle),
+                    const SizedBox(height: 5),
+                    CustomTextField(
+                      controller: phoneNumberController,
+                      keyboardType: TextInputType.phone,
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
