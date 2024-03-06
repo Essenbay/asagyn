@@ -1,9 +1,13 @@
-part of '../session_screen.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/extensions/context.dart';
+import 'package:zakazflow/feat/session/logic/models/session_model.dart';
+import 'package:zakazflow/feat/session/widgets/ask_bill_button.dart';
 
-class _ReceiptCollapsed extends StatelessWidget {
+class ReceiptCollapsed extends StatelessWidget {
   final SessionModel model;
-
-  const _ReceiptCollapsed({required this.model});
+  final bool showAskBill;
+  const ReceiptCollapsed({required this.model, this.showAskBill = true});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class _ReceiptCollapsed extends StatelessWidget {
             )
           ]),
           const SizedBox(height: 10),
-          AskBillButton(model: model),
+          if (showAskBill) AskBillButton(model: model),
         ],
       ),
     );

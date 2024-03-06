@@ -16,7 +16,10 @@ class SessionWidget extends StatelessWidget {
     return Material(
       child: InkWell(
         onTap: () {
-          context.router.push(MySessionDetailRoute(id: data.id));
+          context.router.push(MySessionDetailRoute(
+            id: data.id,
+            backgroundImage: data.backgroundImage,
+          ));
         },
         child: Stack(
           children: [

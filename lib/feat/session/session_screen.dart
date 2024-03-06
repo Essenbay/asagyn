@@ -8,8 +8,9 @@ import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/example.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/logic/session_bloc.dart';
-import 'package:zakazflow/feat/session/widgets/ask_bill_button.dart';
 import 'package:zakazflow/feat/session/widgets/order_widget.dart';
+import 'package:zakazflow/feat/session/widgets/receipt_collapsed.dart';
+import 'package:zakazflow/feat/session/widgets/receipt_expanded.dart';
 import 'package:zakazflow/feat/session/widgets/session_action_popup.dart';
 import 'package:zakazflow/feat/widgets/error_widget.dart';
 import 'package:zakazflow/feat/widgets/messaged_screen.dart';
@@ -18,8 +19,6 @@ import 'package:zakazflow/resources/resources.dart';
 part 'fragments/session_loading.dart';
 part './fragments/session_failure.dart';
 part './fragments/session_body.dart';
-part 'widgets/receipt_collapsed.dart';
-part 'widgets/receipt_expanded.dart';
 
 @RoutePage()
 class SessionScreen extends StatelessWidget {

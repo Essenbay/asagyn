@@ -8,11 +8,9 @@ class PreferencesService {
   static const String _languageCodeKey = 'languageCode';
 
   String _languageCode = '';
-  int? _addressId;
   bool? _notficationIsPermitted;
 
   String get languageCode => _languageCode;
-  int? get addressId => _addressId;
   bool? get notificationPermitted => _notficationIsPermitted;
 
   PreferencesService(this._prefs) {

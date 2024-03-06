@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zakazflow/core/config/colors.dart';
@@ -20,6 +19,7 @@ part './forgot_password_reset.dart';
 Future<void> showForgotPassword(BuildContext context) async {
   final result = await Util.showCustomModalBottomSheet<bool?>(
       context: context,
+      isDissmissable: false,
       child: BlocProvider(
         create: (context) => ForgotPasswordBloc(getIt()),
         child: const _ForgotPasswordEnterLogin(),
@@ -27,6 +27,7 @@ Future<void> showForgotPassword(BuildContext context) async {
   if (result == true) {
     final resultToken = await Util.showCustomModalBottomSheet<String?>(
         context: context,
+        isDissmissable: false,
         child: BlocProvider(
           create: (context) => ForgotPasswordBloc(getIt()),
           child: const _ForgotPasswordCode(),
@@ -34,6 +35,7 @@ Future<void> showForgotPassword(BuildContext context) async {
     if (resultToken != null) {
       await Util.showCustomModalBottomSheet<bool?>(
           context: context,
+          isDissmissable: false,
           child: BlocProvider(
             create: (context) => ForgotPasswordBloc(getIt()),
             child: _ResetPassword(

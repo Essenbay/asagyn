@@ -9,14 +9,14 @@ import 'package:zakazflow/feat/session/logic/session_repository.dart';
 class SessionRepositoryMock implements SessionRepository {
   Future<Result<SessionModel?>> getSessionInfo() async {
     await Future<void>.delayed(const Duration(seconds: 2));
+    //    return Result.success(null);
+
     return Result.success(result);
   }
 
   @override
   Future<Result<List<SessionPreview>>> getSessions() async {
     await Future<void>.delayed(const Duration(seconds: 2));
-    // return Result.success(null);
-
     return Result.success([preview, preview]);
   }
 

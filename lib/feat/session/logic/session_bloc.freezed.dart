@@ -470,19 +470,20 @@ abstract class _FailureState implements SessionState {
 
 /// @nodoc
 mixin _$SessionEvent {
+  int? get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(int? id) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(int? id)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(int? id)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -502,6 +503,10 @@ mixin _$SessionEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SessionEventCopyWith<SessionEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -509,6 +514,8 @@ abstract class $SessionEventCopyWith<$Res> {
   factory $SessionEventCopyWith(
           SessionEvent value, $Res Function(SessionEvent) then) =
       _$SessionEventCopyWithImpl<$Res, SessionEvent>;
+  @useResult
+  $Res call({int? id});
 }
 
 /// @nodoc
@@ -520,13 +527,30 @@ class _$SessionEventCopyWithImpl<$Res, $Val extends SessionEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$FetchEventImplCopyWith<$Res> {
+abstract class _$$FetchEventImplCopyWith<$Res>
+    implements $SessionEventCopyWith<$Res> {
   factory _$$FetchEventImplCopyWith(
           _$FetchEventImpl value, $Res Function(_$FetchEventImpl) then) =
       __$$FetchEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int? id});
 }
 
 /// @nodoc
@@ -536,51 +560,75 @@ class __$$FetchEventImplCopyWithImpl<$Res>
   __$$FetchEventImplCopyWithImpl(
       _$FetchEventImpl _value, $Res Function(_$FetchEventImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_$FetchEventImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FetchEventImpl implements FetchEvent {
-  const _$FetchEventImpl();
+  const _$FetchEventImpl({this.id});
+
+  @override
+  final int? id;
 
   @override
   String toString() {
-    return 'SessionEvent.fetch()';
+    return 'SessionEvent.fetch(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchEventImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$FetchEventImpl &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchEventImplCopyWith<_$FetchEventImpl> get copyWith =>
+      __$$FetchEventImplCopyWithImpl<_$FetchEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(int? id) fetch,
   }) {
-    return fetch();
+    return fetch(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(int? id)? fetch,
   }) {
-    return fetch?.call();
+    return fetch?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(int? id)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch();
+      return fetch(id);
     }
     return orElse();
   }
@@ -615,5 +663,12 @@ class _$FetchEventImpl implements FetchEvent {
 }
 
 abstract class FetchEvent implements SessionEvent {
-  const factory FetchEvent() = _$FetchEventImpl;
+  const factory FetchEvent({final int? id}) = _$FetchEventImpl;
+
+  @override
+  int? get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$FetchEventImplCopyWith<_$FetchEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

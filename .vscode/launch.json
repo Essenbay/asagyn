@@ -2,12 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "cosmos",
+      "name": "app",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "cosmos (profile mode)",
+      "name": "app (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
@@ -15,10 +15,10 @@
       "args": ["--enable-impeller"]
     },
     {
-      "name": "cosmos (release mode)",
+      "name": "app (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
-    },
+    }
   ]
 }

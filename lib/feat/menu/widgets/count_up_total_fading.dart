@@ -20,9 +20,7 @@ class _CountUpTotalState extends State<CountUpTotal> {
   @override
   void didUpdateWidget(covariant CountUpTotal oldWidget) {
     if (oldWidget.total != widget.total) {
-      setState(() {
-        prevTotal = widget.total;
-      });
+      prevTotal = oldWidget.total;
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -34,8 +32,8 @@ class _CountUpTotalState extends State<CountUpTotal> {
       transitionBuilder: (child, animation) {
         final position = Tween<Offset>(
                 begin: prevTotal < widget.total
-                    ? const Offset(0, -.5)
-                    : const Offset(0, .5),
+                    ? const Offset(0, .5)
+                    : const Offset(0, -.5),
                 end: Offset.zero)
             .animate(animation);
         return FadeTransition(

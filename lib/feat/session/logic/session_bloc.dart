@@ -19,7 +19,7 @@ sealed class SessionState with _$SessionState {
 
 @freezed
 class SessionEvent with _$SessionEvent {
-  const factory SessionEvent.fetch() = FetchEvent;
+  const factory SessionEvent.fetch({int? id}) = FetchEvent;
 }
 
 @Injectable()

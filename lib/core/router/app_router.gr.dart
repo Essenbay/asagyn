@@ -59,6 +59,7 @@ abstract class _$AppRouter extends RootStackRouter {
             child: MySessionDetailScreen(
           key: args.key,
           id: args.id,
+          backgroundImage: args.backgroundImage,
         )),
       );
     },
@@ -191,12 +192,14 @@ class MySessionDetailRoute extends PageRouteInfo<MySessionDetailRouteArgs> {
   MySessionDetailRoute({
     Key? key,
     required int id,
+    required String? backgroundImage,
     List<PageRouteInfo>? children,
   }) : super(
           MySessionDetailRoute.name,
           args: MySessionDetailRouteArgs(
             key: key,
             id: id,
+            backgroundImage: backgroundImage,
           ),
           initialChildren: children,
         );
@@ -211,15 +214,18 @@ class MySessionDetailRouteArgs {
   const MySessionDetailRouteArgs({
     this.key,
     required this.id,
+    required this.backgroundImage,
   });
 
   final Key? key;
 
   final int id;
 
+  final String? backgroundImage;
+
   @override
   String toString() {
-    return 'MySessionDetailRouteArgs{key: $key, id: $id}';
+    return 'MySessionDetailRouteArgs{key: $key, id: $id, backgroundImage: $backgroundImage}';
   }
 }
 

@@ -1,8 +1,13 @@
-part of '../session_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/extensions/context.dart';
+import 'package:zakazflow/feat/session/logic/models/session_model.dart';
+import 'package:zakazflow/feat/session/widgets/ask_bill_button.dart';
 
-class _ReceiptExpanded extends StatelessWidget {
-  const _ReceiptExpanded({required this.model});
+class ReceiptExpanded extends StatelessWidget {
+  const ReceiptExpanded({required this.model, this.showAskBill = true});
   final SessionModel model;
+  final bool showAskBill;
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -60,7 +65,7 @@ class _ReceiptExpanded extends StatelessWidget {
                   ]),
                 )),
             const SizedBox(height: 10),
-            AskBillButton(model: model),
+            showAskBill ? AskBillButton(model: model) : const SizedBox(),
             const SizedBox(height: 10),
           ],
         ),

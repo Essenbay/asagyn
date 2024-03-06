@@ -19,22 +19,32 @@ class StatusCodes {
 
 class NetworkException implements Exception {
   const NetworkException(this.serverMessage, this.type) : super();
-  factory NetworkException.create(DioException err) {
+  factory NetworkException.createFromDio(DioException err) {
     if (_isUnauth(err)) {
       return NetworkException(
           err.message, NetworkExceptionTypes.unAuthenticated);
     } else if (_isConnectivity(err)) {
       return NetworkException(err.message, NetworkExceptionTypes.connectivity);
     } else if (_isNotFound(err)) {
-      return NetworkException(err.message, NetworkExceptionTypes.notFound);
+      final message = _parseDioError(err);
+      return NetworkException(message, NetworkExceptionTypes.notFound);
     } else if (_isTimeOut(err)) {
       return NetworkException(err.message, NetworkExceptionTypes.timeOut);
+    } else if (_isUnauth(err)) {
+      final message = _parseDioError(err);
+      return NetworkException(message, NetworkExceptionTypes.unAuthenticated);
     } else if (_isServerError(err)) {
       final message = _parseDioError(err);
       return NetworkException(message, NetworkExceptionTypes.serverError);
     } else {
-      return NetworkException(err.message, NetworkExceptionTypes.unknown);
+      return NetworkException(
+          err.message ?? err.error.toString(), NetworkExceptionTypes.unknown);
     }
+  }
+
+  factory NetworkException.emptyResponse() {
+    return const NetworkException(
+        'Response data is empty', NetworkExceptionTypes.type);
   }
 
   ///Message
@@ -45,27 +55,30 @@ class NetworkException implements Exception {
 
   ///Getter for message that will be showed in UI
   String message(BuildContext context) {
-    return switch (this.type) {
-      NetworkExceptionTypes.connectivity =>
-        context.localized.connectivity_error_message,
-      NetworkExceptionTypes.notFound => context.localized.not_found_message,
+    return switch (type) {
+      NetworkExceptionTypes.connectivity => context.localized.connection_error,
+      NetworkExceptionTypes.notFound =>
+        serverMessage ?? context.localized.not_found_message,
       NetworkExceptionTypes.serverError =>
         serverMessage ?? context.localized.server_error_message,
       NetworkExceptionTypes.timeOut => context.localized.timeout_message,
-      NetworkExceptionTypes.type => context.localized.type_exception_message,
+      NetworkExceptionTypes.type =>
+        '${context.localized.type_exception_message}',
       NetworkExceptionTypes.unAuthenticated => context.localized.unauth_message,
       NetworkExceptionTypes.unknown => context.localized.unknown_error_message,
     };
   }
 
   static bool _isUnauth(DioException err) =>
-      err.response?.statusCode == StatusCodes.unAuthenticated;
+      err.response?.statusCode == HttpStatus.unauthorized;
 
   static bool _isNotFound(DioException err) =>
-      err.response?.statusCode == StatusCodes.notFound;
+      err.response?.statusCode == HttpStatus.notFound;
 
   static bool _isServerError(DioException err) =>
-      err.response?.statusCode == StatusCodes.serverError;
+      err.response?.statusCode == HttpStatus.internalServerError ||
+      err.response?.statusCode == HttpStatus.forbidden ||
+      err.response?.statusCode == HttpStatus.unprocessableEntity;
 
   static bool _isTimeOut(DioException err) =>
       err.type == DioExceptionType.receiveTimeout ||
@@ -79,8 +92,11 @@ class NetworkException implements Exception {
 
     if (e.response?.data != null || e.response?.data is Map<String, dynamic>) {
       final data = e.response?.data as Map<String, dynamic>;
-      if (data['errors'] != null && data['errors'] is Map<String, dynamic>) {
-        (data['errors'] as Map<String, dynamic>).forEach((key, value) {
+      final isSeveral =
+          data['data'] != null && data['data'] is Map<String, dynamic>;
+      if (isSeveral) {
+        final errorData = data['data'] as Map<String, dynamic>;
+        (errorData['messages'] as Map<String, dynamic>).forEach((key, value) {
           for (final element in value as List) {
             buffer.write('${element as String}\n');
           }
@@ -91,5 +107,10 @@ class NetworkException implements Exception {
     }
     final result = buffer.toString().trim();
     return result.isEmpty ? null : result;
+  }
+
+  @override
+  String toString() {
+    return '$type, $serverMessage';
   }
 }

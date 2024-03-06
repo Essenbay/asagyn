@@ -70,7 +70,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
                       left: 10, right: 10, top: 8, bottom: 10),
                   itemCount: category.products.length,
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 170,
+                    maxCrossAxisExtent: 200,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
                     childAspectRatio: .62,
