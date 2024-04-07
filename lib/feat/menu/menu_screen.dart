@@ -55,7 +55,7 @@ class MenuScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            value.data?.establishmentName ?? '',
+                            value.data?.establishmentDTO.establishmentName ?? '',
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),

@@ -120,7 +120,7 @@ set-icon: get
 	@echo "* Removing alpha channel from icon *"
 	@sh ./scripts/icon_remove_alpha.sh
 	@echo "* Generating app icons *"
-	@flutter pub run flutter_launcher_icons:main -f flutter_icons.yaml
+	@flutter pub run flutter_launcher_icons
 
 google-localizations:
 	@echo "* Getting dependencies for google localizer *"

@@ -9,10 +9,15 @@ import 'package:zakazflow/core/router/app_router.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit(
-  initializerName: 'init',
-  preferRelativeImports: true,
-  asExtension: true,
-)
+    initializerName: 'init',
+    preferRelativeImports: true,
+    asExtension: true,
+    ignoreUnregisteredTypes: [
+      FlutterSecureStorage,
+      Dio,
+      SharedPreferences,
+      AppRouter,
+    ])
 Future<void> configureDependencies() async {
   const securedStorage = FlutterSecureStorage(
       aOptions: AndroidOptions(encryptedSharedPreferences: true));

@@ -16,7 +16,7 @@ class PrimaryFilledTextButton extends StatelessWidget {
       this.height = 50,
       this.fontSize = 16,
       this.backgroundColor = AppColors.primary});
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String text;
   final bool isLight;
   final Color backgroundColor;

@@ -1,11 +1,12 @@
+// ignore: unused_import
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/util/example.dart';
 import 'package:zakazflow/feat/profilemenu/my_sessions/logic/session_preview_model.dart';
+import 'package:zakazflow/feat/session/logic/models/establishment_model.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/logic/session_repository.dart';
 
-@LazySingleton(as: SessionRepository)
 class SessionRepositoryMock implements SessionRepository {
   Future<Result<SessionModel?>> getSessionInfo() async {
     await Future<void>.delayed(const Duration(seconds: 2));
@@ -24,6 +25,12 @@ class SessionRepositoryMock implements SessionRepository {
   Future<Result<SessionModel>> getSession(int id) async {
     await Future<void>.delayed(const Duration(seconds: 2));
     return Result.success(result);
+  }
+
+  @override
+  Future<Result<SessionModel>> createSession() {
+    // TODO: implement createSession
+    throw UnimplementedError();
   }
 }
 
@@ -102,30 +109,31 @@ final orders = <OrderModel>[
   ),
 ];
 final result = SessionModel(
-    allItems: [
-      OrderItem(
-        title: 'Бургер',
-        description:
-            'Говядина, с кользами свежих томатов и репчатого лука, с хрустящим айсбергом и плавленным сыром Чеддер, заправлленная фирменным соусом',
-        quantity: 5,
-        cost: 5500,
-        image: productImage,
-      ),
-    ],
-    paymentMethods: [
-      PaymentMethod(id: 1, name: 'Наличными'),
-      PaymentMethod(id: 2, name: 'Картой')
-    ],
-    establishmentName: 'Malina Mix',
-    establishmentCode: '4X89MMDI',
-    tableCode: 2,
-    backgroundImage: estab_background,
-    sessionDate: DateTime.now(),
-    total: 10550,
-    orderTotal: 9850,
-    servingPercentage: 10.0,
-    orders: orders,
-    servingAmount: 1350);
+  allItems: [
+    OrderItem(
+      title: 'Бургер',
+      description:
+          'Говядина, с кользами свежих томатов и репчатого лука, с хрустящим айсбергом и плавленным сыром Чеддер, заправлленная фирменным соусом',
+      quantity: 5,
+      cost: 5500,
+      image: productImage,
+    ),
+  ],
+  paymentMethods: [
+    PaymentMethod(id: 1, name: 'Наличными'),
+    PaymentMethod(id: 2, name: 'Картой')
+  ],
+  establishmentDTO: EstablishmentModel(
+      id: 0,
+      establishmentName: 'Malina Mix',
+      servingPercentage: 10,
+      backgroundImage: estab_background),
+  tableCode: 2,
+  startDateTime: DateTime.now(),
+  total: 10550,
+  orderTotal: 9850,
+  orders: orders,
+);
 
 final preview = SessionPreview(
     id: 0,

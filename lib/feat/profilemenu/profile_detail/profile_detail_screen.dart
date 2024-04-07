@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
@@ -21,8 +20,7 @@ class ProfileDetailScreen extends StatefulWidget {
 }
 
 class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
-  final phoneNumberController =
-      MaskedTextController(mask: '+7 (000) 000-00-00', text: '7');
+  final emailController = TextEditingController();
   final loginController = TextEditingController();
   final fullnameController = TextEditingController();
 
@@ -58,7 +56,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(context.localized.login_lable,
+                    Text(context.localized.email_lable,
                         style: ProfileDetailScreen.textStyle),
                     const SizedBox(height: 5),
                     CustomTextField(
@@ -73,12 +71,12 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(context.localized.phone_number,
+                    Text(context.localized.email_lable,
                         style: ProfileDetailScreen.textStyle),
                     const SizedBox(height: 5),
                     CustomTextField(
-                      controller: phoneNumberController,
-                      keyboardType: TextInputType.phone,
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
                     ),
                   ],
                 )),

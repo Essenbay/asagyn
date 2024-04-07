@@ -1,36 +1,34 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:zakazflow/feat/session/logic/models/establishment_model.dart';
 
 part 'session_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class SessionModel {
-  final String establishmentName;
-  final String? backgroundImage;
+  @JsonKey(defaultValue: 0)
   final double total;
+  @JsonKey(defaultValue: 0)
   final double orderTotal;
-  final double servingPercentage;
-  final int servingAmount;
-  final DateTime? sessionDate;
+  final DateTime? startDateTime;
+  @JsonKey(defaultValue: [])
   final List<OrderModel> orders;
+  final EstablishmentModel establishmentDTO;
+
   ///Products of orders at once
   final List<OrderItem> allItems;
   final List<PaymentMethod> paymentMethods;
-  final String establishmentCode;
   final int tableCode;
 
-  SessionModel(
-      {required this.establishmentName,
-      required this.allItems,
-      this.sessionDate,
-      required this.establishmentCode,
-      required this.paymentMethods,
-      required this.tableCode,
-      required this.backgroundImage,
-      required this.total,
-      required this.orderTotal,
-      required this.orders,
-      required this.servingPercentage,
-      required this.servingAmount});
+  SessionModel({
+    required this.allItems,
+    this.startDateTime,
+    required this.establishmentDTO,
+    required this.paymentMethods,
+    required this.tableCode,
+    required this.total,
+    required this.orderTotal,
+    required this.orders,
+  });
   factory SessionModel.fromJson(Map<String, Object?> json) =>
       _$SessionModelFromJson(json);
 }

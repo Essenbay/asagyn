@@ -105,6 +105,8 @@ class SettingsScreen extends StatelessWidget {
                       showArrow: false,
                       onClick: () {
                         context.read<AppBloc>().add(const AppEvent.logout());
+                        context.router.pushAndPopUntil(const LoginRoute(),
+                            predicate: ModalRoute.withName('/'));
                       },
                     )
                   ],

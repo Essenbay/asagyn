@@ -63,12 +63,12 @@ class SessionPopupMenuButton extends StatelessWidget {
                         //CONSIDER: Let user end session if no orders were created
                         Share.share(
                           context.localized.share_message(
-                              model.establishmentCode,
-                              model.establishmentName,
+                              model.establishmentDTO.id,
+                              model.establishmentDTO.establishmentName,
                               model.tableCode),
                           subject: context.localized.share_message(
-                              model.establishmentCode,
-                              model.establishmentName,
+                              model.establishmentDTO.id,
+                              model.establishmentDTO.establishmentName,
                               model.tableCode),
                         );
                       },

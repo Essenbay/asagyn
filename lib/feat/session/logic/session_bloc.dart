@@ -20,15 +20,19 @@ sealed class SessionState with _$SessionState {
 @freezed
 class SessionEvent with _$SessionEvent {
   const factory SessionEvent.fetch({int? id}) = FetchEvent;
+  const factory SessionEvent.create() = _CreateEvent;
 }
 
 @Injectable()
 class SessionBloc extends Bloc<SessionEvent, SessionState> {
   final SessionRepository _repository;
   SessionBloc(this._repository) : super(const SessionState.loading()) {
-    on<SessionEvent>((event, emit) => event.map(
-          fetch: (event) => _fetch(event, emit),
-        ));
+    on<SessionEvent>(
+      (event, emit) => event.map(
+        fetch: (event) => _fetch(event, emit),
+        create: (event) => _create(event, emit),
+      ),
+    );
   }
   Future<void> _fetch(FetchEvent event, Emitter<SessionState> emit) async {
     emit(const SessionState.loading());
@@ -38,5 +42,13 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
       success: (result) => emit(SessionState.success(result.data)),
       failure: (result) => emit(SessionState.failure(result.exception)),
     );
+  }
+
+  Future<void> _create(_CreateEvent event, Emitter<SessionState> emit) async {
+    emit(const SessionState.loading());
+    final result = await _repository.createSession();
+    result.map(
+        success: (result) => emit(SessionState.success(result.data)),
+        failure: (result) => emit(SessionState.failure(result.exception)));
   }
 }

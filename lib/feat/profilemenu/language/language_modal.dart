@@ -42,7 +42,7 @@ Future<void> showLanguageSelectModal(BuildContext context) =>
                                       CupertinoIcons.checkmark,
                                       color: AppColors.primary,
                                     )
-                                  : const SizedBox.shrink())),
+                                  : const SizedBox())),
                     ],
                   ),
                 ),
@@ -75,7 +75,7 @@ Future<void> showLanguageSelectModal(BuildContext context) =>
                                       CupertinoIcons.checkmark,
                                       color: AppColors.primary,
                                     )
-                                  : const SizedBox.shrink())),
+                                  : const SizedBox())),
                     ],
                   ),
                 ),

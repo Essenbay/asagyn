@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'session_bloc.dart';
+part of 'register_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,31 +15,35 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SessionState {
+mixin _$RegisterState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SessionModel? data) success,
+    required TResult Function() success,
     required TResult Function(NetworkException exception) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data)? success,
+    TResult? Function()? success,
     TResult? Function(NetworkException exception)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SessionModel? data)? success,
+    TResult Function()? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
     required TResult Function(_FailureState value) failure,
@@ -47,6 +51,7 @@ mixin _$SessionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
     TResult? Function(_FailureState value)? failure,
@@ -54,6 +59,7 @@ mixin _$SessionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
     TResult Function(_FailureState value)? failure,
@@ -63,21 +69,135 @@ mixin _$SessionState {
 }
 
 /// @nodoc
-abstract class $SessionStateCopyWith<$Res> {
-  factory $SessionStateCopyWith(
-          SessionState value, $Res Function(SessionState) then) =
-      _$SessionStateCopyWithImpl<$Res, SessionState>;
+abstract class $RegisterStateCopyWith<$Res> {
+  factory $RegisterStateCopyWith(
+          RegisterState value, $Res Function(RegisterState) then) =
+      _$RegisterStateCopyWithImpl<$Res, RegisterState>;
 }
 
 /// @nodoc
-class _$SessionStateCopyWithImpl<$Res, $Val extends SessionState>
-    implements $SessionStateCopyWith<$Res> {
-  _$SessionStateCopyWithImpl(this._value, this._then);
+class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
+    implements $RegisterStateCopyWith<$Res> {
+  _$RegisterStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InitialStateImplCopyWith<$Res> {
+  factory _$$InitialStateImplCopyWith(
+          _$InitialStateImpl value, $Res Function(_$InitialStateImpl) then) =
+      __$$InitialStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitialStateImplCopyWithImpl<$Res>
+    extends _$RegisterStateCopyWithImpl<$Res, _$InitialStateImpl>
+    implements _$$InitialStateImplCopyWith<$Res> {
+  __$$InitialStateImplCopyWithImpl(
+      _$InitialStateImpl _value, $Res Function(_$InitialStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitialStateImpl implements _InitialState {
+  const _$InitialStateImpl();
+
+  @override
+  String toString() {
+    return 'RegisterState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(NetworkException exception) failure,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(NetworkException exception)? failure,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(NetworkException exception)? failure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(_LoadingState value) loading,
+    required TResult Function(_SuccessState value) success,
+    required TResult Function(_FailureState value) failure,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialState value)? initial,
+    TResult? Function(_LoadingState value)? loading,
+    TResult? Function(_SuccessState value)? success,
+    TResult? Function(_FailureState value)? failure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(_LoadingState value)? loading,
+    TResult Function(_SuccessState value)? success,
+    TResult Function(_FailureState value)? failure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitialState implements RegisterState {
+  const factory _InitialState() = _$InitialStateImpl;
 }
 
 /// @nodoc
@@ -89,7 +209,7 @@ abstract class _$$LoadingStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingStateImplCopyWithImpl<$Res>
-    extends _$SessionStateCopyWithImpl<$Res, _$LoadingStateImpl>
+    extends _$RegisterStateCopyWithImpl<$Res, _$LoadingStateImpl>
     implements _$$LoadingStateImplCopyWith<$Res> {
   __$$LoadingStateImplCopyWithImpl(
       _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
@@ -103,7 +223,7 @@ class _$LoadingStateImpl implements _LoadingState {
 
   @override
   String toString() {
-    return 'SessionState.loading()';
+    return 'RegisterState.loading()';
   }
 
   @override
@@ -118,8 +238,9 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SessionModel? data) success,
+    required TResult Function() success,
     required TResult Function(NetworkException exception) failure,
   }) {
     return loading();
@@ -128,8 +249,9 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data)? success,
+    TResult? Function()? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return loading?.call();
@@ -138,8 +260,9 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SessionModel? data)? success,
+    TResult Function()? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -152,6 +275,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
     required TResult Function(_FailureState value) failure,
@@ -162,6 +286,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
     TResult? Function(_FailureState value)? failure,
@@ -172,6 +297,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
     TResult Function(_FailureState value)? failure,
@@ -184,7 +310,7 @@ class _$LoadingStateImpl implements _LoadingState {
   }
 }
 
-abstract class _LoadingState implements SessionState {
+abstract class _LoadingState implements RegisterState {
   const factory _LoadingState() = _$LoadingStateImpl;
 }
 
@@ -193,92 +319,69 @@ abstract class _$$SuccessStateImplCopyWith<$Res> {
   factory _$$SuccessStateImplCopyWith(
           _$SuccessStateImpl value, $Res Function(_$SuccessStateImpl) then) =
       __$$SuccessStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({SessionModel? data});
 }
 
 /// @nodoc
 class __$$SuccessStateImplCopyWithImpl<$Res>
-    extends _$SessionStateCopyWithImpl<$Res, _$SuccessStateImpl>
+    extends _$RegisterStateCopyWithImpl<$Res, _$SuccessStateImpl>
     implements _$$SuccessStateImplCopyWith<$Res> {
   __$$SuccessStateImplCopyWithImpl(
       _$SuccessStateImpl _value, $Res Function(_$SuccessStateImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(_$SuccessStateImpl(
-      freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as SessionModel?,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$SuccessStateImpl implements _SuccessState {
-  const _$SuccessStateImpl(this.data);
-
-  @override
-  final SessionModel? data;
+  const _$SuccessStateImpl();
 
   @override
   String toString() {
-    return 'SessionState.success(data: $data)';
+    return 'RegisterState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessStateImpl &&
-            (identical(other.data, data) || other.data == data));
+        (other.runtimeType == runtimeType && other is _$SuccessStateImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
-      __$$SuccessStateImplCopyWithImpl<_$SuccessStateImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SessionModel? data) success,
+    required TResult Function() success,
     required TResult Function(NetworkException exception) failure,
   }) {
-    return success(data);
+    return success();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data)? success,
+    TResult? Function()? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
-    return success?.call(data);
+    return success?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SessionModel? data)? success,
+    TResult Function()? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(data);
+      return success();
     }
     return orElse();
   }
@@ -286,6 +389,7 @@ class _$SuccessStateImpl implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
     required TResult Function(_FailureState value) failure,
@@ -296,6 +400,7 @@ class _$SuccessStateImpl implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
     TResult? Function(_FailureState value)? failure,
@@ -306,6 +411,7 @@ class _$SuccessStateImpl implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
     TResult Function(_FailureState value)? failure,
@@ -318,13 +424,8 @@ class _$SuccessStateImpl implements _SuccessState {
   }
 }
 
-abstract class _SuccessState implements SessionState {
-  const factory _SuccessState(final SessionModel? data) = _$SuccessStateImpl;
-
-  SessionModel? get data;
-  @JsonKey(ignore: true)
-  _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _SuccessState implements RegisterState {
+  const factory _SuccessState() = _$SuccessStateImpl;
 }
 
 /// @nodoc
@@ -338,7 +439,7 @@ abstract class _$$FailureStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureStateImplCopyWithImpl<$Res>
-    extends _$SessionStateCopyWithImpl<$Res, _$FailureStateImpl>
+    extends _$RegisterStateCopyWithImpl<$Res, _$FailureStateImpl>
     implements _$$FailureStateImplCopyWith<$Res> {
   __$$FailureStateImplCopyWithImpl(
       _$FailureStateImpl _value, $Res Function(_$FailureStateImpl) _then)
@@ -368,7 +469,7 @@ class _$FailureStateImpl implements _FailureState {
 
   @override
   String toString() {
-    return 'SessionState.failure(exception: $exception)';
+    return 'RegisterState.failure(exception: $exception)';
   }
 
   @override
@@ -392,8 +493,9 @@ class _$FailureStateImpl implements _FailureState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SessionModel? data) success,
+    required TResult Function() success,
     required TResult Function(NetworkException exception) failure,
   }) {
     return failure(exception);
@@ -402,8 +504,9 @@ class _$FailureStateImpl implements _FailureState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data)? success,
+    TResult? Function()? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return failure?.call(exception);
@@ -412,8 +515,9 @@ class _$FailureStateImpl implements _FailureState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SessionModel? data)? success,
+    TResult Function()? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -426,6 +530,7 @@ class _$FailureStateImpl implements _FailureState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
     required TResult Function(_FailureState value) failure,
@@ -436,6 +541,7 @@ class _$FailureStateImpl implements _FailureState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
     TResult? Function(_FailureState value)? failure,
@@ -446,6 +552,7 @@ class _$FailureStateImpl implements _FailureState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
     TResult Function(_FailureState value)? failure,
@@ -458,7 +565,7 @@ class _$FailureStateImpl implements _FailureState {
   }
 }
 
-abstract class _FailureState implements SessionState {
+abstract class _FailureState implements RegisterState {
   const factory _FailureState(final NetworkException exception) =
       _$FailureStateImpl;
 
@@ -466,299 +573,4 @@ abstract class _FailureState implements SessionState {
   @JsonKey(ignore: true)
   _$$FailureStateImplCopyWith<_$FailureStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$SessionEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int? id) fetch,
-    required TResult Function() create,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? id)? fetch,
-    TResult? Function()? create,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? id)? fetch,
-    TResult Function()? create,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchEvent value) fetch,
-    required TResult Function(_CreateEvent value) create,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchEvent value)? fetch,
-    TResult? Function(_CreateEvent value)? create,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchEvent value)? fetch,
-    TResult Function(_CreateEvent value)? create,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SessionEventCopyWith<$Res> {
-  factory $SessionEventCopyWith(
-          SessionEvent value, $Res Function(SessionEvent) then) =
-      _$SessionEventCopyWithImpl<$Res, SessionEvent>;
-}
-
-/// @nodoc
-class _$SessionEventCopyWithImpl<$Res, $Val extends SessionEvent>
-    implements $SessionEventCopyWith<$Res> {
-  _$SessionEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$FetchEventImplCopyWith<$Res> {
-  factory _$$FetchEventImplCopyWith(
-          _$FetchEventImpl value, $Res Function(_$FetchEventImpl) then) =
-      __$$FetchEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int? id});
-}
-
-/// @nodoc
-class __$$FetchEventImplCopyWithImpl<$Res>
-    extends _$SessionEventCopyWithImpl<$Res, _$FetchEventImpl>
-    implements _$$FetchEventImplCopyWith<$Res> {
-  __$$FetchEventImplCopyWithImpl(
-      _$FetchEventImpl _value, $Res Function(_$FetchEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(_$FetchEventImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$FetchEventImpl implements FetchEvent {
-  const _$FetchEventImpl({this.id});
-
-  @override
-  final int? id;
-
-  @override
-  String toString() {
-    return 'SessionEvent.fetch(id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FetchEventImpl &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FetchEventImplCopyWith<_$FetchEventImpl> get copyWith =>
-      __$$FetchEventImplCopyWithImpl<_$FetchEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int? id) fetch,
-    required TResult Function() create,
-  }) {
-    return fetch(id);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? id)? fetch,
-    TResult? Function()? create,
-  }) {
-    return fetch?.call(id);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? id)? fetch,
-    TResult Function()? create,
-    required TResult orElse(),
-  }) {
-    if (fetch != null) {
-      return fetch(id);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchEvent value) fetch,
-    required TResult Function(_CreateEvent value) create,
-  }) {
-    return fetch(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchEvent value)? fetch,
-    TResult? Function(_CreateEvent value)? create,
-  }) {
-    return fetch?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchEvent value)? fetch,
-    TResult Function(_CreateEvent value)? create,
-    required TResult orElse(),
-  }) {
-    if (fetch != null) {
-      return fetch(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FetchEvent implements SessionEvent {
-  const factory FetchEvent({final int? id}) = _$FetchEventImpl;
-
-  int? get id;
-  @JsonKey(ignore: true)
-  _$$FetchEventImplCopyWith<_$FetchEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$CreateEventImplCopyWith<$Res> {
-  factory _$$CreateEventImplCopyWith(
-          _$CreateEventImpl value, $Res Function(_$CreateEventImpl) then) =
-      __$$CreateEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CreateEventImplCopyWithImpl<$Res>
-    extends _$SessionEventCopyWithImpl<$Res, _$CreateEventImpl>
-    implements _$$CreateEventImplCopyWith<$Res> {
-  __$$CreateEventImplCopyWithImpl(
-      _$CreateEventImpl _value, $Res Function(_$CreateEventImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$CreateEventImpl implements _CreateEvent {
-  const _$CreateEventImpl();
-
-  @override
-  String toString() {
-    return 'SessionEvent.create()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreateEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int? id) fetch,
-    required TResult Function() create,
-  }) {
-    return create();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? id)? fetch,
-    TResult? Function()? create,
-  }) {
-    return create?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? id)? fetch,
-    TResult Function()? create,
-    required TResult orElse(),
-  }) {
-    if (create != null) {
-      return create();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchEvent value) fetch,
-    required TResult Function(_CreateEvent value) create,
-  }) {
-    return create(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchEvent value)? fetch,
-    TResult? Function(_CreateEvent value)? create,
-  }) {
-    return create?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchEvent value)? fetch,
-    TResult Function(_CreateEvent value)? create,
-    required TResult orElse(),
-  }) {
-    if (create != null) {
-      return create(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CreateEvent implements SessionEvent {
-  const factory _CreateEvent() = _$CreateEventImpl;
 }

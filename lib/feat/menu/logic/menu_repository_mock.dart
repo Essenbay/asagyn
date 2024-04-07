@@ -9,7 +9,7 @@ import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/menu_repository.dart';
 import 'package:zakazflow/feat/menu/logic/order_request.dart';
 
-@Injectable(as: MenuRepository)
+// @Injectable(as: MenuRepository)
 class MenuRepositoryMock implements MenuRepository {
   @override
   Future<Result<MenuModel>> getMenu() async {

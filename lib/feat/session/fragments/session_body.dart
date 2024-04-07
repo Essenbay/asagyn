@@ -24,9 +24,9 @@ class _SessionBody extends StatelessWidget {
       body: Stack(
         children: [
           //Background Image
-          if (model.backgroundImage != null)
+          if (model.establishmentDTO.backgroundImage != null)
             CachedNetworkImage(
-              imageUrl: model.backgroundImage!,
+              imageUrl: model.establishmentDTO.backgroundImage!,
               fit: BoxFit.fitWidth,
               alignment: Alignment.topCenter,
               height: context.screenSize.height * .4,
@@ -51,7 +51,7 @@ class _SessionBody extends StatelessWidget {
             ),
 
           //Image shadow
-          if (model.backgroundImage != null)
+          if (model.establishmentDTO.backgroundImage != null)
             Container(
               height: context.screenSize.height * .3,
               decoration: BoxDecoration(
@@ -81,7 +81,7 @@ class _SessionBody extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       left: 16, right: 16, bottom: 40, top: 10),
                   child: Text(
-                    model.establishmentName,
+                    model.establishmentDTO.establishmentName,
                     style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 28,

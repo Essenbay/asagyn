@@ -6,18 +6,12 @@ class _SessionFailure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: context.screenSize.width,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.fitWidth,
-          alignment: Alignment.topCenter,
-          image: CachedNetworkImageProvider(estab_background),
-        ),
-      ),
-      child: Center(
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: CustomErrorWidget(
           errorMessage: message,
+          isLight: false,
           request: () =>
               context.read<SessionBloc>().add(const SessionEvent.fetch()),
         ),

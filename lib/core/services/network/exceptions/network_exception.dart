@@ -33,13 +33,9 @@ class NetworkException implements Exception {
     } else if (_isUnauth(err)) {
       final message = _parseDioError(err);
       return NetworkException(message, NetworkExceptionTypes.unAuthenticated);
-    } else if (_isServerError(err)) {
-      final message = _parseDioError(err);
-      return NetworkException(message, NetworkExceptionTypes.serverError);
-    } else {
-      return NetworkException(
-          err.message ?? err.error.toString(), NetworkExceptionTypes.unknown);
     }
+    final message = _parseDioError(err);
+    return NetworkException(message, NetworkExceptionTypes.serverError);
   }
 
   factory NetworkException.emptyResponse() {
@@ -69,16 +65,11 @@ class NetworkException implements Exception {
     };
   }
 
-  static bool _isUnauth(DioException err) =>
-      err.response?.statusCode == HttpStatus.unauthorized;
+  static bool _isUnauth(DioException err) => false;
+  // err.response?.statusCode == HttpStatus.unauthorized;
 
   static bool _isNotFound(DioException err) =>
       err.response?.statusCode == HttpStatus.notFound;
-
-  static bool _isServerError(DioException err) =>
-      err.response?.statusCode == HttpStatus.internalServerError ||
-      err.response?.statusCode == HttpStatus.forbidden ||
-      err.response?.statusCode == HttpStatus.unprocessableEntity;
 
   static bool _isTimeOut(DioException err) =>
       err.type == DioExceptionType.receiveTimeout ||
@@ -88,25 +79,14 @@ class NetworkException implements Exception {
 
   /// Decode error message
   static String? _parseDioError(DioException e) {
-    final buffer = StringBuffer();
-
     if (e.response?.data != null || e.response?.data is Map<String, dynamic>) {
       final data = e.response?.data as Map<String, dynamic>;
-      final isSeveral =
-          data['data'] != null && data['data'] is Map<String, dynamic>;
-      if (isSeveral) {
-        final errorData = data['data'] as Map<String, dynamic>;
-        (errorData['messages'] as Map<String, dynamic>).forEach((key, value) {
-          for (final element in value as List) {
-            buffer.write('${element as String}\n');
-          }
-        });
-      } else if (data['message'] != null && data['message'] is String) {
-        buffer.write(data['message'] as String);
-      }
+      final message = data['message'] as String?;
+
+      return message?.isNotEmpty == true ? message : null;
+    } else {
+      return null;
     }
-    final result = buffer.toString().trim();
-    return result.isEmpty ? null : result;
   }
 
   @override

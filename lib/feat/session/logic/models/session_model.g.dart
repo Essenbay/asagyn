@@ -7,26 +7,24 @@ part of 'session_model.dart';
 // **************************************************************************
 
 SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
-      establishmentName: json['establishmentName'] as String,
       allItems: (json['allItems'] as List<dynamic>)
           .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
           .toList(),
-      sessionDate: json['sessionDate'] == null
+      startDateTime: json['startDateTime'] == null
           ? null
-          : DateTime.parse(json['sessionDate'] as String),
-      establishmentCode: json['establishmentCode'] as String,
+          : DateTime.parse(json['startDateTime'] as String),
+      establishmentDTO: EstablishmentModel.fromJson(
+          json['establishmentDTO'] as Map<String, dynamic>),
       paymentMethods: (json['paymentMethods'] as List<dynamic>)
           .map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
           .toList(),
       tableCode: json['tableCode'] as int,
-      backgroundImage: json['backgroundImage'] as String?,
-      total: (json['total'] as num).toDouble(),
-      orderTotal: (json['orderTotal'] as num).toDouble(),
-      orders: (json['orders'] as List<dynamic>)
-          .map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      servingPercentage: (json['servingPercentage'] as num).toDouble(),
-      servingAmount: json['servingAmount'] as int,
+      total: (json['total'] as num?)?.toDouble() ?? 0,
+      orderTotal: (json['orderTotal'] as num?)?.toDouble() ?? 0,
+      orders: (json['orders'] as List<dynamic>?)
+              ?.map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>

@@ -1,12 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/di/injection_container.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/router/app_router.dart';
+import 'package:zakazflow/core/util/ui_util.dart';
 import 'package:zakazflow/feat/auth/pages/forgot_password/forgot_password_modals.dart';
+import 'package:zakazflow/feat/auth/pages/login/logic/login_cubit.dart';
 import 'package:zakazflow/feat/auth/widgets/auth_header_animation.dart';
 import 'package:zakazflow/feat/auth/widgets/change_language_button.dart.dart';
 import 'package:zakazflow/feat/auth/widgets/staggered_animation.dart';
@@ -24,12 +29,15 @@ class LoginScreen extends StatefulWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return this;
+    return BlocProvider(
+      create: (context) => LoginCubit(getIt()),
+      child: this,
+    );
   }
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final loginController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -92,9 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   CustomStaggeredAnimated(
                     position: 0,
                     child: CustomTextField(
-                      controller: loginController,
-                      labelText: context.localized.login_lable,
-                      hintText: context.localized.enter_login,
+                      controller: emailController,
+                      labelText: context.localized.email_lable,
+                      hintText: context.localized.enter_email,
+                      keyboardType: TextInputType.emailAddress,
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -121,13 +130,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  PrimaryFilledTextButton(
-                    onPressed: () {
-                      context.router.pushAndPopUntil(const MainRoute(),
-                          predicate: ModalRoute.withName('/'));
+                  BlocConsumer<LoginCubit, LoginState>(
+                    listener: (context, state) {
+                      state.mapOrNull(
+                        failure: (value) {
+                          Util.showErrorAlert(
+                              context, value.exception.message(context));
+                        },
+                        success: (value) {
+                          context.router.pushAndPopUntil(const MainRoute(),
+                              predicate: ModalRoute.withName('/'));
+                        },
+                      );
                     },
-                    text: context.localized.login,
-                    addShadow: true,
+                    builder: (context, state) {
+                      return PrimaryFilledTextButton(
+                        onPressed: () {
+                          if (emailController.text.isEmpty ||
+                              passwordController.text.isEmpty) {
+                            Util.showSnackBar(context,
+                                context.localized.fill_all_necessary_fields);
+                          } else {
+                            context.read<LoginCubit>().login(
+                                login: emailController.text,
+                                password: passwordController.text);
+                          }
+                        },
+                        isLoading: state.maybeMap(
+                            loading: (value) => true, orElse: () => false),
+                        text: context.localized.login,
+                        addShadow: true,
+                      );
+                    },
                   ),
                   const SizedBox(height: 10),
                   Row(

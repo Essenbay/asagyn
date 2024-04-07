@@ -8,12 +8,12 @@ class _ForgotPasswordEnterLogin extends StatefulWidget {
 }
 
 class _ForgotPasswordEnterCodeState extends State<_ForgotPasswordEnterLogin> {
-  final TextEditingController phoneNumber =
-      MaskedTextController(mask: '+7 (000) 000-00-00', text: '7');
+  final TextEditingController email = TextEditingController();
+
   String? errorMessage;
   @override
   void dispose() {
-    phoneNumber.dispose();
+    email.dispose();
     super.dispose();
   }
 
@@ -45,10 +45,10 @@ class _ForgotPasswordEnterCodeState extends State<_ForgotPasswordEnterLogin> {
           Text(context.localized.forgot_password_description),
           const SizedBox(height: 30),
           CustomTextField(
-            controller: phoneNumber,
-            keyboardType: TextInputType.phone,
-            hintText: context.localized.enter_phone_number,
-            labelText: context.localized.phone_number,
+            controller: email,
+            keyboardType: TextInputType.emailAddress,
+            hintText: context.localized.enter_email,
+            labelText: context.localized.email_lable,
           ),
           const SizedBox(height: 20),
           ErrorMessageWidget(
@@ -69,7 +69,7 @@ class _ForgotPasswordEnterCodeState extends State<_ForgotPasswordEnterLogin> {
                     orElse: () {
                       context
                           .read<ForgotPasswordBloc>()
-                          .add(ForgotPasswordEvent.getCode(phoneNumber.text));
+                          .add(ForgotPasswordEvent.getCode(email.text));
                     },
                     loading: (_) {},
                   );

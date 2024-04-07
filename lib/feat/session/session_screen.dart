@@ -37,7 +37,12 @@ class SessionScreen extends StatelessWidget {
                     iconPath: CustomIcons.emptyTable,
                     message: context.localized.empty_sessions,
                     buttonText: context.localized.create_session,
-                    buttonOnTap: () {})
+                    buttonOnTap: () {
+                      context
+                          .read<SessionBloc>()
+                          .add(const SessionEvent.create());
+                    },
+                  )
                 : _SessionBody(model: state.data!),
           );
         },

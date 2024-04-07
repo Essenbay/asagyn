@@ -124,7 +124,7 @@ class MySessionDetailScreen extends StatelessWidget
                             padding: const EdgeInsets.only(
                                 left: 16, right: 16, bottom: 40, top: 10),
                             child: Text(
-                              state.data!.establishmentName,
+                              state.data!.establishmentDTO.establishmentName,
                               style: const TextStyle(
                                 color: AppColors.white,
                                 fontSize: 28,
