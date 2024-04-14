@@ -17,7 +17,7 @@ class NetworkService {
     _dio.interceptors.add(_handlerInterceptor);
     _dio.interceptors.add(_logInterceptor);
     _dio.options.baseUrl =
-        'https://4653-185-18-253-110.ngrok-free.app/demo/api/';
+        'https://d776-185-18-253-110.ngrok-free.app/demo/api/';
     _dio.options.headers['Accept'] = 'application/json';
   }
 

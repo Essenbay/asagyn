@@ -24,7 +24,7 @@ class AskBillButton extends StatelessWidget {
             content: IntrinsicHeight(
               child: Align(
                 alignment: Alignment.center,
-                child: _AskBillDialogContent(methods: model.paymentMethods),
+                child: _AskBillDialogContent(methods: []),
               ),
             ),
           ),

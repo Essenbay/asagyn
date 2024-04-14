@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -35,6 +37,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   Future<void> _checkAuth(CheckAuthEvent event, Emitter<AppState> emit) async {
     final token = await _secureStorage.getTokenKey();
     if (token.isNotEmpty) {
+      log(token);
       emit(AppState.authenticated);
     } else {
       emit(AppState.unauthenticated);

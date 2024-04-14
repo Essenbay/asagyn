@@ -93,15 +93,16 @@ class MenuProductGridItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      model.name,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w500),
+                    Expanded(
+                      child: Text(
+                        model.name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w500),
+                      ),
                     ),
                     const SizedBox(height: 5),
-                    const Spacer(),
                     if (model.readyTime != null)
                       Row(
                         children: [

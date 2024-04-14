@@ -470,19 +470,20 @@ abstract class _FailureState implements MenuState {
 
 /// @nodoc
 mixin _$MenuEvent {
+  int get estabId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(int estabId) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(int estabId)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(int estabId)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -502,12 +503,18 @@ mixin _$MenuEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MenuEventCopyWith<MenuEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $MenuEventCopyWith<$Res> {
   factory $MenuEventCopyWith(MenuEvent value, $Res Function(MenuEvent) then) =
       _$MenuEventCopyWithImpl<$Res, MenuEvent>;
+  @useResult
+  $Res call({int estabId});
 }
 
 /// @nodoc
@@ -519,13 +526,30 @@ class _$MenuEventCopyWithImpl<$Res, $Val extends MenuEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estabId = null,
+  }) {
+    return _then(_value.copyWith(
+      estabId: null == estabId
+          ? _value.estabId
+          : estabId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$FetchEventImplCopyWith<$Res> {
+abstract class _$$FetchEventImplCopyWith<$Res>
+    implements $MenuEventCopyWith<$Res> {
   factory _$$FetchEventImplCopyWith(
           _$FetchEventImpl value, $Res Function(_$FetchEventImpl) then) =
       __$$FetchEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int estabId});
 }
 
 /// @nodoc
@@ -535,51 +559,75 @@ class __$$FetchEventImplCopyWithImpl<$Res>
   __$$FetchEventImplCopyWithImpl(
       _$FetchEventImpl _value, $Res Function(_$FetchEventImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? estabId = null,
+  }) {
+    return _then(_$FetchEventImpl(
+      null == estabId
+          ? _value.estabId
+          : estabId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FetchEventImpl implements FetchEvent {
-  const _$FetchEventImpl();
+  const _$FetchEventImpl(this.estabId);
+
+  @override
+  final int estabId;
 
   @override
   String toString() {
-    return 'MenuEvent.fetch()';
+    return 'MenuEvent.fetch(estabId: $estabId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchEventImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$FetchEventImpl &&
+            (identical(other.estabId, estabId) || other.estabId == estabId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, estabId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchEventImplCopyWith<_$FetchEventImpl> get copyWith =>
+      __$$FetchEventImplCopyWithImpl<_$FetchEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(int estabId) fetch,
   }) {
-    return fetch();
+    return fetch(estabId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(int estabId)? fetch,
   }) {
-    return fetch?.call();
+    return fetch?.call(estabId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(int estabId)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch();
+      return fetch(estabId);
     }
     return orElse();
   }
@@ -614,5 +662,12 @@ class _$FetchEventImpl implements FetchEvent {
 }
 
 abstract class FetchEvent implements MenuEvent {
-  const factory FetchEvent() = _$FetchEventImpl;
+  const factory FetchEvent(final int estabId) = _$FetchEventImpl;
+
+  @override
+  int get estabId;
+  @override
+  @JsonKey(ignore: true)
+  _$$FetchEventImplCopyWith<_$FetchEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

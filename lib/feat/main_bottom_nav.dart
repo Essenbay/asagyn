@@ -2,6 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zakazflow/core/di/injection_container.dart';
+import 'package:zakazflow/feat/menu/logic/menu_bloc.dart';
+import 'package:zakazflow/feat/profilemenu/logic/fetch_profile_bloc.dart';
 import 'package:zakazflow/feat/session/logic/session_bloc.dart';
 import 'package:zakazflow/feat/widgets/bottom_navigation/bottom_navigation_router.dart';
 
@@ -14,8 +16,18 @@ class MainBottomNavContainer extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           getIt<SessionBloc>()..add(const SessionEvent.fetch()),
-      child: BottomNavigationRouter(
-        scaffoldWrapper: (child) => child,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => MenuBloc(getIt()),
+          ),
+          BlocProvider(
+              create: (context) => FetchProfileBloc(getIt())
+                ..add(const FetchProfileEvent.fetch())),
+        ],
+        child: BottomNavigationRouter(
+          scaffoldWrapper: (child) => child,
+        ),
       ),
     );
   }

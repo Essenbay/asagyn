@@ -1,7 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
-import 'package:zakazflow/core/services/storage/auth_storage.dart';
+import 'package:zakazflow/core/services/secure_storage_service.dart';
 import 'package:zakazflow/feat/auth/logic/auth_datasource.dart';
+import 'package:zakazflow/feat/profilemenu/logic/profile_model.dart';
 
 abstract class AuthRepository {
   Future<Result<String>> login(
@@ -13,17 +14,20 @@ abstract class AuthRepository {
       required String fullname});
   Future<Result<void>> getCode({required String phoneNumber});
   Future<Result<String>> sendCode({required String code});
-  Future<Result<void>> changePassword({required String password});
+  Future<Result<void>> changeProfile({
+    String? password,
+    String? confirmPassword,
+    String? email,
+    String? username,
+  });
+  Future<Result<ProfileModel>> getProfile();
 }
 
 @LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDatasource datasource;
-  final AuthStorage storage;
+  final SecureStorage storage;
   AuthRepositoryImpl(this.storage, {required this.datasource});
-  @override
-  Future<Result<void>> changePassword({required String password}) =>
-      datasource.changePassword(password: password);
 
   @override
   Future<Result<void>> getCode({required String phoneNumber}) =>
@@ -56,4 +60,19 @@ class AuthRepositoryImpl implements AuthRepository {
           password: password,
           fullname: fullname,
           confirmPassword: confirmPassword);
+
+  @override
+  Future<Result<void>> changeProfile(
+          {String? password,
+          String? confirmPassword,
+          String? email,
+          String? username}) =>
+      datasource.changeProfile(
+          password: password,
+          confirmPassword: confirmPassword,
+          email: email,
+          username: username);
+
+  @override
+  Future<Result<ProfileModel>> getProfile() => datasource.getProfile();
 }

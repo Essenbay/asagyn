@@ -46,7 +46,6 @@ class BottomNavigationRouter extends StatelessWidget {
                 showSelectedLabels: false,
                 showUnselectedLabels: false,
                 backgroundColor: Colors.transparent,
-                
                 items: [
                   BottomNavigationBarItem(
                       icon: BottomNavAnimated(

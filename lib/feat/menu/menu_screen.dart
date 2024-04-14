@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:zakazflow/core/config/colors.dart';
-import 'package:zakazflow/core/di/injection_container.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/router/app_router.dart';
 import 'package:zakazflow/feat/menu/fragments/menu_tab_bar.dart';
@@ -27,12 +26,9 @@ part 'fragments/menu_success.dart';
 class MenuRouterPage extends AutoRouter implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<MenuBloc>()..add(const MenuEvent.fetch()),
-      child: ChangeNotifierProvider(
-        create: (context) => OrderController(products: []),
-        child: this,
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => OrderController(products: []),
+      child: this,
     );
   }
 }
@@ -55,7 +51,8 @@ class MenuScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            value.data?.establishmentDTO.establishmentName ?? '',
+                            value.data?.establishmentDTO.establishmentName ??
+                                '',
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),
@@ -79,12 +76,14 @@ class MenuScreen extends StatelessWidget {
                             .add(const SessionEvent.fetch()),
                       ),
                     ),
-                success: (state) => state.data == null
+                success: (sessionState) => sessionState.data == null
                     ? MessagedScreen(
                         iconPath: CustomIcons.emptyTable,
                         message: context.localized.empty_sessions,
                         buttonText: context.localized.create_session,
-                        buttonOnTap: () {})
+                        buttonOnTap: () {
+                          AutoTabsRouter.of(context).setActiveIndex(0);
+                        })
                     : BlocBuilder<MenuBloc, MenuState>(
                         builder: (context, state) {
                         return state.map(
@@ -94,11 +93,16 @@ class MenuScreen extends StatelessWidget {
                           success: (state) => MenuSuccess(model: state.data),
                           failure: (state) => Center(
                             child: CustomErrorWidget(
-                              errorMessage: state.exception.message(context),
-                              request: () => context
-                                  .read<SessionBloc>()
-                                  .add(const SessionEvent.fetch()),
-                            ),
+                                errorMessage: state.exception.message(context),
+                                request: () {
+                                  final estabIs =
+                                      sessionState.data?.establishmentDTO.id;
+                                  if (estabIs != null) {
+                                    context
+                                        .read<MenuBloc>()
+                                        .add(MenuEvent.fetch(estabIs));
+                                  }
+                                }),
                           ),
                         );
                       }));

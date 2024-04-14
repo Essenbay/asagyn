@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/widgets/category_item.dart';
 import 'package:zakazflow/feat/menu/widgets/product_detail.dart';
@@ -55,6 +56,10 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
             : TabBar(
                 controller: _tabController,
                 isScrollable: true,
+                labelColor: AppColors.primary,
+                padding: EdgeInsets.zero,
+                indicatorColor: AppColors.primary,
+                indicatorPadding: EdgeInsets.zero,
                 tabs: widget.model.categories
                     .map((e) => Tab(child: Text(e.name)))
                     .toList(),
@@ -73,7 +78,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
                     maxCrossAxisExtent: 200,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
-                    childAspectRatio: .62,
+                    childAspectRatio: .60,
                   ),
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () =>

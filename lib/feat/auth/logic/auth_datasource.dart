@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/services/network/network_service.dart';
+import 'package:zakazflow/feat/profilemenu/logic/profile_model.dart';
 
 abstract class AuthDatasource {
   Future<Result<String>> login(
@@ -14,7 +13,13 @@ abstract class AuthDatasource {
       required String fullname});
   Future<Result<void>> getCode({required String phoneNumber});
   Future<Result<String>> sendCode({required String code});
-  Future<Result<void>> changePassword({required String password});
+  Future<Result<void>> changeProfile({
+    String? password,
+    String? confirmPassword,
+    String? email,
+    String? username,
+  });
+  Future<Result<ProfileModel>> getProfile();
 }
 
 @LazySingleton(as: AuthDatasource)
@@ -24,9 +29,22 @@ class AuthRepositoryImpl implements AuthDatasource {
   AuthRepositoryImpl({required this.network});
 
   @override
-  Future<Result<void>> changePassword({required String password}) {
-    // TODO: implement changePassword
-    throw UnimplementedError();
+  Future<Result<void>> changeProfile({
+    String? password,
+    String? confirmPassword,
+    String? email,
+    String? username,
+  }) async {
+    final result = await network.request(
+      request: (dio) => dio.post('/update-profile', data: {
+        'confirmPassword': confirmPassword,
+        'email': email,
+        'newPassword': password,
+        'username': username,
+      }),
+      fromJson: (json) {},
+    );
+    return result;
   }
 
   @override
@@ -68,7 +86,7 @@ class AuthRepositoryImpl implements AuthDatasource {
       request: (dio) => dio.post(
         '/registration',
         data: {
-          'username': email,
+          'username': fullname,
           'password': password,
           'confirmPassword': confirmPassword,
           'email': email,
@@ -76,5 +94,15 @@ class AuthRepositoryImpl implements AuthDatasource {
       ),
       fromJson: (json) {},
     );
+  }
+
+  @override
+  Future<Result<ProfileModel>> getProfile() async {
+    final result = await network.request(
+        request: (dio) => dio.get('/get-profile'),
+        fromJson: (json) {
+          return ProfileModel.fromJson(json as Map<String, dynamic>);
+        });
+    return result;
   }
 }

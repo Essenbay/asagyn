@@ -5,29 +5,14 @@ part 'session_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class SessionModel {
-  @JsonKey(defaultValue: 0)
-  final double total;
-  @JsonKey(defaultValue: 0)
-  final double orderTotal;
+  final int id;
   final DateTime? startDateTime;
-  @JsonKey(defaultValue: [])
-  final List<OrderModel> orders;
   final EstablishmentModel establishmentDTO;
 
-  ///Products of orders at once
-  final List<OrderItem> allItems;
-  final List<PaymentMethod> paymentMethods;
-  final int tableCode;
-
   SessionModel({
-    required this.allItems,
+    required this.id,
     this.startDateTime,
     required this.establishmentDTO,
-    required this.paymentMethods,
-    required this.tableCode,
-    required this.total,
-    required this.orderTotal,
-    required this.orders,
   });
   factory SessionModel.fromJson(Map<String, Object?> json) =>
       _$SessionModelFromJson(json);

@@ -5,9 +5,16 @@ import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/widgets/ask_bill_button.dart';
 
 class ReceiptExpanded extends StatelessWidget {
-  const ReceiptExpanded({required this.model, this.showAskBill = true});
+  const ReceiptExpanded(
+      {required this.model,
+      this.showAskBill = true,
+      required this.orderItems,
+      required this.total});
   final SessionModel model;
+  final List<OrderItem> orderItems;
+  final double total;
   final bool showAskBill;
+
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -36,13 +43,13 @@ class ReceiptExpanded extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '${model.total} ₸',
+                '${total} ₸',
                 style:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               )
             ]),
             const Divider(),
-            ...model.allItems.map((e) => Padding(
+            ...orderItems.map((e) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Row(children: [
                     Text(

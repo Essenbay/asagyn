@@ -7,7 +7,9 @@ import 'package:zakazflow/feat/session/widgets/ask_bill_button.dart';
 class ReceiptCollapsed extends StatelessWidget {
   final SessionModel model;
   final bool showAskBill;
-  const ReceiptCollapsed({required this.model, this.showAskBill = true});
+  final double total;
+  const ReceiptCollapsed(
+      {required this.model, this.showAskBill = true, required this.total});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class ReceiptCollapsed extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '${model.total} ₸',
+              '${total} ₸',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             )
           ]),

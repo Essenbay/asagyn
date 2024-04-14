@@ -1,10 +1,15 @@
 part of '../session_screen.dart';
 
 class _SessionBody extends StatelessWidget {
-  const _SessionBody({required this.model});
+  const _SessionBody({required this.model, required this.orders});
   final SessionModel model;
+  final List<OrderModel> orders;
   @override
   Widget build(BuildContext context) {
+    final orderItems = orders
+        .fold<List<OrderItem>>([], (prev, curr) => [...prev, ...curr.items]);
+    final total = orderItems.fold(0.0, (prev, curr) => prev + curr.cost);
+
     return BottomSheetBar(
       locked: false,
       borderRadius: const BorderRadius.only(
@@ -18,9 +23,16 @@ class _SessionBody extends StatelessWidget {
           blurRadius: 15.0,
         ),
       ],
-      height: model.orders.isEmpty ? 0 : 110,
-      collapsed: ReceiptCollapsed(model: model),
-      expandedBuilder: (controller) => ReceiptExpanded(model: model),
+      height: orders.isEmpty ? 0 : 110,
+      collapsed: ReceiptCollapsed(
+        model: model,
+        total: total,
+      ),
+      expandedBuilder: (controller) => ReceiptExpanded(
+        model: model,
+        orderItems: orderItems,
+        total: total,
+      ),
       body: Stack(
         children: [
           //Background Image
@@ -97,14 +109,13 @@ class _SessionBody extends StatelessWidget {
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30),
                       )),
-                  child: model.orders.isEmpty
+                  child: orders.isEmpty
                       ? ConstrainedBox(
                           constraints: BoxConstraints.tightFor(
                               height: context.screenSize.height * .5),
                           child: Center(
                             child: MessagedScreen(
-                              //TODO: Change icon to like 'Empty order list'
-                              iconPath: CustomIcons.menu,
+                              iconPath: CustomIcons.order,
                               message: context.localized.orders_empty,
                               buttonText: context.localized.to_menu,
                               buttonOnTap: () =>
@@ -127,7 +138,7 @@ class _SessionBody extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 30),
                               child: Column(
-                                children: model.orders
+                                children: orders
                                     .map((e) => OrdersWidget(model: e))
                                     .toList(),
                               ),

@@ -17,7 +17,6 @@
   "name_label": "Имя",
   "enter_name": "Введите ваше имя",
   "surname_label": "Фамилия",
-  "full_name": "ФИО",
   "enter": "Введите",
   "email_lable": "Почта",
   "enter_email": "Введите почту",
@@ -32,6 +31,7 @@
   "password_dont_match": "Пароли не совпадают",
   "password": "Пароль",
   "confirm_password": "Подтвердить пароль",
+  "change_password": "Изменить пароль",
   "agreement_text": "Я ознакомлен с Публичной офертой",
   "sms_confirmation": "СМС подтверждение",
   "send_code_again": "Отправить код ещё раз",
@@ -115,6 +115,8 @@
   "enter_note": "Введите свою заметку",
   "confirm_order": "Подтвердить заказ",
   "empty_sessions": "У вас нет никаких сессии",
+  "enter_estab_code": "Введите код ресторана",
+  "estab_code": "Код ресторана",
   "success": "Успешно",
   "your_order_created": "Ваш заказ создан!",
   "order_created": "Заказ создан",
@@ -128,7 +130,7 @@
   "welcome": "Добро пожаловать",
   "orders_empty": "Вы еще ничего не заказывали",
   "orders": "Заказы",
-  "share_message": "Присоединяйся! Я в {establishmentName}! Код заведения: {establishmentCode}, Код стола: {tableCode}",
+  "share_message": "Присоединяйся! Я в {establishmentName}! Код заведения: {establishmentCode}",
   "to_menu": "Перейти в меню",
   "waiters_will_be_soon": "Скоро официант подойдет для совершения оплаты",
   "ask_bill": "Попросить счет",
@@ -136,5 +138,7 @@
   "call_waiter": "Позвать официанта",
   "search": "Поиск",
   "cooking_time": "Время приготовления",
-  "session_not_found": "Сессия не была найдена"
+  "session_not_found": "Сессия не была найдена",
+  "change_name": "Изменение имени",
+  "change_email": "Изменение почты"
 }

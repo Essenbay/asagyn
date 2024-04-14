@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/di/injection_container.dart';
 import 'package:zakazflow/core/extensions/context.dart';
-import 'package:zakazflow/feat/profilemenu/my_sessions/logic/my_sessions_bloc.dart';
-import 'package:zakazflow/feat/profilemenu/my_sessions/widget/session_widget.dart';
+import 'package:zakazflow/feat/profilemenu/pages/my_sessions/logic/my_sessions_bloc.dart';
+import 'package:zakazflow/feat/profilemenu/pages/my_sessions/widget/session_widget.dart';
 import 'package:zakazflow/feat/widgets/back_leading_app_bar.dart';
 import 'package:zakazflow/feat/widgets/error_widget.dart';
 
@@ -24,11 +24,15 @@ class MySessionsScreen extends StatelessWidget implements AutoRouteWrapper {
           loading: (_) => const Center(
             child: CircularProgressIndicator(),
           ),
-          failure: (state) => CustomErrorWidget(
-            errorMessage: state.exception.message(context),
-            request: () => context
-                .read<MySessionsBloc>()
-                .add(const MySessionsEvent.fetch()),
+          failure: (state) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomErrorWidget(
+              isLight: false,
+              errorMessage: state.exception.message(context),
+              request: () => context
+                  .read<MySessionsBloc>()
+                  .add(const MySessionsEvent.fetch()),
+            ),
           ),
           success: (state) => ListView.separated(
             itemBuilder: (context, index) => SessionWidget(

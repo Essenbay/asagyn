@@ -2,7 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/exceptions/network_exception.dart';
-import 'package:zakazflow/feat/profilemenu/my_sessions/logic/session_preview_model.dart';
+import 'package:zakazflow/feat/profilemenu/pages/my_sessions/logic/session_preview_model.dart';
+import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/logic/session_repository.dart';
 
 part 'my_sessions_bloc.freezed.dart';
@@ -11,7 +12,7 @@ part 'my_sessions_bloc.freezed.dart';
 sealed class MySessionsState with _$MySessionsState {
   const factory MySessionsState.loading() = _LoadingState;
 
-  const factory MySessionsState.success(List<SessionPreview> data) =
+  const factory MySessionsState.success(List<SessionModel> data) =
       _SuccessState;
 
   const factory MySessionsState.failure(NetworkException exception) =

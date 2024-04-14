@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
-import 'package:zakazflow/core/util/example.dart';
+import 'package:zakazflow/feat/menu/logic/menu_bloc.dart';
+import 'package:zakazflow/feat/session/fragments/no_session_screen.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/logic/session_bloc.dart';
 import 'package:zakazflow/feat/session/widgets/order_widget.dart';
@@ -23,29 +24,35 @@ part './fragments/session_body.dart';
 @RoutePage()
 class SessionScreen extends StatelessWidget {
   const SessionScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<SessionBloc, SessionState>(
-        builder: (context, state) {
-          return state.map(
-            loading: (value) => const _SessionLoading(),
-            failure: (state) =>
-                _SessionFailure(message: state.exception.message(context)),
-            success: (state) => state.data == null
-                ? MessagedScreen(
-                    iconPath: CustomIcons.emptyTable,
-                    message: context.localized.empty_sessions,
-                    buttonText: context.localized.create_session,
-                    buttonOnTap: () {
-                      context
-                          .read<SessionBloc>()
-                          .add(const SessionEvent.create());
-                    },
-                  )
-                : _SessionBody(model: state.data!),
-          );
-        },
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: BlocConsumer<SessionBloc, SessionState>(
+          listener: (context, state) {
+            state.mapOrNull(
+              success: (value) {
+                if (value.data?.establishmentDTO != null) {
+                  context
+                      .read<MenuBloc>()
+                      .add(MenuEvent.fetch(value.data!.establishmentDTO.id));
+                }
+              },
+            );
+          },
+          builder: (context, state) {
+            return state.map(
+              loading: (value) => const _SessionLoading(),
+              failure: (state) =>
+                  _SessionFailure(message: state.exception.message(context)),
+              success: (state) => state.data == null
+                  ? const NoSessionPage()
+                  : _SessionBody(model: state.data!, orders: state.orders),
+            );
+          },
+        ),
       ),
     );
   }

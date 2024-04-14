@@ -8,7 +8,7 @@ import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/order_request.dart';
 
 abstract class MenuRepository {
-  Future<Result<MenuModel>> getMenu();
+  Future<Result<MenuModel>> getMenu(int estabId);
   Future<Result<void>> createOrder(OrderRequest data);
 }
 
@@ -25,11 +25,10 @@ class MenuRepositoryImpl implements MenuRepository {
   }
 
   @override
-  Future<Result<MenuModel>> getMenu() async {
+  Future<Result<MenuModel>> getMenu(int estabId) async {
     final result = await service.request(
         request: (dio) => dio.get(
-              '/product-item',
-              data: {},
+              '/menu/$estabId',
             ),
         fromJson: (json) {
           log(json.toString());

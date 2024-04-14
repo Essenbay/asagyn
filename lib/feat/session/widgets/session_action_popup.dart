@@ -16,6 +16,7 @@ class SessionPopupMenuButton extends StatelessWidget {
       child: PopupMenuButton(
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(15)),
+          surfaceTintColor: AppColors.white,
           icon: SizedBox(
             height: 55,
             width: 55,
@@ -63,13 +64,13 @@ class SessionPopupMenuButton extends StatelessWidget {
                         //CONSIDER: Let user end session if no orders were created
                         Share.share(
                           context.localized.share_message(
-                              model.establishmentDTO.id,
-                              model.establishmentDTO.establishmentName,
-                              model.tableCode),
+                            model.establishmentDTO.id,
+                            model.establishmentDTO.establishmentName,
+                          ),
                           subject: context.localized.share_message(
-                              model.establishmentDTO.id,
-                              model.establishmentDTO.establishmentName,
-                              model.tableCode),
+                            model.establishmentDTO.id,
+                            model.establishmentDTO.establishmentName,
+                          ),
                         );
                       },
                     ),

@@ -18,7 +18,7 @@ sealed class MenuState with _$MenuState {
 
 @freezed
 class MenuEvent with _$MenuEvent {
-  const factory MenuEvent.fetch() = FetchEvent;
+  const factory MenuEvent.fetch(int estabId) = FetchEvent;
 }
 
 @Injectable()
@@ -32,7 +32,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
 
   Future<void> _fetch(FetchEvent event, Emitter<MenuState> emit) async {
     emit(const MenuState.loading());
-    final result = await _repository.getMenu();
+    final result = await _repository.getMenu(event.estabId);
     result.map(
         success: (result) => emit(MenuState.success(data: result.data)),
         failure: (result) => emit(MenuState.failure(result.exception)));

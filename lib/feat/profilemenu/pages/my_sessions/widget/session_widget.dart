@@ -4,12 +4,12 @@ import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/extensions/datetime.dart';
 import 'package:zakazflow/core/router/app_router.dart';
-import 'package:zakazflow/feat/profilemenu/my_sessions/logic/session_preview_model.dart';
-import 'package:zakazflow/feat/profilemenu/my_sessions/widget/fading_edges.dart';
+import 'package:zakazflow/feat/profilemenu/pages/my_sessions/widget/fading_edges.dart';
+import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 
 class SessionWidget extends StatelessWidget {
   const SessionWidget({Key? key, required this.data}) : super(key: key);
-  final SessionPreview data;
+  final SessionModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +17,12 @@ class SessionWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           context.router.push(MySessionDetailRoute(
-            id: data.id,
-            backgroundImage: data.backgroundImage,
+            data: data,
           ));
         },
         child: Stack(
           children: [
-            if (data.backgroundImage != null)
+            if (data.establishmentDTO.backgroundImage != null)
               CustomPaint(
                 foregroundPainter: FadingEffect(),
                 child: Container(
@@ -31,7 +30,8 @@ class SessionWidget extends StatelessWidget {
                   width: context.screenSize.width,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(data.backgroundImage ?? ''),
+                      image: NetworkImage(
+                          data.establishmentDTO.backgroundImage ?? ''),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -63,7 +63,7 @@ class SessionWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          data.establishmentName,
+                          data.establishmentDTO.establishmentName,
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -72,7 +72,7 @@ class SessionWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          data.sessionDate?.getDateTimeString(context) ?? '',
+                          data.startDateTime?.getDateTimeString(context) ?? '',
                           style: const TextStyle(
                             color: Colors.white,
                           ),

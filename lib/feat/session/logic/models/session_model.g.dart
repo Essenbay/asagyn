@@ -7,24 +7,12 @@ part of 'session_model.dart';
 // **************************************************************************
 
 SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
-      allItems: (json['allItems'] as List<dynamic>)
-          .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      id: json['id'] as int,
       startDateTime: json['startDateTime'] == null
           ? null
           : DateTime.parse(json['startDateTime'] as String),
       establishmentDTO: EstablishmentModel.fromJson(
           json['establishmentDTO'] as Map<String, dynamic>),
-      paymentMethods: (json['paymentMethods'] as List<dynamic>)
-          .map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      tableCode: json['tableCode'] as int,
-      total: (json['total'] as num?)?.toDouble() ?? 0,
-      orderTotal: (json['orderTotal'] as num?)?.toDouble() ?? 0,
-      orders: (json['orders'] as List<dynamic>?)
-              ?.map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>

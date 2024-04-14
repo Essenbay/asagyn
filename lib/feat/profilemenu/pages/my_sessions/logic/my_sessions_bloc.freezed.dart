@@ -19,21 +19,21 @@ mixin _$MySessionsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SessionPreview> data) success,
+    required TResult Function(List<SessionModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SessionPreview> data)? success,
+    TResult? Function(List<SessionModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SessionPreview> data)? success,
+    TResult Function(List<SessionModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) =>
@@ -119,7 +119,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SessionPreview> data) success,
+    required TResult Function(List<SessionModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) {
     return loading();
@@ -129,7 +129,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SessionPreview> data)? success,
+    TResult? Function(List<SessionModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return loading?.call();
@@ -139,7 +139,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SessionPreview> data)? success,
+    TResult Function(List<SessionModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -194,7 +194,7 @@ abstract class _$$SuccessStateImplCopyWith<$Res> {
           _$SuccessStateImpl value, $Res Function(_$SuccessStateImpl) then) =
       __$$SuccessStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<SessionPreview> data});
+  $Res call({List<SessionModel> data});
 }
 
 /// @nodoc
@@ -214,7 +214,7 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
       null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<SessionPreview>,
+              as List<SessionModel>,
     ));
   }
 }
@@ -222,11 +222,11 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessStateImpl implements _SuccessState {
-  const _$SuccessStateImpl(final List<SessionPreview> data) : _data = data;
+  const _$SuccessStateImpl(final List<SessionModel> data) : _data = data;
 
-  final List<SessionPreview> _data;
+  final List<SessionModel> _data;
   @override
-  List<SessionPreview> get data {
+  List<SessionModel> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -259,7 +259,7 @@ class _$SuccessStateImpl implements _SuccessState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SessionPreview> data) success,
+    required TResult Function(List<SessionModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) {
     return success(data);
@@ -269,7 +269,7 @@ class _$SuccessStateImpl implements _SuccessState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SessionPreview> data)? success,
+    TResult? Function(List<SessionModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return success?.call(data);
@@ -279,7 +279,7 @@ class _$SuccessStateImpl implements _SuccessState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SessionPreview> data)? success,
+    TResult Function(List<SessionModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -325,10 +325,10 @@ class _$SuccessStateImpl implements _SuccessState {
 }
 
 abstract class _SuccessState implements MySessionsState {
-  const factory _SuccessState(final List<SessionPreview> data) =
+  const factory _SuccessState(final List<SessionModel> data) =
       _$SuccessStateImpl;
 
-  List<SessionPreview> get data;
+  List<SessionModel> get data;
   @JsonKey(ignore: true)
   _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -400,7 +400,7 @@ class _$FailureStateImpl implements _FailureState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<SessionPreview> data) success,
+    required TResult Function(List<SessionModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) {
     return failure(exception);
@@ -410,7 +410,7 @@ class _$FailureStateImpl implements _FailureState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<SessionPreview> data)? success,
+    TResult? Function(List<SessionModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return failure?.call(exception);
@@ -420,7 +420,7 @@ class _$FailureStateImpl implements _FailureState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<SessionPreview> data)? success,
+    TResult Function(List<SessionModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
