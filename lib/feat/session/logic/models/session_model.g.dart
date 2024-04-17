@@ -25,7 +25,6 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
       status: $enumDecode(_$OrderStatusEnumMap, json['status']),
       id: json['id'] as int,
       createdTime: DateTime.parse(json['createdTime'] as String),
-      readyTime: DateTime.parse(json['readyTime'] as String),
       items: (json['items'] as List<dynamic>)
           .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
           .toList(),

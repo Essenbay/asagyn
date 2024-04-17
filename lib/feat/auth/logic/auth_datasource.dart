@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/services/network/network_service.dart';
@@ -65,6 +67,7 @@ class AuthRepositoryImpl implements AuthDatasource {
         },
       ),
       fromJson: (json) {
+        log(json.toString());
         return json['token'] as String;
       },
     );

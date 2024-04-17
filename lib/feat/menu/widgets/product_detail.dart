@@ -42,7 +42,7 @@ class _ProductDetailState extends State<ProductDetail> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         CachedNetworkImage(
-          imageUrl: widget.model.image,
+          imageUrl: widget.model.imageUrl,
           imageBuilder: (context, imageProvider) => Stack(
             alignment: Alignment.topRight,
             fit: StackFit.expand,
@@ -85,14 +85,14 @@ class _ProductDetailState extends State<ProductDetail> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                widget.model.name,
+                widget.model.productName(context),
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 10),
-              if (widget.model.readyTime != null)
+              if (widget.model.readyDuration != null)
                 Row(
                   children: [
                     const Icon(
@@ -108,7 +108,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      widget.model.readyTime!,
+                      '${widget.model.readyDuration!.minute} ${context.localized.minutes}',
                       style: const TextStyle(
                           color: AppColors.grey800, fontSize: 15),
                     ),

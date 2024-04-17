@@ -79,12 +79,17 @@ class NetworkException implements Exception {
 
   /// Decode error message
   static String? _parseDioError(DioException e) {
-    if (e.response?.data != null || e.response?.data is Map<String, dynamic>) {
-      final data = e.response?.data as Map<String, dynamic>;
-      final message = data['message'] as String?;
+    try {
+      if (e.response?.data != null ||
+          e.response?.data is Map<String, dynamic>) {
+        final data = e.response?.data as Map<String, dynamic>;
+        final message = data['message'] as String?;
 
-      return message?.isNotEmpty == true ? message : null;
-    } else {
+        return message?.isNotEmpty == true ? message : null;
+      } else {
+        return null;
+      }
+    } catch (e) {
       return null;
     }
   }

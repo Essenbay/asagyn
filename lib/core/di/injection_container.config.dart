@@ -53,7 +53,10 @@ extension GetItInjectableX on _i1.GetIt {
         _i4.PreferencesService(gh<_i5.SharedPreferences>()));
     gh.singleton<_i6.SecureStorage>(
         _i6.SecureStorage(gh<_i7.FlutterSecureStorage>()));
-    gh.factory<_i8.AppBloc>(() => _i8.AppBloc(gh<_i6.SecureStorage>()));
+    gh.factory<_i8.AppBloc>(() => _i8.AppBloc(
+          gh<_i6.SecureStorage>(),
+          gh<_i4.PreferencesService>(),
+        ));
     gh.lazySingleton<_i9.HandlerInterceptor>(
         () => _i9.HandlerInterceptor(gh<_i6.SecureStorage>()));
     gh.factory<_i10.LanguageCubit>(
@@ -79,8 +82,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i17.FetchProfileBloc(gh<_i15.AuthRepository>()));
     gh.factory<_i18.ForgotPasswordBloc>(
         () => _i18.ForgotPasswordBloc(gh<_i15.AuthRepository>()));
-    gh.lazySingleton<_i19.MenuRepository>(
-        () => _i19.MenuRepositoryImpl(service: gh<_i11.NetworkService>()));
+    gh.lazySingleton<_i19.MenuRepository>(() => _i19.MenuRepositoryImpl(
+          gh<_i4.PreferencesService>(),
+          service: gh<_i11.NetworkService>(),
+        ));
     gh.factory<_i20.MySessionsBloc>(
         () => _i20.MySessionsBloc(gh<_i13.SessionRepository>()));
     gh.factory<_i21.SessionBloc>(

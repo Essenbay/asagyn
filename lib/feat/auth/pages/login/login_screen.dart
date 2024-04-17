@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/di/injection_container.dart';
 import 'package:zakazflow/core/extensions/context.dart';
@@ -37,7 +36,7 @@ class LoginScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -100,10 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   CustomStaggeredAnimated(
                     position: 0,
                     child: CustomTextField(
-                      controller: emailController,
-                      labelText: context.localized.email_lable,
-                      hintText: context.localized.enter_email,
-                      keyboardType: TextInputType.emailAddress,
+                      controller: usernameController,
+                      labelText: context.localized.name_label,
+                      hintText: context.localized.enter_name,
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -146,13 +144,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (context, state) {
                       return PrimaryFilledTextButton(
                         onPressed: () {
-                          if (emailController.text.isEmpty ||
+                          if (usernameController.text.isEmpty ||
                               passwordController.text.isEmpty) {
                             Util.showSnackBar(context,
                                 context.localized.fill_all_necessary_fields);
                           } else {
                             context.read<LoginCubit>().login(
-                                login: emailController.text,
+                                login: usernameController.text,
                                 password: passwordController.text);
                           }
                         },

@@ -14,6 +14,7 @@ class SortButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<SortValue>(
+        surfaceTintColor: AppColors.white,
         onSelected: onSelected,
         shape:
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -33,33 +34,15 @@ class SortButton extends StatelessWidget {
         itemBuilder: (context) => [
               PopupMenuItem<SortValue>(
                 value: SortValue.name,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(context.localized.by_name),
-                ),
+                child: Text(context.localized.by_name),
               ),
               PopupMenuItem<SortValue>(
                 value: SortValue.cheapFirst,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(context.localized.cheap_first),
-                ),
+                child: Text(context.localized.cheap_first),
               ),
               PopupMenuItem<SortValue>(
                 value: SortValue.expensiveFirst,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(context.localized.expensive_first),
-                ),
+                child: Text(context.localized.expensive_first),
               ),
             ]);
   }

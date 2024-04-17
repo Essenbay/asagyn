@@ -37,7 +37,9 @@ class _MenuSuccessState extends State<MenuSuccess> {
           ],
         ),
         const SizedBox(height: 10),
-        Expanded(child: MenuTabBar(model: widget.model)),
+        Expanded(
+          child: MenuTabBar(model: widget.model),
+        ),
         const _CartFloatedModal(),
       ],
     );

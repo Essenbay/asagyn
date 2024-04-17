@@ -7,7 +7,7 @@ class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget(
       {super.key,
       required this.errorMessage,
-      this.isLight = true,
+      this.isLight = false,
       required this.request});
   final String? errorMessage;
   final bool isLight;

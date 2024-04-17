@@ -18,7 +18,7 @@ class MenuProductTileItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           CachedNetworkImage(
-            imageUrl: model.image,
+            imageUrl: model.imageUrl,
             imageBuilder: (context, imageProvider) => Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -33,13 +33,15 @@ class MenuProductTileItem extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                   child: Text(
-                    model.name,
+                    model.productName(context),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: context.theme.textTheme.titleSmall,
+                    textAlign: TextAlign.start,
                   ),
                 ),
                 Expanded(

@@ -42,7 +42,7 @@ class MenuProductGridItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: model.image,
+                  imageUrl: model.imageUrl,
                   imageBuilder: (context, imageProvider) => Stack(
                     alignment: Alignment.topRight,
                     fit: StackFit.expand,
@@ -95,7 +95,7 @@ class MenuProductGridItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        model.name,
+                        model.productName(context),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3,
                         style: const TextStyle(
@@ -103,7 +103,7 @@ class MenuProductGridItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 5),
-                    if (model.readyTime != null)
+                    if (model.readyDuration != null)
                       Row(
                         children: [
                           const Icon(
@@ -113,7 +113,7 @@ class MenuProductGridItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 5),
                           Text(
-                            model.readyTime!,
+                            '${model.readyDuration!.minute} ${context.localized.minutes}',
                             style: const TextStyle(fontSize: 14),
                           ),
                         ],

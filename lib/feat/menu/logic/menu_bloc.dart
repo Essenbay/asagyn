@@ -32,9 +32,9 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
 
   Future<void> _fetch(FetchEvent event, Emitter<MenuState> emit) async {
     emit(const MenuState.loading());
-    final result = await _repository.getMenu(event.estabId);
-    result.map(
-        success: (result) => emit(MenuState.success(data: result.data)),
-        failure: (result) => emit(MenuState.failure(result.exception)));
+    final result = await _repository.getMenuId(event.estabId);
+    await result.when(
+        success: (result) async => emit(MenuState.success(data: result)),
+        failure: (exception) async => emit(MenuState.failure(exception)));
   }
 }

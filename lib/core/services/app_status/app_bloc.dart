@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:zakazflow/core/services/preference_service.dart';
 import 'package:zakazflow/core/services/secure_storage_service.dart';
 
 part 'app_bloc.freezed.dart';
@@ -25,8 +26,9 @@ class AppEvent with _$AppEvent {
 @Injectable()
 class AppBloc extends Bloc<AppEvent, AppState> {
   final SecureStorage _secureStorage;
+  final PreferencesService _prefs;
 
-  AppBloc(this._secureStorage) : super(AppState.launching) {
+  AppBloc(this._secureStorage, this._prefs) : super(AppState.launching) {
     on<AppEvent>((event, emit) => event.map(
           checkAuth: (event) async => await _checkAuth(event, emit),
           login: (event) async => await _login(event, emit),
@@ -51,6 +53,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Future<void> _logout(LogoutEvent event, Emitter<AppState> emit) async {
     await _secureStorage.deleteUser();
+    await _prefs.setSessionId(null);
     emit(AppState.unauthenticated);
   }
 }

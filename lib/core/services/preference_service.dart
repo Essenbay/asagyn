@@ -30,8 +30,12 @@ class PreferencesService {
     _languageCode = value;
   }
 
-  Future<void> setSessionId(int value) async {
-    await _prefs.setInt(_currentSessionIdKey, value);
+  Future<void> setSessionId(int? value) async {
+    if (value == null) {
+      await _prefs.remove(_currentSessionIdKey);
+    } else {
+      await _prefs.setInt(_currentSessionIdKey, value);
+    }
     _currentSessionId = value;
   }
 }

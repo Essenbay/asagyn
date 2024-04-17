@@ -69,11 +69,14 @@ class MenuScreen extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     ),
                 failure: (state) => Center(
-                      child: CustomErrorWidget(
-                        errorMessage: state.exception.message(context),
-                        request: () => context
-                            .read<SessionBloc>()
-                            .add(const SessionEvent.fetch()),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: CustomErrorWidget(
+                          errorMessage: state.exception.message(context),
+                          request: () => context
+                              .read<SessionBloc>()
+                              .add(const SessionEvent.fetch()),
+                        ),
                       ),
                     ),
                 success: (sessionState) => sessionState.data == null
@@ -92,17 +95,22 @@ class MenuScreen extends StatelessWidget {
                           ),
                           success: (state) => MenuSuccess(model: state.data),
                           failure: (state) => Center(
-                            child: CustomErrorWidget(
-                                errorMessage: state.exception.message(context),
-                                request: () {
-                                  final estabIs =
-                                      sessionState.data?.establishmentDTO.id;
-                                  if (estabIs != null) {
-                                    context
-                                        .read<MenuBloc>()
-                                        .add(MenuEvent.fetch(estabIs));
-                                  }
-                                }),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: CustomErrorWidget(
+                                  errorMessage:
+                                      state.exception.message(context),
+                                  request: () {
+                                    final estabIs =
+                                        sessionState.data?.establishmentDTO.id;
+                                    if (estabIs != null) {
+                                      context
+                                          .read<MenuBloc>()
+                                          .add(MenuEvent.fetch(estabIs));
+                                    }
+                                  }),
+                            ),
                           ),
                         );
                       }));

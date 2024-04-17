@@ -12,7 +12,6 @@ import 'package:zakazflow/feat/menu/logic/create_order_bloc.dart';
 import 'package:zakazflow/feat/menu/logic/menu_repository.dart';
 import 'package:zakazflow/feat/menu/logic/order_controller.dart';
 import 'package:zakazflow/feat/menu/logic/order_request.dart';
-import 'package:zakazflow/feat/menu/widgets/chekc_input_tile.dart';
 import 'package:zakazflow/feat/menu/widgets/menu_product_tile_item.dart';
 import 'package:zakazflow/feat/widgets/back_leading_app_bar.dart';
 import 'package:zakazflow/feat/widgets/custom_text_field.dart';
@@ -56,26 +55,26 @@ class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
             ...value.products
                 .map((e) => MenuProductTileItem(model: e))
                 .toList(),
-            CheckInput(
-                value: value.giveDrinksFirst,
-                onChange: (newVal) => value.giveDrinksFirst = newVal),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                '${context.localized.note}:',
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CustomTextField(
-                hintText: context.localized.enter_note,
-                maxLines: 5,
-                controller: value.noteController,
-              ),
-            ),
+            // CheckInput(
+            //     value: value.giveDrinksFirst,
+            //     onChange: (newVal) => value.giveDrinksFirst = newVal),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   child: Text(
+            //     '${context.localized.note}:',
+            //     style:
+            //         const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            //   ),
+            // ),
+            // const SizedBox(height: 5),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   child: CustomTextField(
+            //     hintText: context.localized.enter_note,
+            //     maxLines: 5,
+            //     controller: value.noteController,
+            //   ),
+            // ),
             const SizedBox(height: 70),
           ],
         ),

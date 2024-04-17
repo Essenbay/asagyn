@@ -5,7 +5,8 @@ import 'package:zakazflow/core/services/preference_service.dart';
 
 enum Languages {
   ru('Русский язык', Locale('ru', 'RU'), 'ru'),
-  kz('Қазақ тілі', Locale('kk', 'KK'), 'kz');
+  kz('Қазақ тілі', Locale('kk', 'KK'), 'kz'),
+  en('English', Locale('en', 'en'), 'en');
 
   final String str;
   final Locale locale;
@@ -31,9 +32,6 @@ class LanguageCubit extends Cubit<Languages> {
 
   void setLanguage(Languages newLan, BuildContext context) {
     _prefs.setLanguageCode(newLan.serverCode).then((value) => emit(newLan));
-    emit(switch (newLan) {
-      Languages.ru => Languages.kz,
-      Languages.kz => Languages.ru,
-    });
+    emit(newLan);
   }
 }

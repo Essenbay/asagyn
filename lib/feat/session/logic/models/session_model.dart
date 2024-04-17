@@ -49,17 +49,27 @@ class OrderModel {
   final OrderStatus status;
   final int id;
   final DateTime createdTime;
-  final DateTime readyTime;
   final List<OrderItem> items;
 
   OrderModel(
       {required this.status,
       required this.id,
       required this.createdTime,
-      required this.readyTime,
       required this.items});
   factory OrderModel.fromJson(Map<String, Object?> json) =>
       _$OrderModelFromJson(json);
+
+  static Map<String, Object?> toJson(
+          {required int sessionId, required int productId}) =>
+      {
+        'dateOfCreation': DateTime.now().toIso8601String(),
+        'diningSessionDTO': {
+          // 'id': sessionId,
+          // 'startDateTime': DateTime.now(),
+        },
+        'id': productId,
+        'orderStatus': 'Cancelled'
+      };
 }
 
 @JsonSerializable(createToJson: false)
