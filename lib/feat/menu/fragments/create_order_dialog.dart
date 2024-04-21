@@ -13,14 +13,16 @@ import 'package:zakazflow/feat/menu/logic/menu_repository.dart';
 import 'package:zakazflow/feat/menu/logic/order_controller.dart';
 import 'package:zakazflow/feat/menu/logic/order_request.dart';
 import 'package:zakazflow/feat/menu/widgets/menu_product_tile_item.dart';
+import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/widgets/back_leading_app_bar.dart';
-import 'package:zakazflow/feat/widgets/custom_text_field.dart';
 import 'package:zakazflow/feat/widgets/primary_button.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
 
 @RoutePage(name: 'CreateOrderDialogPage')
 class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
-  const CreateOrderDialog();
+  const CreateOrderDialog(this.session);
+  final SessionModel? session;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,9 +105,10 @@ class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
                 final provider = context.read<OrderController>();
                 final data = OrderRequest(
                     items: provider.products
-                        .map((e) =>
-                            OrderItemRequest(id: e.id, quantity: e.quantity))
+                        .map((e) => OrderItemRequest(
+                            productModel: e, quantity: e.quantity))
                         .toList(),
+                    diningSessionDTO: session,
                     note: provider.noteController.text,
                     serveDrinksImmediatly: provider.giveDrinksFirst);
                 context

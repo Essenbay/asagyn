@@ -8,6 +8,7 @@ import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/order_controller.dart';
 import 'package:zakazflow/feat/menu/widgets/counter_widget.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
+import 'package:zakazflow/feat/widgets/server_image.dart';
 
 class MenuProductGridItem extends StatelessWidget {
   const MenuProductGridItem({super.key, required this.model});
@@ -41,48 +42,48 @@ class MenuProductGridItem extends StatelessWidget {
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: CachedNetworkImage(
+                child: ServerImage(
                   imageUrl: model.imageUrl,
-                  imageBuilder: (context, imageProvider) => Stack(
-                    alignment: Alignment.topRight,
-                    fit: StackFit.expand,
-                    children: [
-                      Image(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                      if (model.minAge != null)
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                color: AppColors.primary,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(15))),
-                            padding: const EdgeInsets.only(
-                                top: 4, left: 6, right: 4, bottom: 6),
-                            child: Text(
-                              '${model.minAge}+',
-                              style: const TextStyle(
-                                color: AppColors.white,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                        )
-                    ],
-                  ),
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) =>
-                      const ColoredBox(color: AppColors.grey400),
-                  errorWidget: (context, error, stackTrace) => const Center(
-                    child: Icon(
-                      CupertinoIcons.exclamationmark_circle_fill,
-                      color: AppColors.grey500,
-                    ),
-                  ),
+                  // imageBuilder: (context, imageProvider) => Stack(
+                  //   alignment: Alignment.topRight,
+                  //   fit: StackFit.expand,
+                  //   children: [
+                  //     Image(
+                  //       image: imageProvider,
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  //     if (model.minAge != null)
+                  //       Positioned(
+                  //         top: 0,
+                  //         right: 0,
+                  //         child: Container(
+                  //           decoration: const BoxDecoration(
+                  //               color: AppColors.primary,
+                  //               borderRadius: BorderRadius.only(
+                  //                   bottomLeft: Radius.circular(15))),
+                  //           padding: const EdgeInsets.only(
+                  //               top: 4, left: 6, right: 4, bottom: 6),
+                  //           child: Text(
+                  //             '${model.minAge}+',
+                  //             style: const TextStyle(
+                  //               color: AppColors.white,
+                  //               fontSize: 13,
+                  //               fontWeight: FontWeight.w700,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       )
+                  //   ],
+                  // ),
+                  // fit: BoxFit.cover,
+                  // placeholder: (context, url) =>
+                  //     const ColoredBox(color: AppColors.grey400),
+                  // errorWidget: (context, error, stackTrace) => const Center(
+                  //   child: Icon(
+                  //     CupertinoIcons.exclamationmark_circle_fill,
+                  //     color: AppColors.grey500,
+                  //   ),
+                  // ),
                 ),
               ),
             ),

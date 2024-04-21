@@ -16,9 +16,10 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     CreateOrderDialogPage.name: (routeData) {
+      final args = routeData.argsAs<CreateOrderDialogPageArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: CreateOrderDialog()),
+        child: WrappedRoute(child: CreateOrderDialog(args.session)),
       );
     },
     LauncherRoute.name: (routeData) {
@@ -109,16 +110,31 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [CreateOrderDialog]
-class CreateOrderDialogPage extends PageRouteInfo<void> {
-  const CreateOrderDialogPage({List<PageRouteInfo>? children})
-      : super(
+class CreateOrderDialogPage extends PageRouteInfo<CreateOrderDialogPageArgs> {
+  CreateOrderDialogPage({
+    required SessionModel? session,
+    List<PageRouteInfo>? children,
+  }) : super(
           CreateOrderDialogPage.name,
+          args: CreateOrderDialogPageArgs(session: session),
           initialChildren: children,
         );
 
   static const String name = 'CreateOrderDialogPage';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CreateOrderDialogPageArgs> page =
+      PageInfo<CreateOrderDialogPageArgs>(name);
+}
+
+class CreateOrderDialogPageArgs {
+  const CreateOrderDialogPageArgs({required this.session});
+
+  final SessionModel? session;
+
+  @override
+  String toString() {
+    return 'CreateOrderDialogPageArgs{session: $session}';
+  }
 }
 
 /// generated route for

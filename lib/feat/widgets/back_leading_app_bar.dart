@@ -20,11 +20,9 @@ class BackIconLeadingAppBar extends StatelessWidget
       this.foregroundColor = AppColors.primary,
       this.title,
       this.leadingWidth = 110,
-      this.leadingPadding = 16,
-      this.systemUiOverlayStyle});
+      this.leadingPadding = 16});
   final double elevation;
   final double leadingPadding;
-  final SystemUiOverlayStyle? systemUiOverlayStyle;
   final double leadingWidth;
   @override
   Size get preferredSize => const Size.fromHeight(kMinInteractiveDimension);
@@ -50,7 +48,6 @@ class BackIconLeadingAppBar extends StatelessWidget
           );
     return AppBar(
         elevation: elevation,
-        systemOverlayStyle: systemUiOverlayStyle,
         leading: Align(
           alignment: Alignment.centerLeft,
           child: CupertinoButton(

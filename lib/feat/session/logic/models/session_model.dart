@@ -1,9 +1,11 @@
+import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:zakazflow/feat/session/logic/models/establishment_model.dart';
 
 part 'session_model.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class SessionModel {
   final int id;
   final DateTime? startDateTime;
@@ -16,9 +18,11 @@ class SessionModel {
   });
   factory SessionModel.fromJson(Map<String, Object?> json) =>
       _$SessionModelFromJson(json);
+
+  Map<String, Object?> toJson() => _$SessionModelToJson(this);
 }
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class PaymentMethod {
   final int id;
   final String name;
@@ -30,49 +34,39 @@ class PaymentMethod {
 }
 
 enum OrderStatus {
-  @JsonValue(1)
+  @JsonValue('Processing')
   processing,
-  @JsonValue(2)
+  @JsonValue('Cooking')
   cooking,
-  @JsonValue(3)
+  @JsonValue('Serving')
   serving,
-  @JsonValue(4)
+  @JsonValue('Server')
   served,
-  @JsonValue(5)
+  @JsonValue('Payed')
   payed,
-  @JsonValue(6)
+  @JsonValue('Cancelled')
   cancelled;
 }
 
 @JsonSerializable(createToJson: false)
 class OrderModel {
-  final OrderStatus status;
+  final OrderStatus orderStatus;
   final int id;
-  final DateTime createdTime;
-  final List<OrderItem> items;
+  final DateTime dateOfCreation;
+  final List<OrderItem> orderItemDTOS;
 
   OrderModel(
-      {required this.status,
+      {required this.orderStatus,
       required this.id,
-      required this.createdTime,
-      required this.items});
-  factory OrderModel.fromJson(Map<String, Object?> json) =>
-      _$OrderModelFromJson(json);
-
-  static Map<String, Object?> toJson(
-          {required int sessionId, required int productId}) =>
-      {
-        'dateOfCreation': DateTime.now().toIso8601String(),
-        'diningSessionDTO': {
-          // 'id': sessionId,
-          // 'startDateTime': DateTime.now(),
-        },
-        'id': productId,
-        'orderStatus': 'Cancelled'
-      };
+      required this.dateOfCreation,
+      required this.orderItemDTOS});
+  factory OrderModel.fromJson(Map<String, Object?> json) {
+    log(json['orderItemDTOS'].toString());
+    return _$OrderModelFromJson(json);
+  }
 }
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class OrderItem {
   final String title;
   final String description;
@@ -88,4 +82,6 @@ class OrderItem {
       required this.image});
   factory OrderItem.fromJson(Map<String, Object?> json) =>
       _$OrderItemFromJson(json);
+
+  Map<String, Object?> toJson() => _$OrderItemToJson(this);
 }

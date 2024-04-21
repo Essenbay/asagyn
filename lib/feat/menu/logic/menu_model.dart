@@ -47,22 +47,8 @@ class MenuModel {
 @JsonSerializable()
 class CategoryModel {
   final String name;
-  final List<ProductModel> products;
-  CategoryModel({required this.products, required this.name});
-
-  void sortProducts(SortValue sortType) {
-    switch (sortType) {
-      case SortValue.name:
-        products.sort((a, b) => a.nameEn.compareTo(b.nameEn));
-        break;
-      case SortValue.cheapFirst:
-        products.sort((a, b) => a.cost.compareTo(b.cost));
-        break;
-      case SortValue.expensiveFirst:
-        products.sort((a, b) => b.cost.compareTo(a.cost));
-        break;
-    }
-  }
+  final int id;
+  CategoryModel({required this.id, required this.name});
 
   factory CategoryModel.fromJson(Map<String, Object?> json) =>
       _$CategoryModelFromJson(json);

@@ -82,9 +82,15 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
         ),
       );
     }
+
+    final products = widget.model.productItemDTOs
+        .where((product) =>
+            product.categories.where((c) => c.id == category.id).isNotEmpty)
+        .toList();
+
     return GridView.builder(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 10),
-      itemCount: category.products.length,
+      itemCount: products.length,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
         mainAxisSpacing: 16,
@@ -93,10 +99,10 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
       ),
       itemBuilder: (context, index) => GestureDetector(
         onTap: () {
-          showProductDetail(context, category.products[index]);
+          showProductDetail(context, products[index]);
         },
         child: MenuProductGridItem(
-          model: category.products[index],
+          model: products[index],
         ),
       ),
     );

@@ -6,8 +6,8 @@ class _SessionBody extends StatelessWidget {
   final List<OrderModel> orders;
   @override
   Widget build(BuildContext context) {
-    final orderItems = orders
-        .fold<List<OrderItem>>([], (prev, curr) => [...prev, ...curr.items]);
+    final orderItems = orders.fold<List<OrderItem>>(
+        [], (prev, curr) => [...prev, ...curr.orderItemDTOS]);
     final total = orderItems.fold(0.0, (prev, curr) => prev + curr.cost);
 
     return BottomSheetBar(
@@ -103,6 +103,8 @@ class _SessionBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Container(
+                  constraints: BoxConstraints.tightFor(
+                      height: context.screenSize.height * .5),
                   decoration: const BoxDecoration(
                       color: AppColors.white,
                       borderRadius: BorderRadius.only(
@@ -110,21 +112,17 @@ class _SessionBody extends StatelessWidget {
                         topRight: Radius.circular(30),
                       )),
                   child: orders.isEmpty
-                      ? ConstrainedBox(
-                          constraints: BoxConstraints.tightFor(
-                              height: context.screenSize.height * .5),
-                          child: Center(
-                            child: MessagedScreen(
-                              iconPath: CustomIcons.order,
-                              message: context.localized.orders_empty,
-                              buttonText: context.localized.to_menu,
-                              buttonOnTap: () =>
-                                  AutoTabsRouter.of(context).setActiveIndex(1),
-                            ),
+                      ? Center(
+                          child: MessagedScreen(
+                            iconPath: CustomIcons.order,
+                            message: context.localized.orders_empty,
+                            buttonText: context.localized.to_menu,
+                            buttonOnTap: () =>
+                                AutoTabsRouter.of(context).setActiveIndex(1),
                           ),
                         )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                      : ListView(
+                          // crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -135,14 +133,10 @@ class _SessionBody extends StatelessWidget {
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600)),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 30),
-                              child: Column(
-                                children: orders
-                                    .map((e) => OrdersWidget(model: e))
-                                    .toList(),
-                              ),
-                            )
+                            ...orders
+                                .map((e) => OrdersWidget(model: e))
+                                .toList(),
+                            const SizedBox(height: 100),
                           ],
                         ),
                 ),

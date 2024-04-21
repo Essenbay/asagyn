@@ -25,6 +25,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
               useInkWell: true,
               tapBodyToExpand: true,
               iconColor: AppColors.primary,
+              iconPadding: EdgeInsets.symmetric(horizontal: 10),
               iconSize: 34),
           controller: _controller,
           header: Padding(
@@ -43,7 +44,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
           ),
           collapsed: const SizedBox(),
           expanded: Column(
-            children: widget.model.items
+            children: widget.model.orderItemDTOS
                 .map((e) => Container(
                       constraints: const BoxConstraints(maxHeight: 70),
                       margin: const EdgeInsets.only(
@@ -128,7 +129,7 @@ class _OrdersWidgetState extends State<OrdersWidget> {
     );
   }
 
-  Widget getStatusIcon() => switch (widget.model.status) {
+  Widget getStatusIcon() => switch (widget.model.orderStatus) {
         OrderStatus.cooking => const Icon(Icons.soup_kitchen_rounded, size: 30),
         OrderStatus.processing =>
           const Icon(Icons.pending_actions_sharp, size: 30),

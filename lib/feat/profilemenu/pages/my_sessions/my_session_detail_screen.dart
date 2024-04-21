@@ -15,6 +15,7 @@ import 'package:zakazflow/feat/session/widgets/receipt_collapsed.dart';
 import 'package:zakazflow/feat/session/widgets/receipt_expanded.dart';
 import 'package:zakazflow/feat/widgets/back_leading_app_bar.dart';
 import 'package:zakazflow/feat/widgets/messaged_screen.dart';
+import 'package:zakazflow/feat/widgets/server_image.dart';
 import 'package:zakazflow/resources/resources.dart';
 
 @RoutePage()
@@ -33,7 +34,7 @@ class MySessionDetailScreen extends StatelessWidget
             child: const ColoredBox(color: AppColors.white)),
         //Background Image
         if (data.establishmentDTO.backgroundImage != null)
-          CachedNetworkImage(
+          ServerImage(
             imageUrl: data.establishmentDTO.backgroundImage!,
             fit: BoxFit.fitWidth,
             alignment: Alignment.topCenter,

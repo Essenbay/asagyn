@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/services/network/network_service.dart';
@@ -66,7 +68,7 @@ class SessionRepositoryImpl implements SessionRepository {
   @override
   Future<Result<List<OrderModel>>> getOrdersBySession(int sessionId) async {
     final result = await service.request(
-      request: (dio) => dio.post('/order/$sessionId'),
+      request: (dio) => dio.get('/order/by-session/$sessionId'),
       fromJson: (json) {
         json as List;
         return json
@@ -74,6 +76,7 @@ class SessionRepositoryImpl implements SessionRepository {
             .toList();
       },
     );
+    log(result.toString());
     return result;
   }
 }

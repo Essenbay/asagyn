@@ -15,28 +15,41 @@ SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
           json['establishmentDTO'] as Map<String, dynamic>),
     );
 
+Map<String, dynamic> _$SessionModelToJson(SessionModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'startDateTime': instance.startDateTime?.toIso8601String(),
+      'establishmentDTO': instance.establishmentDTO,
+    };
+
 PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
     PaymentMethod(
       id: json['id'] as int,
       name: json['name'] as String,
     );
 
+Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
 OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
-      status: $enumDecode(_$OrderStatusEnumMap, json['status']),
+      orderStatus: $enumDecode(_$OrderStatusEnumMap, json['orderStatus']),
       id: json['id'] as int,
-      createdTime: DateTime.parse(json['createdTime'] as String),
-      items: (json['items'] as List<dynamic>)
+      dateOfCreation: DateTime.parse(json['dateOfCreation'] as String),
+      orderItemDTOS: (json['orderItemDTOS'] as List<dynamic>)
           .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 const _$OrderStatusEnumMap = {
-  OrderStatus.processing: 1,
-  OrderStatus.cooking: 2,
-  OrderStatus.serving: 3,
-  OrderStatus.served: 4,
-  OrderStatus.payed: 5,
-  OrderStatus.cancelled: 6,
+  OrderStatus.processing: 'Processing',
+  OrderStatus.cooking: 'Cooking',
+  OrderStatus.serving: 'Serving',
+  OrderStatus.served: 'Server',
+  OrderStatus.payed: 'Payed',
+  OrderStatus.cancelled: 'Cancelled',
 };
 
 OrderItem _$OrderItemFromJson(Map<String, dynamic> json) => OrderItem(
@@ -46,3 +59,11 @@ OrderItem _$OrderItemFromJson(Map<String, dynamic> json) => OrderItem(
       cost: (json['cost'] as num).toDouble(),
       image: json['image'] as String,
     );
+
+Map<String, dynamic> _$OrderItemToJson(OrderItem instance) => <String, dynamic>{
+      'title': instance.title,
+      'description': instance.description,
+      'quantity': instance.quantity,
+      'cost': instance.cost,
+      'image': instance.image,
+    };

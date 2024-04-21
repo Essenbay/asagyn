@@ -20,16 +20,14 @@ Map<String, dynamic> _$MenuModelToJson(MenuModel instance) => <String, dynamic>{
 
 CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
     CategoryModel(
-      products: (json['products'] as List<dynamic>)
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      id: json['id'] as int,
       name: json['name'] as String,
     );
 
 Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'products': instance.products,
+      'id': instance.id,
     };
 
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(

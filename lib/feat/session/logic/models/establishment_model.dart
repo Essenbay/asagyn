@@ -16,4 +16,6 @@ class EstablishmentModel {
 
   factory EstablishmentModel.fromJson(Map<String, Object?> json) =>
       _$EstablishmentModelFromJson(json);
+
+  Map<String, Object?> toJson() => _$EstablishmentModelToJson(this);
 }

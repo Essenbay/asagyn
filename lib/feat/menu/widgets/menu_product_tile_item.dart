@@ -1,10 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/order_controller.dart';
 import 'package:zakazflow/feat/menu/widgets/counter_widget.dart';
+import 'package:zakazflow/feat/widgets/server_image.dart';
 
 class MenuProductTileItem extends StatelessWidget {
   const MenuProductTileItem({super.key, required this.model});
@@ -17,18 +18,13 @@ class MenuProductTileItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          CachedNetworkImage(
-            imageUrl: model.imageUrl,
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  )),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: ServerImage(
+              imageUrl: model.imageUrl,
+              width: 70,
+              height: 70,
             ),
-            width: 70,
-            height: 70,
           ),
           const SizedBox(width: 10),
           Expanded(

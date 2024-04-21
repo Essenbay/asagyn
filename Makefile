@@ -2,7 +2,7 @@
 
 get:
 	@echo "* Getting latest dependencies *"
-	@fvm flutter pub get
+	@ flutter pub get
 
 install-pods:
 	@echo "* Installing pods *"
@@ -10,20 +10,20 @@ install-pods:
 
 run:
 	@echo "* Running app *"
-	@fvm flutter run
+	@ flutter run
 
 upgrade: get
 	@echo "* Upgrading dependencies *"
-	@fvm flutter pub upgrade
+	@ flutter pub upgrade
 
 upgrade-major: get
 	@echo "* Upgrading dependencies --major-versions *"
-	@fvm flutter pub upgrade --major-versions
+	@ flutter pub upgrade --major-versions
 
 deep-clean:
 	@echo "* Performing a deep clean *"
-	@echo "* Running fvm flutter clean *"
-	@fvm flutter clean
+	@echo "* Running  flutter clean *"
+	@ flutter clean
 	@echo "* Cleaning iOS specific files *"
 	@sh ./scripts/clean_ios.sh
 	@make get
@@ -31,23 +31,23 @@ deep-clean:
 
 gen-build: get
 	@echo "* Running build runner *"
-	@fvm flutter pub run build_runner build
+	@ flutter pub run build_runner build
 
 gen-build-delete: get
 	@echo "* Running build runner with deletion of conflicting outputs *"
-	@fvm flutter pub run build_runner build --delete-conflicting-outputs
+	@ flutter pub run build_runner build --delete-conflicting-outputs
 
 gen-clean:
 	@echo "* Cleaning build runner *"
-	@fvm flutter pub run build_runner clean
+	@ flutter pub run build_runner clean
 
 gen-watch:
 	@echo "* Running build runner in watch mode *"
-	@fvm flutter pub run build_runner watch
+	@ flutter pub run build_runner watch
 
 gen-pigeon: get
 	@echo "* Running pigeon generation *"
-	fvm flutter pub run pigeon \
+	 flutter pub run pigeon \
 		--input "pigeons/cloud_payments.dart" \
 		--dart_out "lib/src/generated/cloud_payments.g.dart" \
 		--java_out "android/app/src/main/java/dev/davranarifzhanov/cloud_payments/CloudPayments.java" \
@@ -58,25 +58,25 @@ gen-pigeon: get
 
 gen-images:
 	@echo "* Generating image strings *"
-	fvm flutter pub global run spider build  
+	 flutter pub global run spider build  
 
 gen-lang:
-	fvm flutter gen-l10n
-	@echo "* Running fvm flutter localization generator *"
+	 flutter gen-l10n
+	@echo "* Running  flutter localization generator *"
 	
 create-splash: get
 	@echo "* Generating Splash screens *"
-	@fvm flutter pub run fvm flutter_native_splash:create
+	@ flutter pub run  flutter_native_splash:create
 
 prepare: get gen-build-delete create-splash
 
 generate-o:
 	@echo "* Generating localizations -o*"
-	@fvm flutter pub run easy_localization:generate -O lib/src/core/res/ -o localization_loader.g.dart  -S assets/translations/
+	@ flutter pub run easy_localization:generate -O lib/src/core/res/ -o localization_loader.g.dart  -S assets/translations/
 
 generate-f:
 	@echo "* Generating localizations -f *"
-	@fvm flutter pub run easy_localization:generate -f keys -o localization_keys.g.dart -S assets/translations/ -O lib/src/core/res/
+	@ flutter pub run easy_localization:generate -f keys -o localization_keys.g.dart -S assets/translations/ -O lib/src/core/res/
 
 
 	
@@ -86,7 +86,7 @@ first-run: prepare run
 
 define run_metrics
 	@echo "* $(1) using Dart Code Metrics *"
-	@fvm flutter pub run dart_code_metrics:metrics $(2) lib \
+	@ flutter pub run dart_code_metrics:metrics $(2) lib \
 		--exclude={/**.g.dart,/**.gr.dart,/**.gen.dart,/**.freezed.dart,/**.template.dart,}
 endef
 
@@ -109,30 +109,30 @@ metrics-unused-code:
 
 analyze-code:
 	@echo "* Running code analyzer *"
-	@sh ./scripts/fvm flutter_analyze.sh
+	@sh ./scripts/ flutter_analyze.sh
 
 test:
 	@echo "* Running tests *"
-	@fvm flutter test
+	@ flutter test
 
 
 set-icon: get
 	@echo "* Removing alpha channel from icon *"
 	@sh ./scripts/icon_remove_alpha.sh
 	@echo "* Generating app icons *"
-	@fvm flutter pub run fvm flutter_launcher_icons
+	@ flutter pub run  flutter_launcher_icons
 
 google-localizations:
 	@echo "* Getting dependencies for google localizer *"
-	@(cd ./tool/google_localizer; fvm dart pub get)
+	@(cd ./tool/google_localizer;  dart pub get)
 	@echo "* Generating automated localizations *"
 	@dart ./tool/google_localizer/main.dart "./lib/src/common/l10n/"
 
 #setup:
 	# @echo "* Getting dependencies for setup tool *"
-	# @(cd ./tool/setup_clone; fvm dart pub get)
+	# @(cd ./tool/setup_clone;  dart pub get)
 	# @echo "* Setting up the project *"
-	# @fvm dart ./tool/setup_clone/main.dart $(NAME)
+	# @ dart ./tool/setup_clone/main.dart $(NAME)
 
 emulator:
 	@echo "* Opening an android emulator *"
@@ -147,10 +147,10 @@ stats:
 	@cloc .
 	
 linter-analyze:
-	@fvm flutter pub run dart_code_metrics:metrics analyze lib
+	@ flutter pub run dart_code_metrics:metrics analyze lib
 
 linter:
-	@fvm flutter pub run dart_code_metrics:metrics analyze lib \
+	@ flutter pub run dart_code_metrics:metrics analyze lib \
 	--exclude={/**.g.dart,/**.gr.dart,/**.gen.dart,/**.freezed.dart,/**.template.dart}
-fvm-use:
-	@fvm flutter pub global run fvm:main use $(version)
+-use:
+	@ flutter pub global run :main use $(version)

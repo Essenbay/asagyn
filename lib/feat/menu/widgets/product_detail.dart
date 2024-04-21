@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zakazflow/core/config/colors.dart';
@@ -9,6 +8,7 @@ import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/order_controller.dart';
 import 'package:zakazflow/feat/menu/widgets/counter_widget.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
+import 'package:zakazflow/feat/widgets/server_image.dart';
 
 void showProductDetail(BuildContext context, ProductModel product) {
   final provider = context.read<OrderController>();
@@ -41,42 +41,39 @@ class _ProductDetailState extends State<ProductDetail> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        CachedNetworkImage(
-          imageUrl: widget.model.imageUrl,
-          imageBuilder: (context, imageProvider) => Stack(
-            alignment: Alignment.topRight,
-            fit: StackFit.expand,
-            children: [
-              Image(
-                image: imageProvider,
-                fit: BoxFit.cover,
+        Stack(
+          alignment: Alignment.topRight,
+          children: [
+            ColoredBox(
+              color: AppColors.white,
+              child: ServerImage(
+                imageUrl: widget.model.imageUrl,
+                height: context.screenSize.height * .25,
+                fit: BoxFit.contain,
               ),
-              if (widget.model.minAge != null)
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        color: AppColors.primary,
-                        borderRadius:
-                            BorderRadius.only(bottomLeft: Radius.circular(15))),
-                    padding: const EdgeInsets.only(
-                        top: 8, left: 10, right: 8, bottom: 10),
-                    child: Text(
-                      '${widget.model.minAge}+',
-                      style: const TextStyle(
-                        color: AppColors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w800,
-                      ),
+            ),
+            if (widget.model.minAge != null)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(15))),
+                  padding: const EdgeInsets.only(
+                      top: 8, left: 10, right: 8, bottom: 10),
+                  child: Text(
+                    '${widget.model.minAge}+',
+                    style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                )
-            ],
-          ),
-          height: context.screenSize.height * .2,
-          placeholder: (context, url) =>
-              const ColoredBox(color: AppColors.grey400),
+                ),
+              )
+          ],
         ),
         Container(
           color: AppColors.white,
