@@ -61,6 +61,7 @@ dependencies:
   json_annotation: ^4.3.0
   dio: ^5.3.3
   http_mock_adapter: ^0.6.0
+  pusher_channels_flutter: ^2.2.1
 
   # Dependency injection
   injectable: ^2.1.2

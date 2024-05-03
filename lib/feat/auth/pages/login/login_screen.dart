@@ -14,7 +14,6 @@ import 'package:zakazflow/feat/auth/pages/login/logic/login_cubit.dart';
 import 'package:zakazflow/feat/auth/widgets/auth_header_animation.dart';
 import 'package:zakazflow/feat/auth/widgets/change_language_button.dart.dart';
 import 'package:zakazflow/feat/auth/widgets/staggered_animation.dart';
-import 'package:zakazflow/feat/auth/widgets/test_button.dart';
 import 'package:zakazflow/feat/widgets/custom_text_button.dart';
 import 'package:zakazflow/feat/widgets/custom_text_field.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
@@ -52,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarColor: AppColors.primary),
           actions: [
-            const TestButton(),
+            // const TestButton(),
             const ChangeLanguageDropdown(),
           ],
         ),
@@ -152,8 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context.localized.fill_all_necessary_fields);
                           } else {
                             context.read<LoginCubit>().login(
-                                login: usernameController.text,
-                                password: passwordController.text);
+                                login: usernameController.text.trim(),
+                                password: passwordController.text.trim());
                           }
                         },
                         isLoading: state.maybeMap(

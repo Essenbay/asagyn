@@ -9,6 +9,7 @@ import 'package:zakazflow/core/services/language_provder/language_cubit.dart';
 import 'package:zakazflow/feat/profilemenu/logic/fetch_profile_bloc.dart';
 import 'package:zakazflow/feat/profilemenu/widgets/language_modal.dart';
 import 'package:zakazflow/feat/profilemenu/widgets/menu_tile.dart';
+import 'package:zakazflow/feat/session/logic/pusher_provider.dart';
 
 import 'package:zakazflow/resources/resources.dart';
 
@@ -118,6 +119,7 @@ class SettingsScreen extends StatelessWidget {
                             context
                                 .read<AppBloc>()
                                 .add(const AppEvent.logout());
+                            context.read<PusherProvider>().disconnect();
                             context.router.pushAndPopUntil(const LoginRoute(),
                                 predicate: ModalRoute.withName('/'));
                           },

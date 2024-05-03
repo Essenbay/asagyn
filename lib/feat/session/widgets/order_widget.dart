@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
+import 'package:zakazflow/feat/widgets/server_image.dart';
 
 class OrdersWidget extends StatefulWidget {
   const OrdersWidget({super.key, required this.model});
@@ -49,20 +50,13 @@ class _OrdersWidgetState extends State<OrdersWidget> {
                       constraints: const BoxConstraints(maxHeight: 70),
                       margin: const EdgeInsets.only(
                           left: 16, right: 16, bottom: 10),
-                      padding: const EdgeInsets.only(left: 40),
+                      padding: const EdgeInsets.only(left: 5),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          CachedNetworkImage(
-                            imageUrl: e.image,
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
+                          ServerImage(
+                            imageUrl: e.image ?? '',
+                            borderRadius: 15,
                             width: 70,
                             height: 70,
                           ),

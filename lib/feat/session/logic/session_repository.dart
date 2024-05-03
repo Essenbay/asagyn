@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/services/network/network_service.dart';
 import 'package:zakazflow/core/services/preference_service.dart';
+import 'package:zakazflow/feat/session/logic/models/establishment_model.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 
 abstract class SessionRepository {
@@ -12,6 +13,7 @@ abstract class SessionRepository {
   Future<Result<SessionModel>> getSession(int id);
   Future<Result<List<OrderModel>>> getOrdersBySession(int sessionId);
   Future<Result<SessionModel>> createSession(String estabCode);
+  Future<Result<EstablishmentModel>> getEstablishmentInfo(String estabCode);
 }
 
 @LazySingleton(as: SessionRepository)
@@ -25,8 +27,10 @@ class SessionRepositoryImpl implements SessionRepository {
   Future<Result<SessionModel>> getSession(int id) async {
     final result = await service.request(
         request: (dio) => dio.get('/dining-session/${prefs.currentSessionId}'),
-        fromJson: (json) =>
-            SessionModel.fromJson(json as Map<String, dynamic>));
+        fromJson: (json) {
+          log(json.toString());
+          return SessionModel.fromJson(json as Map<String, dynamic>);
+        });
     return result;
   }
 
@@ -76,7 +80,24 @@ class SessionRepositoryImpl implements SessionRepository {
             .toList();
       },
     );
-    log(result.toString());
+    // log(result.mapOrNull(
+    //         success: (data) => data.data
+    //             .map((e) => e.orderItemDTOS.isNotEmpty)
+    //             .contains(true)
+    //             .toString()) ??
+    //     '');
+    return result;
+  }
+
+  @override
+  Future<Result<EstablishmentModel>> getEstablishmentInfo(
+      String estabCode) async {
+    final result = await service.request(
+      request: (dio) => dio.get('/establishment/$estabCode'),
+      fromJson: (json) {
+        return EstablishmentModel.fromJson(json as Map<String, dynamic>);
+      },
+    );
     return result;
   }
 }

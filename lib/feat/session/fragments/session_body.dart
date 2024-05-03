@@ -8,7 +8,8 @@ class _SessionBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderItems = orders.fold<List<OrderItem>>(
         [], (prev, curr) => [...prev, ...curr.orderItemDTOS]);
-    final total = orderItems.fold(0.0, (prev, curr) => prev + curr.cost);
+    final total = orderItems.fold(
+        0.0, (prev, curr) => prev + (curr.cost * curr.quantity));
 
     return BottomSheetBar(
       locked: false,
@@ -37,11 +38,12 @@ class _SessionBody extends StatelessWidget {
         children: [
           //Background Image
           if (model.establishmentDTO.backgroundImage != null)
-            CachedNetworkImage(
+            ServerImage(
               imageUrl: model.establishmentDTO.backgroundImage!,
               fit: BoxFit.fitWidth,
               alignment: Alignment.topCenter,
               height: context.screenSize.height * .4,
+              width: context.screenSize.width,
             )
           else
             Container(
@@ -126,7 +128,7 @@ class _SessionBody extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 20),
+                                  horizontal: 10, vertical: 20),
                               child: Text('${context.localized.orders}:',
                                   textAlign: TextAlign.start,
                                   style: const TextStyle(
@@ -135,7 +137,8 @@ class _SessionBody extends StatelessWidget {
                             ),
                             ...orders
                                 .map((e) => OrdersWidget(model: e))
-                                .toList(),
+                                .toList()
+                                .reversed,
                             const SizedBox(height: 100),
                           ],
                         ),

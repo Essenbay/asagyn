@@ -35,7 +35,7 @@ class MenuModel {
   List<CategoryModel> get categories {
     Set<CategoryModel> uniqueCategories = Set<CategoryModel>();
     productItemDTOs.forEach((product) {
-      uniqueCategories.addAll(product.categories);
+      uniqueCategories.addAll(product.categoryDTOS);
     });
     return uniqueCategories.toList();
   }
@@ -61,14 +61,14 @@ class ProductModel {
   final String nameRu;
   final String nameKz;
 
-  final String imageUrl;
+  final String? imageUrl;
   final double cost;
   final String description;
   final DateTime? startAvailableTime;
   final DateTime? endAvailableTime;
   final int? minAge;
   final DateTime? readyDuration;
-  final List<CategoryModel> categories;
+  final List<CategoryModel> categoryDTOS;
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   int quantity;
@@ -78,7 +78,7 @@ class ProductModel {
       required this.nameEn,
       required this.nameKz,
       required this.nameRu,
-      required this.categories,
+      required this.categoryDTOS,
       this.startAvailableTime,
       this.endAvailableTime,
       this.minAge,

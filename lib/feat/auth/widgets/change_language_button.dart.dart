@@ -52,6 +52,10 @@ class ChangeLanguageDropdown extends StatelessWidget {
               value: Languages.kz,
               child: Text(Languages.kz.str),
             ),
+            DropdownMenuItem(
+              value: Languages.en,
+              child: Text(Languages.en.str),
+            ),
           ],
         );
       },

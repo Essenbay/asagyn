@@ -11,6 +11,9 @@ EstablishmentModel _$EstablishmentModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       establishmentName: json['establishmentName'] as String,
       servingPercentage: (json['servingPercentage'] as num).toDouble(),
+      paymentMethods: (json['paymentMethods'] as List<dynamic>?)
+          ?.map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
+          .toList(),
       backgroundImage: json['backgroundImage'] as String?,
     );
 
@@ -20,4 +23,5 @@ Map<String, dynamic> _$EstablishmentModelToJson(EstablishmentModel instance) =>
       'establishmentName': instance.establishmentName,
       'servingPercentage': instance.servingPercentage,
       'backgroundImage': instance.backgroundImage,
+      'paymentMethods': instance.paymentMethods,
     };

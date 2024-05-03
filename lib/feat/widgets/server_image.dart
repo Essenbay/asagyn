@@ -12,7 +12,7 @@ class ServerImage extends StatelessWidget {
       this.alignment,
       this.height,
       this.width});
-  final String imageUrl;
+  final String? imageUrl;
   final BoxFit? fit;
   final double? borderRadius;
   final Alignment? alignment;
@@ -21,8 +21,14 @@ class ServerImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final url = '$baseUrl$imageUrl';
+
+    if (imageUrl == null) {
+      return ColoredBox(color: AppColors.grey300);
+    }
+
     return CachedNetworkImage(
-      imageUrl: '$baseUrl$imageUrl',
+      imageUrl: url,
       height: height,
       width: width,
       fit: fit ?? BoxFit.cover,

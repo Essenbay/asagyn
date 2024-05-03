@@ -46,13 +46,13 @@ class _CartFloatedModal extends StatelessWidget {
                     ]),
                     const SizedBox(height: 10),
                     PrimaryFilledTextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final provider = context.read<OrderController>();
                         final session =
                             context.read<SessionBloc>().state.mapOrNull(
                                   success: (value) => value.data,
                                 );
-                        final result = context.router
+                        final result = await context.router
                             .push(CreateOrderDialogPage(session: session));
                         if (result == true) {
                           provider.clearCart();

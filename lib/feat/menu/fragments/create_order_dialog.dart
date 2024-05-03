@@ -93,7 +93,7 @@ class CreateOrderDialog extends StatelessWidget implements AutoRouteWrapper {
           success: (value) {
             context.loaderOverlay.hide();
             context.read<OrderController>().clearCart();
-            context.router.pop();
+            context.router.pop(true);
             AutoTabsRouter.of(context).setActiveIndex(0);
             return null;
           },

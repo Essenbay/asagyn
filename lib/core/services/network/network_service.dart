@@ -8,7 +8,7 @@ import 'package:zakazflow/core/services/network/interceptors/handler_interceptor
 import 'package:zakazflow/core/services/network/interceptors/network_log_interceptor.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 
-String baseUrl = 'https://f8d6-185-18-253-110.ngrok-free.app';
+String baseUrl = 'https://08d2-185-18-253-110.ngrok-free.app';
 
 @Singleton()
 class NetworkService {

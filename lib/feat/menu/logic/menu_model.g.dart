@@ -35,7 +35,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       nameEn: json['nameEn'] as String,
       nameKz: json['nameKz'] as String,
       nameRu: json['nameRu'] as String,
-      categories: (json['categories'] as List<dynamic>)
+      categoryDTOS: (json['categoryDTOS'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       startAvailableTime: json['startAvailableTime'] == null
@@ -48,7 +48,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       readyDuration: json['readyDuration'] == null
           ? null
           : DateTime.parse(json['readyDuration'] as String),
-      imageUrl: json['imageUrl'] as String,
+      imageUrl: json['imageUrl'] as String?,
       cost: (json['cost'] as num).toDouble(),
       description: json['description'] as String,
     );
@@ -66,5 +66,5 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'endAvailableTime': instance.endAvailableTime?.toIso8601String(),
       'minAge': instance.minAge,
       'readyDuration': instance.readyDuration?.toIso8601String(),
-      'categories': instance.categories,
+      'categoryDTOS': instance.categoryDTOS,
     };

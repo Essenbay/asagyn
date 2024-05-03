@@ -17,6 +17,12 @@ extension DateTimeX on DateTime {
     return localDateTime;
   }
 
+  static DateTime parseFromServer(String dateString) {
+    dateString = dateString.replaceAll(RegExp(r'\[.*\]$'), '');
+    DateTime dateTime = DateTime.parse(dateString);
+    return dateTime;
+  }
+
   static DateTime parseDateTime(String value) {
     return DateFormat('yyyy-MM-dd HH:mm:ss').parse(value);
   }

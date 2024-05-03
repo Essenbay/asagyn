@@ -85,7 +85,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
 
     final products = widget.model.productItemDTOs
         .where((product) =>
-            product.categories.where((c) => c.id == category.id).isNotEmpty)
+            product.categoryDTOS.where((c) => c.id == category.id).isNotEmpty)
         .toList();
 
     return GridView.builder(

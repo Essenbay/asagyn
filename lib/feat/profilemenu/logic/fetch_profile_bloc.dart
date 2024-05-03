@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/exceptions/network_exception.dart';
 import 'package:zakazflow/feat/auth/logic/auth_repository.dart';
 import 'package:zakazflow/feat/profilemenu/logic/profile_model.dart';
@@ -23,7 +22,6 @@ class FetchProfileEvent with _$FetchProfileEvent {
   const factory FetchProfileEvent.set(ProfileModel newData) = _SetEvent;
 }
 
-@Injectable()
 class FetchProfileBloc extends Bloc<FetchProfileEvent, FetchProfileState> {
   final AuthRepository _repository;
   FetchProfileBloc(this._repository)

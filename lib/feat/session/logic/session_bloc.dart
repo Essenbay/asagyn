@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -24,10 +26,12 @@ class SessionEvent with _$SessionEvent {
   const factory SessionEvent.create(String estabCode) = _CreateEvent;
 }
 
-@Injectable()
 class SessionBloc extends Bloc<SessionEvent, SessionState> {
   final SessionRepository _repository;
-  SessionBloc(this._repository) : super(const SessionState.loading()) {
+  final PusherService _pusherService;
+
+  SessionBloc(this._repository, this._pusherService)
+      : super(const SessionState.loading()) {
     on<SessionEvent>(
       (event, emit) => event.map(
         fetch: (event) => _fetch(event, emit),
@@ -49,6 +53,9 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
           }, failure: (result) {
             emit(SessionState.success(data, []));
           });
+          final estabResult = await _repository
+              .getEstablishmentInfo(data.establishmentDTO.id.toString());
+          log(estabResult.toString());
         } else {
           emit(SessionState.success(data, []));
         }

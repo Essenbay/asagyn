@@ -21,7 +21,6 @@ mixin MainRunner {
       () => Logger.runLogging(
         () async {
           await initUI();
-          // await initFirebase();
           await initBloc();
           await configureDependencies();
 
@@ -50,14 +49,6 @@ mixin MainRunner {
       ),
     );
   }
-
-  // static Future<void> initFirebase() async {
-  //   await Firebase.initializeApp(
-  //       options: DefaultFirebaseOptions.currentPlatform);
-  //   await FirebaseCrashlytics.instance
-  //       .setCrashlyticsCollectionEnabled(kReleaseMode);
-  //   FlutterError.onError = Logger.logFlutterError;
-  // }
 
   static Future<void> initBloc() async {
     Bloc.observer = AppBlocObserver();

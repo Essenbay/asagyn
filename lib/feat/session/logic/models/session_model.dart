@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:zakazflow/core/extensions/datetime.dart';
 import 'package:zakazflow/feat/session/logic/models/establishment_model.dart';
 
 part 'session_model.g.dart';
@@ -8,6 +7,7 @@ part 'session_model.g.dart';
 @JsonSerializable()
 class SessionModel {
   final int id;
+  @JsonKey(fromJson: DateTimeX.parseFromServer)
   final DateTime? startDateTime;
   final EstablishmentModel establishmentDTO;
 
@@ -48,10 +48,12 @@ enum OrderStatus {
   cancelled;
 }
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class OrderModel {
+  @JsonKey(defaultValue: OrderStatus.processing)
   final OrderStatus orderStatus;
   final int id;
+  @JsonKey(fromJson: DateTimeX.parseFromServer)
   final DateTime dateOfCreation;
   final List<OrderItem> orderItemDTOS;
 
@@ -61,9 +63,10 @@ class OrderModel {
       required this.dateOfCreation,
       required this.orderItemDTOS});
   factory OrderModel.fromJson(Map<String, Object?> json) {
-    log(json['orderItemDTOS'].toString());
     return _$OrderModelFromJson(json);
   }
+
+  Map<String, Object?> toJson() => _$OrderModelToJson(this);
 }
 
 @JsonSerializable()
@@ -72,7 +75,7 @@ class OrderItem {
   final String description;
   final int quantity;
   final double cost;
-  final String image;
+  final String? image;
 
   OrderItem(
       {required this.title,

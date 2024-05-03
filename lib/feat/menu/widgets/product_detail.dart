@@ -44,13 +44,12 @@ class _ProductDetailState extends State<ProductDetail> {
         Stack(
           alignment: Alignment.topRight,
           children: [
-            ColoredBox(
-              color: AppColors.white,
-              child: ServerImage(
-                imageUrl: widget.model.imageUrl,
-                height: context.screenSize.height * .25,
-                fit: BoxFit.contain,
-              ),
+            ServerImage(
+              imageUrl: widget.model.imageUrl,
+              height: context.screenSize.height * .25,
+              width: context.screenSize.width,
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
             ),
             if (widget.model.minAge != null)
               Positioned(

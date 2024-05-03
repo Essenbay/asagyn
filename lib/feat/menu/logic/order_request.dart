@@ -15,11 +15,11 @@ class OrderRequest {
       required this.diningSessionDTO,
       required this.serveDrinksImmediatly});
 
-  Map<String, Object?> toJson({int? sessionId}) => {
+  Map<String, Object?> toJson() => {
         'dateOfCreation': null,
         'diningSessionDTO': diningSessionDTO?.toJson() ?? {},
         'orderItemDTOS': items.map((e) => e.toJson()).toList(),
-        'orderStatus': 'Processing',
+        'orderStatus': 'Payed',
         'id': null,
       };
 }
@@ -34,7 +34,7 @@ class OrderItemRequest {
   Map<String, Object?> toJson() => {
         'cost': productModel.cost,
         'description': productModel.description,
-        'id': productModel.id,
+        'id': null,
         'quantity': productModel.quantity,
         'title': productModel.nameRu,
       };

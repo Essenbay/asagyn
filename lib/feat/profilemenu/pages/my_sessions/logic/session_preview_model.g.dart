@@ -11,9 +11,7 @@ SessionPreview _$SessionPreviewFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       establishmentName: json['establishmentName'] as String,
       backgroundImage: json['backgroundImage'] as String?,
-      sessionDate: json['sessionDate'] == null
-          ? null
-          : DateTime.parse(json['sessionDate'] as String),
+      sessionDate: DateTimeX.parseFromServer(json['sessionDate'] as String),
     );
 
 Map<String, dynamic> _$SessionPreviewToJson(SessionPreview instance) =>

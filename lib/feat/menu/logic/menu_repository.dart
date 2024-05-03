@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/services/network/network_service.dart';
 import 'package:zakazflow/core/services/preference_service.dart';
 import 'package:zakazflow/feat/menu/logic/menu_model.dart';
 import 'package:zakazflow/feat/menu/logic/order_request.dart';
+import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 
 abstract class MenuRepository {
   Future<Result<MenuModel>> getMenuId(int estabId);
@@ -22,14 +21,39 @@ class MenuRepositoryImpl implements MenuRepository {
   @override
   Future<Result<void>> createOrder(OrderRequest data) async {
     final jsonData = data.toJson();
-    log('Requesting: ${jsonData}');
+
     final result = await service.request(
       request: (dio) => dio.post('/order', data: jsonData),
       fromJson: (json) {
-        log('Got: $json');
+        final orderJson = json['object'];
+        return OrderModel.fromJson(orderJson as Map<String, dynamic>);
       },
     );
     return result;
+
+    // Result? failureReult = null;
+
+    // return result.when(success: (order) async {
+    //   for (var e in data.items) {
+    //     final result = await service.request(
+    //         request: (dio) => dio.post(
+    //               '/order-item/${order.id}',
+    //               data: e.toJson(),
+    //             ),
+    //         fromJson: (json) {
+    //           log(json.toString());
+    //         });
+
+    //     result.whenOrNull(
+    //       failure: (exception) {
+    //         failureReult = Result<void>.failure(exception: exception);
+    //       },
+    //     );
+    //   }
+    //   return failureReult ?? const Result.success(null);
+    // }, failure: (exception) async {
+    //   return Result.failure(exception: exception);
+    // });
   }
 
   @override

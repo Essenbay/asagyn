@@ -170,10 +170,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   context.localized.password_dont_match);
                             } else {
                               context.read<RegisterCubit>().register(
-                                    email: loginController.text,
-                                    fullname: nameController.text,
-                                    password: passwordController.text,
-                                    confirmPassword: confirmPassword.text,
+                                    email: loginController.text.trim(),
+                                    fullname: nameController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                    confirmPassword:
+                                        confirmPassword.text.trim(),
                                   );
                             }
                           },
