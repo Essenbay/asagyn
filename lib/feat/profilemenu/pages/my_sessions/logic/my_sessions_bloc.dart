@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/exceptions/network_exception.dart';
-import 'package:zakazflow/feat/profilemenu/pages/my_sessions/logic/session_preview_model.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/logic/session_repository.dart';
 

@@ -25,6 +25,16 @@ class PusherProvider extends ChangeNotifier {
       _orders.add(order);
       notifyListeners();
       return;
+    } else if (event.eventName == 'order-status-update') {
+      final json = jsonDecode(event.data as String);
+      final orderJson = json['changed-order'];
+      final changedOrder =
+          OrderModel.fromJson(orderJson as Map<String, dynamic>);
+      final orderIndex =
+          _orders.indexWhere((element) => element.id == changedOrder.id);
+      _orders[orderIndex] = changedOrder;
+      notifyListeners();
+      return;
     }
   }
 

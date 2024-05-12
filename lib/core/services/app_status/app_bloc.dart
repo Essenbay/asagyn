@@ -53,7 +53,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Future<void> _logout(LogoutEvent event, Emitter<AppState> emit) async {
     await _secureStorage.deleteUser();
-    await _prefs.setSessionId(null);
+    await _prefs.setSessionInfo(null, null);
     emit(AppState.unauthenticated);
   }
 }

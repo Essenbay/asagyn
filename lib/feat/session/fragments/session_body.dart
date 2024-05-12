@@ -88,7 +88,17 @@ class _SessionBody extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SessionPopupMenuButton(model: model),
+                        BlocBuilder<FetchProfileBloc, FetchProfileState>(
+                          builder: (context, state) {
+                            return state.maybeMap(
+                              success: (profileState) => SessionPopupMenuButton(
+                                model: model,
+                                profile: profileState.data,
+                              ),
+                              orElse: () => const SizedBox(),
+                            );
+                          },
+                        ),
                       ],
                     )),
                 Padding(

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
@@ -130,6 +129,6 @@ class _OrdersWidgetState extends State<OrdersWidget> {
         OrderStatus.served => const Icon(Icons.room_service_rounded, size: 30),
         OrderStatus.serving => const Icon(Icons.table_bar, size: 30),
         OrderStatus.cancelled => const Icon(Icons.cancel, size: 30),
-        OrderStatus.payed => const SizedBox(),
+        OrderStatus.payed => const Icon(Icons.check, size: 30),
       };
 }

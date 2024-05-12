@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:zakazflow/core/config/colors.dart';
@@ -22,6 +24,7 @@ class ServerImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final url = '$baseUrl$imageUrl';
+    log(url);
 
     if (imageUrl == null) {
       return ColoredBox(color: AppColors.grey300);
@@ -33,8 +36,8 @@ class ServerImage extends StatelessWidget {
       width: width,
       fit: fit ?? BoxFit.cover,
       placeholder: (context, url) => const ColoredBox(color: AppColors.grey400),
-      errorWidget: (context, url, error) => Container(
-        child: const Icon(Icons.error),
+      errorWidget: (context, url, error) => const Center(
+        child: Icon(Icons.error),
       ),
     );
   }

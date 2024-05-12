@@ -37,6 +37,17 @@ class AuthRepositoryImpl implements AuthDatasource {
     String? email,
     String? username,
   }) async {
+    Map data = {};
+    if (email != null) {
+      data['email'] = email;
+    }
+    if (username != null) {
+      data['username'] = username;
+    }
+    if (password != null) {
+      data['newPassword'] = password;
+      data['confirmPassword'] = confirmPassword;
+    }
     final result = await network.request(
       request: (dio) => dio.post('/update-profile', data: {
         'confirmPassword': confirmPassword,

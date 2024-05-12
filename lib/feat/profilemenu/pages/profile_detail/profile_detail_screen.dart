@@ -47,6 +47,7 @@ class ProfileDetailScreen extends StatelessWidget {
                           context.read<FetchProfileBloc>().add(
                                 FetchProfileEvent.set(
                                   ProfileModel(
+                                      id: state.data.id,
                                       username: result,
                                       email: state.data.email),
                                 ),
@@ -64,6 +65,7 @@ class ProfileDetailScreen extends StatelessWidget {
                           context.read<FetchProfileBloc>().add(
                                 FetchProfileEvent.set(
                                   ProfileModel(
+                                      id: state.data.id,
                                       email: result,
                                       username: state.data.username),
                                 ),

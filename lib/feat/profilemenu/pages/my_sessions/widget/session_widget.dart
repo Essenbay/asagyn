@@ -6,6 +6,7 @@ import 'package:zakazflow/core/extensions/datetime.dart';
 import 'package:zakazflow/core/router/app_router.dart';
 import 'package:zakazflow/feat/profilemenu/pages/my_sessions/widget/fading_edges.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
+import 'package:zakazflow/feat/widgets/server_image.dart';
 
 class SessionWidget extends StatelessWidget {
   const SessionWidget({Key? key, required this.data}) : super(key: key);
@@ -28,20 +29,13 @@ class SessionWidget extends StatelessWidget {
                 child: Container(
                   height: 60,
                   width: context.screenSize.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          data.establishmentDTO.backgroundImage ?? ''),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                   child: Opacity(
                     opacity: 0.6,
                     child: Container(
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
                           colors: [
                             Colors.black,
                             Colors.black,
@@ -49,6 +43,8 @@ class SessionWidget extends StatelessWidget {
                           ],
                         ),
                       ),
+                      child: ServerImage(
+                          imageUrl: data.establishmentDTO.backgroundImage),
                     ),
                   ),
                 ),

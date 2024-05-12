@@ -48,11 +48,12 @@ class ChangeProfileBloc extends Bloc<ChangeProfileEvent, ChangeProfileState> {
         confirmPassword: event.confirmPassword,
         email: event.email,
         username: event.username);
-        
+
     result.map(
         success: (result) => emit(
               ChangeProfileState.success(
                 ProfileModel(
+                    id: 0,
                     username: event.username ?? event.currProfile.username,
                     email: event.email ?? event.currProfile.email),
               ),

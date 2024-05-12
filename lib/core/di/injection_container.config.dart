@@ -19,11 +19,13 @@ import '../../feat/auth/logic/auth_datasource.dart' as _i17;
 import '../../feat/auth/logic/auth_repository.dart' as _i18;
 import '../../feat/auth/pages/forgot_password/logic/forgot_password_bloc.dart'
     as _i20;
-import '../../feat/menu/logic/create_order_bloc.dart' as _i23;
-import '../../feat/menu/logic/menu_bloc.dart' as _i24;
+import '../../feat/menu/logic/create_order_bloc.dart' as _i24;
+import '../../feat/menu/logic/menu_bloc.dart' as _i25;
 import '../../feat/menu/logic/menu_repository.dart' as _i21;
 import '../../feat/profilemenu/pages/my_sessions/logic/my_sessions_bloc.dart'
     as _i22;
+import '../../feat/profilemenu/pages/my_sessions/logic/session_orders_bloc.dart'
+    as _i23;
 import '../../feat/profilemenu/pages/profile_detail/logic/change_profile_bloc.dart'
     as _i19;
 import '../../feat/session/logic/session_repository.dart' as _i16;
@@ -92,9 +94,11 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i22.MySessionsBloc>(
         () => _i22.MySessionsBloc(gh<_i16.SessionRepository>()));
-    gh.factory<_i23.CreateOrderBloc>(
-        () => _i23.CreateOrderBloc(gh<_i21.MenuRepository>()));
-    gh.factory<_i24.MenuBloc>(() => _i24.MenuBloc(gh<_i21.MenuRepository>()));
+    gh.factory<_i23.SessionOrdersBloc>(
+        () => _i23.SessionOrdersBloc(gh<_i16.SessionRepository>()));
+    gh.factory<_i24.CreateOrderBloc>(
+        () => _i24.CreateOrderBloc(gh<_i21.MenuRepository>()));
+    gh.factory<_i25.MenuBloc>(() => _i25.MenuBloc(gh<_i21.MenuRepository>()));
     return this;
   }
 }

@@ -128,7 +128,7 @@
   "cheap_first": "Сначало дешевые",
   "expensive_first": "Сначало дорогие",
   "welcome": "Добро пожаловать",
-  "orders_empty": "Вы еще ничего не заказывали",
+  "orders_empty": "Вы ничего не заказывали",
   "orders": "Заказы",
   "share_message": "Присоединяйся! Я в {establishmentName}! Код заведения: {establishmentCode}",
   "to_menu": "Перейти в меню",
@@ -142,5 +142,6 @@
   "change_name": "Изменение имени",
   "change_email": "Изменение почты",
   "all": "Все",
-  "minutes": "минут"
+  "minutes": "минут",
+  "call_waiter_success": "Скоро официант подойдет к вам!"
 }

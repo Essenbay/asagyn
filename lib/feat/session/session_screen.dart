@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/feat/menu/logic/menu_bloc.dart';
+import 'package:zakazflow/feat/profilemenu/logic/fetch_profile_bloc.dart';
 import 'package:zakazflow/feat/session/fragments/no_session_screen.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 import 'package:zakazflow/feat/session/logic/pusher_provider.dart';

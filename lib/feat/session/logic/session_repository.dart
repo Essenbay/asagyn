@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:zakazflow/core/services/network/models/result.dart';
 import 'package:zakazflow/core/services/network/network_service.dart';
 import 'package:zakazflow/core/services/preference_service.dart';
+import 'package:zakazflow/feat/profilemenu/logic/profile_model.dart';
 import 'package:zakazflow/feat/session/logic/models/establishment_model.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
 
@@ -11,9 +12,11 @@ abstract class SessionRepository {
   Future<Result<SessionModel?>> getSessionInfo();
   Future<Result<List<SessionModel>>> getSessions();
   Future<Result<SessionModel>> getSession(int id);
+  Future<void> closeSession();
   Future<Result<List<OrderModel>>> getOrdersBySession(int sessionId);
-  Future<Result<SessionModel>> createSession(String estabCode);
+  Future<Result<SessionModel>> createSession(String estabCode, String table);
   Future<Result<EstablishmentModel>> getEstablishmentInfo(String estabCode);
+  Future<Result<void>> callWaiter(ProfileModel profile);
 }
 
 @LazySingleton(as: SessionRepository)
@@ -50,19 +53,20 @@ class SessionRepositoryImpl implements SessionRepository {
       fromJson: (json) {
         json as List;
         return json
-            .map((e) => SessionModel.fromJson(json as Map<String, dynamic>))
+            .map((e) => SessionModel.fromJson(e as Map<String, dynamic>))
             .toList();
       },
     );
   }
 
   @override
-  Future<Result<SessionModel>> createSession(String estabCode) async {
+  Future<Result<SessionModel>> createSession(
+      String estabCode, String table) async {
     final result = await service.request(
       request: (dio) => dio.post('/dining-session/$estabCode'),
       fromJson: (json) {
         final result = SessionModel.fromJson(json as Map<String, dynamic>);
-        prefs.setSessionId(result.id);
+        prefs.setSessionInfo(result.id, table);
         return result;
       },
     );
@@ -96,6 +100,28 @@ class SessionRepositoryImpl implements SessionRepository {
       request: (dio) => dio.get('/establishment/$estabCode'),
       fromJson: (json) {
         return EstablishmentModel.fromJson(json as Map<String, dynamic>);
+      },
+    );
+    return result;
+  }
+
+  @override
+  Future<void> closeSession() async {
+    await prefs.setSessionInfo(null, null);
+  }
+
+  @override
+  Future<Result<void>> callWaiter(ProfileModel profile) async {
+    final result = await service.request(
+      request: (dio) => dio.get(
+        '/order/call-waiter',
+        data: {
+          'code': prefs.currentSessionTable,
+          'userDto': profile.toJson(),
+        },
+      ),
+      fromJson: (json) {
+        return null;
       },
     );
     return result;

@@ -121,5 +121,6 @@
   "change_name": "Change name",
   "change_email": "Change email",
   "all": "All",
-  "minutes": "minutes"
+  "minutes": "minutes",
+  "call_waiter_success": "Waiter will be right in time!"
 }

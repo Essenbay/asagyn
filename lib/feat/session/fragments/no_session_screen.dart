@@ -18,6 +18,7 @@ class NoSessionPage extends StatefulWidget {
 
 class _NoSessionState extends State<NoSessionPage> {
   final estabCode = TextEditingController();
+  final table = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +49,23 @@ class _NoSessionState extends State<NoSessionPage> {
                 labelText: context.localized.estab_code,
                 keyboardType: TextInputType.number,
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: space),
+              CustomTextField(
+                controller: table,
+                labelText: context.localized.table,
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: space),
               PrimaryFilledTextButton(
                 onPressed: () {
                   if (estabCode.text.isEmpty) {
                     Util.showSnackBar(
                         context, context.localized.enter_estab_code);
                   } else {
-                    context
-                        .read<SessionBloc>()
-                        .add(SessionEvent.create(estabCode.text));
+                    context.read<SessionBloc>().add(SessionEvent.create(
+                          estabCode.text,
+                          table.text,
+                        ));
                   }
                 },
                 text: context.localized.create_session,

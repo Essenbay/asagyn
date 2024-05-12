@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'session_bloc.dart';
+part of 'session_orders_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,26 +15,25 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SessionState {
+mixin _$SessionOrdersState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(SessionModel? data, List<OrderModel> orders)
-        success,
+    required TResult Function(List<OrderModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult? Function(List<OrderModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult Function(List<OrderModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) =>
@@ -64,16 +63,16 @@ mixin _$SessionState {
 }
 
 /// @nodoc
-abstract class $SessionStateCopyWith<$Res> {
-  factory $SessionStateCopyWith(
-          SessionState value, $Res Function(SessionState) then) =
-      _$SessionStateCopyWithImpl<$Res, SessionState>;
+abstract class $SessionOrdersStateCopyWith<$Res> {
+  factory $SessionOrdersStateCopyWith(
+          SessionOrdersState value, $Res Function(SessionOrdersState) then) =
+      _$SessionOrdersStateCopyWithImpl<$Res, SessionOrdersState>;
 }
 
 /// @nodoc
-class _$SessionStateCopyWithImpl<$Res, $Val extends SessionState>
-    implements $SessionStateCopyWith<$Res> {
-  _$SessionStateCopyWithImpl(this._value, this._then);
+class _$SessionOrdersStateCopyWithImpl<$Res, $Val extends SessionOrdersState>
+    implements $SessionOrdersStateCopyWith<$Res> {
+  _$SessionOrdersStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -90,7 +89,7 @@ abstract class _$$LoadingStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingStateImplCopyWithImpl<$Res>
-    extends _$SessionStateCopyWithImpl<$Res, _$LoadingStateImpl>
+    extends _$SessionOrdersStateCopyWithImpl<$Res, _$LoadingStateImpl>
     implements _$$LoadingStateImplCopyWith<$Res> {
   __$$LoadingStateImplCopyWithImpl(
       _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
@@ -104,7 +103,7 @@ class _$LoadingStateImpl implements _LoadingState {
 
   @override
   String toString() {
-    return 'SessionState.loading()';
+    return 'SessionOrdersState.loading()';
   }
 
   @override
@@ -120,8 +119,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(SessionModel? data, List<OrderModel> orders)
-        success,
+    required TResult Function(List<OrderModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) {
     return loading();
@@ -131,7 +129,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult? Function(List<OrderModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return loading?.call();
@@ -141,7 +139,7 @@ class _$LoadingStateImpl implements _LoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult Function(List<OrderModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -186,7 +184,7 @@ class _$LoadingStateImpl implements _LoadingState {
   }
 }
 
-abstract class _LoadingState implements SessionState {
+abstract class _LoadingState implements SessionOrdersState {
   const factory _LoadingState() = _$LoadingStateImpl;
 }
 
@@ -196,12 +194,12 @@ abstract class _$$SuccessStateImplCopyWith<$Res> {
           _$SuccessStateImpl value, $Res Function(_$SuccessStateImpl) then) =
       __$$SuccessStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SessionModel? data, List<OrderModel> orders});
+  $Res call({List<OrderModel> data});
 }
 
 /// @nodoc
 class __$$SuccessStateImplCopyWithImpl<$Res>
-    extends _$SessionStateCopyWithImpl<$Res, _$SuccessStateImpl>
+    extends _$SessionOrdersStateCopyWithImpl<$Res, _$SuccessStateImpl>
     implements _$$SuccessStateImplCopyWith<$Res> {
   __$$SuccessStateImplCopyWithImpl(
       _$SuccessStateImpl _value, $Res Function(_$SuccessStateImpl) _then)
@@ -210,17 +208,12 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
-    Object? orders = null,
+    Object? data = null,
   }) {
     return _then(_$SuccessStateImpl(
-      freezed == data
-          ? _value.data
+      null == data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as SessionModel?,
-      null == orders
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
               as List<OrderModel>,
     ));
   }
@@ -229,22 +222,19 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessStateImpl implements _SuccessState {
-  const _$SuccessStateImpl(this.data, final List<OrderModel> orders)
-      : _orders = orders;
+  const _$SuccessStateImpl(final List<OrderModel> data) : _data = data;
 
+  final List<OrderModel> _data;
   @override
-  final SessionModel? data;
-  final List<OrderModel> _orders;
-  @override
-  List<OrderModel> get orders {
-    if (_orders is EqualUnmodifiableListView) return _orders;
+  List<OrderModel> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_orders);
+    return EqualUnmodifiableListView(_data);
   }
 
   @override
   String toString() {
-    return 'SessionState.success(data: $data, orders: $orders)';
+    return 'SessionOrdersState.success(data: $data)';
   }
 
   @override
@@ -252,13 +242,12 @@ class _$SuccessStateImpl implements _SuccessState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessStateImpl &&
-            (identical(other.data, data) || other.data == data) &&
-            const DeepCollectionEquality().equals(other._orders, _orders));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, data, const DeepCollectionEquality().hash(_orders));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -270,33 +259,32 @@ class _$SuccessStateImpl implements _SuccessState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(SessionModel? data, List<OrderModel> orders)
-        success,
+    required TResult Function(List<OrderModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) {
-    return success(data, orders);
+    return success(data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult? Function(List<OrderModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
-    return success?.call(data, orders);
+    return success?.call(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult Function(List<OrderModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(data, orders);
+      return success(data);
     }
     return orElse();
   }
@@ -336,13 +324,10 @@ class _$SuccessStateImpl implements _SuccessState {
   }
 }
 
-abstract class _SuccessState implements SessionState {
-  const factory _SuccessState(
-          final SessionModel? data, final List<OrderModel> orders) =
-      _$SuccessStateImpl;
+abstract class _SuccessState implements SessionOrdersState {
+  const factory _SuccessState(final List<OrderModel> data) = _$SuccessStateImpl;
 
-  SessionModel? get data;
-  List<OrderModel> get orders;
+  List<OrderModel> get data;
   @JsonKey(ignore: true)
   _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -359,7 +344,7 @@ abstract class _$$FailureStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureStateImplCopyWithImpl<$Res>
-    extends _$SessionStateCopyWithImpl<$Res, _$FailureStateImpl>
+    extends _$SessionOrdersStateCopyWithImpl<$Res, _$FailureStateImpl>
     implements _$$FailureStateImplCopyWith<$Res> {
   __$$FailureStateImplCopyWithImpl(
       _$FailureStateImpl _value, $Res Function(_$FailureStateImpl) _then)
@@ -389,7 +374,7 @@ class _$FailureStateImpl implements _FailureState {
 
   @override
   String toString() {
-    return 'SessionState.failure(exception: $exception)';
+    return 'SessionOrdersState.failure(exception: $exception)';
   }
 
   @override
@@ -414,8 +399,7 @@ class _$FailureStateImpl implements _FailureState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(SessionModel? data, List<OrderModel> orders)
-        success,
+    required TResult Function(List<OrderModel> data) success,
     required TResult Function(NetworkException exception) failure,
   }) {
     return failure(exception);
@@ -425,7 +409,7 @@ class _$FailureStateImpl implements _FailureState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult? Function(List<OrderModel> data)? success,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return failure?.call(exception);
@@ -435,7 +419,7 @@ class _$FailureStateImpl implements _FailureState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(SessionModel? data, List<OrderModel> orders)? success,
+    TResult Function(List<OrderModel> data)? success,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -480,7 +464,7 @@ class _$FailureStateImpl implements _FailureState {
   }
 }
 
-abstract class _FailureState implements SessionState {
+abstract class _FailureState implements SessionOrdersState {
   const factory _FailureState(final NetworkException exception) =
       _$FailureStateImpl;
 
@@ -491,83 +475,93 @@ abstract class _FailureState implements SessionState {
 }
 
 /// @nodoc
-mixin _$SessionEvent {
+mixin _$SessionOrdersEvent {
+  int get sessionId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? id) fetch,
-    required TResult Function(String estabCode, String table) create,
-    required TResult Function() closeSession,
+    required TResult Function(int sessionId) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? id)? fetch,
-    TResult? Function(String estabCode, String table)? create,
-    TResult? Function()? closeSession,
+    TResult? Function(int sessionId)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? id)? fetch,
-    TResult Function(String estabCode, String table)? create,
-    TResult Function()? closeSession,
+    TResult Function(int sessionId)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchEvent value) fetch,
-    required TResult Function(_CreateEvent value) create,
-    required TResult Function(_CloseSessionEvent value) closeSession,
+    required TResult Function(_FetchEvent value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchEvent value)? fetch,
-    TResult? Function(_CreateEvent value)? create,
-    TResult? Function(_CloseSessionEvent value)? closeSession,
+    TResult? Function(_FetchEvent value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchEvent value)? fetch,
-    TResult Function(_CreateEvent value)? create,
-    TResult Function(_CloseSessionEvent value)? closeSession,
+    TResult Function(_FetchEvent value)? fetch,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SessionOrdersEventCopyWith<SessionOrdersEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SessionEventCopyWith<$Res> {
-  factory $SessionEventCopyWith(
-          SessionEvent value, $Res Function(SessionEvent) then) =
-      _$SessionEventCopyWithImpl<$Res, SessionEvent>;
+abstract class $SessionOrdersEventCopyWith<$Res> {
+  factory $SessionOrdersEventCopyWith(
+          SessionOrdersEvent value, $Res Function(SessionOrdersEvent) then) =
+      _$SessionOrdersEventCopyWithImpl<$Res, SessionOrdersEvent>;
+  @useResult
+  $Res call({int sessionId});
 }
 
 /// @nodoc
-class _$SessionEventCopyWithImpl<$Res, $Val extends SessionEvent>
-    implements $SessionEventCopyWith<$Res> {
-  _$SessionEventCopyWithImpl(this._value, this._then);
+class _$SessionOrdersEventCopyWithImpl<$Res, $Val extends SessionOrdersEvent>
+    implements $SessionOrdersEventCopyWith<$Res> {
+  _$SessionOrdersEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sessionId = null,
+  }) {
+    return _then(_value.copyWith(
+      sessionId: null == sessionId
+          ? _value.sessionId
+          : sessionId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$FetchEventImplCopyWith<$Res> {
+abstract class _$$FetchEventImplCopyWith<$Res>
+    implements $SessionOrdersEventCopyWith<$Res> {
   factory _$$FetchEventImplCopyWith(
           _$FetchEventImpl value, $Res Function(_$FetchEventImpl) then) =
       __$$FetchEventImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({int? id});
+  $Res call({int sessionId});
 }
 
 /// @nodoc
 class __$$FetchEventImplCopyWithImpl<$Res>
-    extends _$SessionEventCopyWithImpl<$Res, _$FetchEventImpl>
+    extends _$SessionOrdersEventCopyWithImpl<$Res, _$FetchEventImpl>
     implements _$$FetchEventImplCopyWith<$Res> {
   __$$FetchEventImplCopyWithImpl(
       _$FetchEventImpl _value, $Res Function(_$FetchEventImpl) _then)
@@ -576,28 +570,28 @@ class __$$FetchEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? sessionId = null,
   }) {
     return _then(_$FetchEventImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      null == sessionId
+          ? _value.sessionId
+          : sessionId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$FetchEventImpl implements FetchEvent {
-  const _$FetchEventImpl({this.id});
+class _$FetchEventImpl implements _FetchEvent {
+  const _$FetchEventImpl(this.sessionId);
 
   @override
-  final int? id;
+  final int sessionId;
 
   @override
   String toString() {
-    return 'SessionEvent.fetch(id: $id)';
+    return 'SessionOrdersEvent.fetch(sessionId: $sessionId)';
   }
 
   @override
@@ -605,11 +599,12 @@ class _$FetchEventImpl implements FetchEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchEventImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.sessionId, sessionId) ||
+                other.sessionId == sessionId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, sessionId);
 
   @JsonKey(ignore: true)
   @override
@@ -620,33 +615,27 @@ class _$FetchEventImpl implements FetchEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? id) fetch,
-    required TResult Function(String estabCode, String table) create,
-    required TResult Function() closeSession,
+    required TResult Function(int sessionId) fetch,
   }) {
-    return fetch(id);
+    return fetch(sessionId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? id)? fetch,
-    TResult? Function(String estabCode, String table)? create,
-    TResult? Function()? closeSession,
+    TResult? Function(int sessionId)? fetch,
   }) {
-    return fetch?.call(id);
+    return fetch?.call(sessionId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? id)? fetch,
-    TResult Function(String estabCode, String table)? create,
-    TResult Function()? closeSession,
+    TResult Function(int sessionId)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch(id);
+      return fetch(sessionId);
     }
     return orElse();
   }
@@ -654,9 +643,7 @@ class _$FetchEventImpl implements FetchEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchEvent value) fetch,
-    required TResult Function(_CreateEvent value) create,
-    required TResult Function(_CloseSessionEvent value) closeSession,
+    required TResult Function(_FetchEvent value) fetch,
   }) {
     return fetch(this);
   }
@@ -664,9 +651,7 @@ class _$FetchEventImpl implements FetchEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchEvent value)? fetch,
-    TResult? Function(_CreateEvent value)? create,
-    TResult? Function(_CloseSessionEvent value)? closeSession,
+    TResult? Function(_FetchEvent value)? fetch,
   }) {
     return fetch?.call(this);
   }
@@ -674,9 +659,7 @@ class _$FetchEventImpl implements FetchEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchEvent value)? fetch,
-    TResult Function(_CreateEvent value)? create,
-    TResult Function(_CloseSessionEvent value)? closeSession,
+    TResult Function(_FetchEvent value)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -686,269 +669,13 @@ class _$FetchEventImpl implements FetchEvent {
   }
 }
 
-abstract class FetchEvent implements SessionEvent {
-  const factory FetchEvent({final int? id}) = _$FetchEventImpl;
+abstract class _FetchEvent implements SessionOrdersEvent {
+  const factory _FetchEvent(final int sessionId) = _$FetchEventImpl;
 
-  int? get id;
+  @override
+  int get sessionId;
+  @override
   @JsonKey(ignore: true)
   _$$FetchEventImplCopyWith<_$FetchEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$CreateEventImplCopyWith<$Res> {
-  factory _$$CreateEventImplCopyWith(
-          _$CreateEventImpl value, $Res Function(_$CreateEventImpl) then) =
-      __$$CreateEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String estabCode, String table});
-}
-
-/// @nodoc
-class __$$CreateEventImplCopyWithImpl<$Res>
-    extends _$SessionEventCopyWithImpl<$Res, _$CreateEventImpl>
-    implements _$$CreateEventImplCopyWith<$Res> {
-  __$$CreateEventImplCopyWithImpl(
-      _$CreateEventImpl _value, $Res Function(_$CreateEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? estabCode = null,
-    Object? table = null,
-  }) {
-    return _then(_$CreateEventImpl(
-      null == estabCode
-          ? _value.estabCode
-          : estabCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == table
-          ? _value.table
-          : table // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CreateEventImpl implements _CreateEvent {
-  const _$CreateEventImpl(this.estabCode, this.table);
-
-  @override
-  final String estabCode;
-  @override
-  final String table;
-
-  @override
-  String toString() {
-    return 'SessionEvent.create(estabCode: $estabCode, table: $table)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateEventImpl &&
-            (identical(other.estabCode, estabCode) ||
-                other.estabCode == estabCode) &&
-            (identical(other.table, table) || other.table == table));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, estabCode, table);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CreateEventImplCopyWith<_$CreateEventImpl> get copyWith =>
-      __$$CreateEventImplCopyWithImpl<_$CreateEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int? id) fetch,
-    required TResult Function(String estabCode, String table) create,
-    required TResult Function() closeSession,
-  }) {
-    return create(estabCode, table);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? id)? fetch,
-    TResult? Function(String estabCode, String table)? create,
-    TResult? Function()? closeSession,
-  }) {
-    return create?.call(estabCode, table);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? id)? fetch,
-    TResult Function(String estabCode, String table)? create,
-    TResult Function()? closeSession,
-    required TResult orElse(),
-  }) {
-    if (create != null) {
-      return create(estabCode, table);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchEvent value) fetch,
-    required TResult Function(_CreateEvent value) create,
-    required TResult Function(_CloseSessionEvent value) closeSession,
-  }) {
-    return create(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchEvent value)? fetch,
-    TResult? Function(_CreateEvent value)? create,
-    TResult? Function(_CloseSessionEvent value)? closeSession,
-  }) {
-    return create?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchEvent value)? fetch,
-    TResult Function(_CreateEvent value)? create,
-    TResult Function(_CloseSessionEvent value)? closeSession,
-    required TResult orElse(),
-  }) {
-    if (create != null) {
-      return create(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CreateEvent implements SessionEvent {
-  const factory _CreateEvent(final String estabCode, final String table) =
-      _$CreateEventImpl;
-
-  String get estabCode;
-  String get table;
-  @JsonKey(ignore: true)
-  _$$CreateEventImplCopyWith<_$CreateEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$CloseSessionEventImplCopyWith<$Res> {
-  factory _$$CloseSessionEventImplCopyWith(_$CloseSessionEventImpl value,
-          $Res Function(_$CloseSessionEventImpl) then) =
-      __$$CloseSessionEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CloseSessionEventImplCopyWithImpl<$Res>
-    extends _$SessionEventCopyWithImpl<$Res, _$CloseSessionEventImpl>
-    implements _$$CloseSessionEventImplCopyWith<$Res> {
-  __$$CloseSessionEventImplCopyWithImpl(_$CloseSessionEventImpl _value,
-      $Res Function(_$CloseSessionEventImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$CloseSessionEventImpl implements _CloseSessionEvent {
-  const _$CloseSessionEventImpl();
-
-  @override
-  String toString() {
-    return 'SessionEvent.closeSession()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CloseSessionEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int? id) fetch,
-    required TResult Function(String estabCode, String table) create,
-    required TResult Function() closeSession,
-  }) {
-    return closeSession();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int? id)? fetch,
-    TResult? Function(String estabCode, String table)? create,
-    TResult? Function()? closeSession,
-  }) {
-    return closeSession?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? id)? fetch,
-    TResult Function(String estabCode, String table)? create,
-    TResult Function()? closeSession,
-    required TResult orElse(),
-  }) {
-    if (closeSession != null) {
-      return closeSession();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchEvent value) fetch,
-    required TResult Function(_CreateEvent value) create,
-    required TResult Function(_CloseSessionEvent value) closeSession,
-  }) {
-    return closeSession(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchEvent value)? fetch,
-    TResult? Function(_CreateEvent value)? create,
-    TResult? Function(_CloseSessionEvent value)? closeSession,
-  }) {
-    return closeSession?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchEvent value)? fetch,
-    TResult Function(_CreateEvent value)? create,
-    TResult Function(_CloseSessionEvent value)? closeSession,
-    required TResult orElse(),
-  }) {
-    if (closeSession != null) {
-      return closeSession(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CloseSessionEvent implements SessionEvent {
-  const factory _CloseSessionEvent() = _$CloseSessionEventImpl;
 }
