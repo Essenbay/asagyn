@@ -1,3 +1,1 @@
-# zakazflow
-
-A new Flutter project.
+'https://asagyn.free.beeceptor.com'
