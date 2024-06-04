@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
     this.textColor = AppColors.black,
     this.labelText,
     this.suffix,
+    this.onChanged,
     this.prefix,
   }) : super(key: key);
 
@@ -28,6 +29,7 @@ class CustomTextField extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final Widget? suffix;
   final Widget? prefix;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -36,6 +38,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       cursorColor: AppColors.primary200,
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: const TextStyle(

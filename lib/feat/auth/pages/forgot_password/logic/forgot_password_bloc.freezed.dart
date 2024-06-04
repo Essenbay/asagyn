@@ -761,23 +761,26 @@ abstract class _FailureState implements ForgotPasswordState {
 mixin _$ForgotPasswordEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) getCode,
+    required TResult Function(String email) getCode,
     required TResult Function(String code) sendCode,
-    required TResult Function(String password, String token) changePassword,
+    required TResult Function(String password, String email, String code)
+        changePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phoneNumber)? getCode,
+    TResult? Function(String email)? getCode,
     TResult? Function(String code)? sendCode,
-    TResult? Function(String password, String token)? changePassword,
+    TResult? Function(String password, String email, String code)?
+        changePassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? getCode,
+    TResult Function(String email)? getCode,
     TResult Function(String code)? sendCode,
-    TResult Function(String password, String token)? changePassword,
+    TResult Function(String password, String email, String code)?
+        changePassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -829,7 +832,7 @@ abstract class _$$GetCodeEventImplCopyWith<$Res> {
           _$GetCodeEventImpl value, $Res Function(_$GetCodeEventImpl) then) =
       __$$GetCodeEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String phoneNumber});
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -843,12 +846,12 @@ class __$$GetCodeEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? phoneNumber = null,
+    Object? email = null,
   }) {
     return _then(_$GetCodeEventImpl(
-      null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -857,14 +860,14 @@ class __$$GetCodeEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetCodeEventImpl implements GetCodeEvent {
-  const _$GetCodeEventImpl(this.phoneNumber);
+  const _$GetCodeEventImpl(this.email);
 
   @override
-  final String phoneNumber;
+  final String email;
 
   @override
   String toString() {
-    return 'ForgotPasswordEvent.getCode(phoneNumber: $phoneNumber)';
+    return 'ForgotPasswordEvent.getCode(email: $email)';
   }
 
   @override
@@ -872,12 +875,11 @@ class _$GetCodeEventImpl implements GetCodeEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetCodeEventImpl &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber);
+  int get hashCode => Object.hash(runtimeType, email);
 
   @JsonKey(ignore: true)
   @override
@@ -888,33 +890,36 @@ class _$GetCodeEventImpl implements GetCodeEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) getCode,
+    required TResult Function(String email) getCode,
     required TResult Function(String code) sendCode,
-    required TResult Function(String password, String token) changePassword,
+    required TResult Function(String password, String email, String code)
+        changePassword,
   }) {
-    return getCode(phoneNumber);
+    return getCode(email);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phoneNumber)? getCode,
+    TResult? Function(String email)? getCode,
     TResult? Function(String code)? sendCode,
-    TResult? Function(String password, String token)? changePassword,
+    TResult? Function(String password, String email, String code)?
+        changePassword,
   }) {
-    return getCode?.call(phoneNumber);
+    return getCode?.call(email);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? getCode,
+    TResult Function(String email)? getCode,
     TResult Function(String code)? sendCode,
-    TResult Function(String password, String token)? changePassword,
+    TResult Function(String password, String email, String code)?
+        changePassword,
     required TResult orElse(),
   }) {
     if (getCode != null) {
-      return getCode(phoneNumber);
+      return getCode(email);
     }
     return orElse();
   }
@@ -955,9 +960,9 @@ class _$GetCodeEventImpl implements GetCodeEvent {
 }
 
 abstract class GetCodeEvent implements ForgotPasswordEvent {
-  const factory GetCodeEvent(final String phoneNumber) = _$GetCodeEventImpl;
+  const factory GetCodeEvent(final String email) = _$GetCodeEventImpl;
 
-  String get phoneNumber;
+  String get email;
   @JsonKey(ignore: true)
   _$$GetCodeEventImplCopyWith<_$GetCodeEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1027,9 +1032,10 @@ class _$SendCodeEventImpl implements SendCodeEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) getCode,
+    required TResult Function(String email) getCode,
     required TResult Function(String code) sendCode,
-    required TResult Function(String password, String token) changePassword,
+    required TResult Function(String password, String email, String code)
+        changePassword,
   }) {
     return sendCode(code);
   }
@@ -1037,9 +1043,10 @@ class _$SendCodeEventImpl implements SendCodeEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phoneNumber)? getCode,
+    TResult? Function(String email)? getCode,
     TResult? Function(String code)? sendCode,
-    TResult? Function(String password, String token)? changePassword,
+    TResult? Function(String password, String email, String code)?
+        changePassword,
   }) {
     return sendCode?.call(code);
   }
@@ -1047,9 +1054,10 @@ class _$SendCodeEventImpl implements SendCodeEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? getCode,
+    TResult Function(String email)? getCode,
     TResult Function(String code)? sendCode,
-    TResult Function(String password, String token)? changePassword,
+    TResult Function(String password, String email, String code)?
+        changePassword,
     required TResult orElse(),
   }) {
     if (sendCode != null) {
@@ -1108,7 +1116,7 @@ abstract class _$$ChangePasswordEventImplCopyWith<$Res> {
           $Res Function(_$ChangePasswordEventImpl) then) =
       __$$ChangePasswordEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String password, String token});
+  $Res call({String password, String email, String code});
 }
 
 /// @nodoc
@@ -1123,16 +1131,21 @@ class __$$ChangePasswordEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? password = null,
-    Object? token = null,
+    Object? email = null,
+    Object? code = null,
   }) {
     return _then(_$ChangePasswordEventImpl(
       null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1141,16 +1154,18 @@ class __$$ChangePasswordEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChangePasswordEventImpl implements ChangePasswordEvent {
-  const _$ChangePasswordEventImpl(this.password, this.token);
+  const _$ChangePasswordEventImpl(this.password, this.email, this.code);
 
   @override
   final String password;
   @override
-  final String token;
+  final String email;
+  @override
+  final String code;
 
   @override
   String toString() {
-    return 'ForgotPasswordEvent.changePassword(password: $password, token: $token)';
+    return 'ForgotPasswordEvent.changePassword(password: $password, email: $email, code: $code)';
   }
 
   @override
@@ -1160,11 +1175,12 @@ class _$ChangePasswordEventImpl implements ChangePasswordEvent {
             other is _$ChangePasswordEventImpl &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, password, token);
+  int get hashCode => Object.hash(runtimeType, password, email, code);
 
   @JsonKey(ignore: true)
   @override
@@ -1176,33 +1192,36 @@ class _$ChangePasswordEventImpl implements ChangePasswordEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) getCode,
+    required TResult Function(String email) getCode,
     required TResult Function(String code) sendCode,
-    required TResult Function(String password, String token) changePassword,
+    required TResult Function(String password, String email, String code)
+        changePassword,
   }) {
-    return changePassword(password, token);
+    return changePassword(password, email, code);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phoneNumber)? getCode,
+    TResult? Function(String email)? getCode,
     TResult? Function(String code)? sendCode,
-    TResult? Function(String password, String token)? changePassword,
+    TResult? Function(String password, String email, String code)?
+        changePassword,
   }) {
-    return changePassword?.call(password, token);
+    return changePassword?.call(password, email, code);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? getCode,
+    TResult Function(String email)? getCode,
     TResult Function(String code)? sendCode,
-    TResult Function(String password, String token)? changePassword,
+    TResult Function(String password, String email, String code)?
+        changePassword,
     required TResult orElse(),
   }) {
     if (changePassword != null) {
-      return changePassword(password, token);
+      return changePassword(password, email, code);
     }
     return orElse();
   }
@@ -1243,11 +1262,13 @@ class _$ChangePasswordEventImpl implements ChangePasswordEvent {
 }
 
 abstract class ChangePasswordEvent implements ForgotPasswordEvent {
-  const factory ChangePasswordEvent(final String password, final String token) =
+  const factory ChangePasswordEvent(
+          final String password, final String email, final String code) =
       _$ChangePasswordEventImpl;
 
   String get password;
-  String get token;
+  String get email;
+  String get code;
   @JsonKey(ignore: true)
   _$$ChangePasswordEventImplCopyWith<_$ChangePasswordEventImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -22,10 +22,13 @@ sealed class ForgotPasswordState with _$ForgotPasswordState {
 
 @freezed
 class ForgotPasswordEvent with _$ForgotPasswordEvent {
-  const factory ForgotPasswordEvent.getCode(String phoneNumber) = GetCodeEvent;
+  const factory ForgotPasswordEvent.getCode(String email) = GetCodeEvent;
   const factory ForgotPasswordEvent.sendCode(String code) = SendCodeEvent;
   const factory ForgotPasswordEvent.changePassword(
-      String password, String token) = ChangePasswordEvent;
+    String password,
+    String email,
+    String code,
+  ) = ChangePasswordEvent;
 }
 
 @Injectable()
@@ -43,15 +46,12 @@ class ForgotPasswordBloc
   Future<void> _getCode(
       GetCodeEvent event, Emitter<ForgotPasswordState> emit) async {
     emit(const ForgotPasswordState.loading());
-    await Future.delayed(const Duration(seconds: 1));
+    final result = await _repository.sendPasswordResetCode(event.email);
     emit(const ForgotPasswordState.success());
-
-    // final result = await _repository.getCode(phoneNumber: event.phoneNumber);
-    // emit(ForgotPasswordState.success());
-    // result.map(
-    //     success: (result) => emit(ForgotPasswordState.success()),
-    //     failure: (result) =>
-    //         emit(ForgotPasswordState.failure(result.exception)));
+    result.map(
+        success: (result) => emit(const ForgotPasswordState.success()),
+        failure: (result) =>
+            emit(ForgotPasswordState.failure(result.exception)));
   }
 
   Future<void> _sendCode(
@@ -70,13 +70,14 @@ class ForgotPasswordBloc
   Future<void> _changePassword(
       ChangePasswordEvent event, Emitter<ForgotPasswordState> emit) async {
     emit(const ForgotPasswordState.loading());
-    await Future.delayed(const Duration(seconds: 1));
-    emit(const ForgotPasswordState.success());
+    // await Future.delayed(const Duration(seconds: 1));
+    // emit(const ForgotPasswordState.success());
 
-    // final result = await _repository.changePassword(password: event.password);
-    // result.map(
-    //     success: (result) => emit(ForgotPasswordState.success()),
-    //     failure: (result) =>
-    //         emit(ForgotPasswordState.failure(result.exception)));
+    final result = await _repository.resetPassword(
+        event.email, event.password, event.password, event.code);
+    result.map(
+        success: (result) => emit(const ForgotPasswordState.success()),
+        failure: (result) =>
+            emit(ForgotPasswordState.failure(result.exception)));
   }
 }

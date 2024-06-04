@@ -16,29 +16,30 @@ part './forgot_password_code.dart';
 part './forgot_password_reset.dart';
 
 Future<void> showForgotPassword(BuildContext context) async {
-  final result = await Util.showCustomModalBottomSheet<bool?>(
+  final resultEmail = await Util.showCustomModalBottomSheet<String?>(
       context: context,
       isDissmissable: false,
       child: BlocProvider(
         create: (context) => ForgotPasswordBloc(getIt()),
         child: const _ForgotPasswordEnterLogin(),
       ));
-  if (result == true) {
-    final resultToken = await Util.showCustomModalBottomSheet<String?>(
+  if (resultEmail != null) {
+    final code = await Util.showCustomModalBottomSheet<String?>(
         context: context,
         isDissmissable: false,
         child: BlocProvider(
           create: (context) => ForgotPasswordBloc(getIt()),
           child: const _ForgotPasswordCode(),
         ));
-    if (resultToken != null) {
+    if (code != null) {
       await Util.showCustomModalBottomSheet<bool?>(
           context: context,
           isDissmissable: false,
           child: BlocProvider(
             create: (context) => ForgotPasswordBloc(getIt()),
             child: _ResetPassword(
-              token: resultToken,
+              code: code,
+              email: resultEmail,
             ),
           ));
     }

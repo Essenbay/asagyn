@@ -1,9 +1,9 @@
 part of './forgot_password_modals.dart';
 
 class _ResetPassword extends StatefulWidget {
-  const _ResetPassword({required this.token});
-  final String token;
-
+  const _ResetPassword({required this.code, required this.email});
+  final String code;
+  final String email;
   @override
   State<_ResetPassword> createState() => __ResetPasswordState();
 }
@@ -87,7 +87,8 @@ class __ResetPasswordState extends State<_ResetPassword> {
                             .read<ForgotPasswordBloc>()
                             .add(ForgotPasswordEvent.changePassword(
                               password.text,
-                              widget.token,
+                              widget.email,
+                              widget.code,
                             ));
                       }
                     },

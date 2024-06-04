@@ -18,6 +18,16 @@ extension DateTimeX on DateTime {
   }
 
   static DateTime parseFromServer(String dateString) {
+
+    dateString = dateString.replaceAll(RegExp(r'\[.*\]$'), '');
+    DateTime dateTime = DateTime.parse(dateString);
+    return dateTime;
+  }
+
+    static DateTime? parseFromServerNullable(String? dateString) {
+    if (dateString == null) {
+      return null;
+    }
     dateString = dateString.replaceAll(RegExp(r'\[.*\]$'), '');
     DateTime dateTime = DateTime.parse(dateString);
     return dateTime;

@@ -38,16 +38,12 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       categoryDTOS: (json['categoryDTOS'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      startAvailableTime: json['startAvailableTime'] == null
-          ? null
-          : DateTime.parse(json['startAvailableTime'] as String),
-      endAvailableTime: json['endAvailableTime'] == null
-          ? null
-          : DateTime.parse(json['endAvailableTime'] as String),
+      startAvailableTime: DateTimeX.parseFromServerNullable(
+          json['startAvailableTime'] as String?),
+      endAvailableTime: DateTimeX.parseFromServerNullable(
+          json['endAvailableTime'] as String?),
       minAge: json['minAge'] as int?,
-      readyDuration: json['readyDuration'] == null
-          ? null
-          : DateTime.parse(json['readyDuration'] as String),
+      readyDuration: json['readyDuration'] as int?,
       imageUrl: json['imageUrl'] as String?,
       cost: (json['cost'] as num).toDouble(),
       description: json['description'] as String,
@@ -65,6 +61,6 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'startAvailableTime': instance.startAvailableTime?.toIso8601String(),
       'endAvailableTime': instance.endAvailableTime?.toIso8601String(),
       'minAge': instance.minAge,
-      'readyDuration': instance.readyDuration?.toIso8601String(),
+      'readyDuration': instance.readyDuration,
       'categoryDTOS': instance.categoryDTOS,
     };

@@ -72,14 +72,15 @@ class _ForgotPasswordCodeState extends State<_ForgotPasswordCode> {
             builder: (context, state) {
               return PrimaryFilledTextButton(
                 onPressed: () {
-                  state.maybeMap(
-                    orElse: () {
-                      context
-                          .read<ForgotPasswordBloc>()
-                          .add(ForgotPasswordEvent.sendCode(code.text));
-                    },
-                    loading: (_) {},
-                  );
+                  context.router.pop(code.text);
+                  // state.maybeMap(
+                  //   orElse: () {
+                  //     context
+                  //         .read<ForgotPasswordBloc>()
+                  //         .add(ForgotPasswordEvent.sendCode(code.text));
+                  //   },
+                  //   loading: (_) {},
+                  // );
                 },
                 text: context.localized.next,
                 isLoading: state.maybeMap(

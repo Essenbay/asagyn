@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:provider/provider.dart';
+import 'package:zakazflow/core/extensions/datetime.dart';
 import 'package:zakazflow/core/services/language_provder/language_cubit.dart';
 import 'package:zakazflow/feat/menu/widgets/sort_button.dart';
 part 'menu_model.g.dart';
@@ -30,6 +31,25 @@ class MenuModel {
     // categories.forEach((element) {
     //   element.sortProducts(sortType);
     // });
+  }
+
+  void setSeatchData(
+      Languages currLanguage, String value, List<ProductModel> allData) {
+    productItemDTOs.clear();
+
+    if (value.isEmpty) {
+      productItemDTOs.addAll(allData);
+    } else {
+      final resultList = allData.where((element) {
+        final productName = switch (currLanguage) {
+          Languages.ru => element.nameRu,
+          Languages.kz => element.nameKz,
+          Languages.en => element.nameEn,
+        };
+        return productName.contains(value);
+      });
+      productItemDTOs.addAll(resultList);
+    }
   }
 
   List<CategoryModel> get categories {
@@ -64,10 +84,12 @@ class ProductModel {
   final String? imageUrl;
   final double cost;
   final String description;
+  @JsonKey(fromJson: DateTimeX.parseFromServerNullable)
   final DateTime? startAvailableTime;
+  @JsonKey(fromJson: DateTimeX.parseFromServerNullable)
   final DateTime? endAvailableTime;
   final int? minAge;
-  final DateTime? readyDuration;
+  final int? readyDuration;
   final List<CategoryModel> categoryDTOS;
 
   @JsonKey(includeFromJson: false, includeToJson: false)

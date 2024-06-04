@@ -58,7 +58,7 @@ class _ForgotPasswordEnterCodeState extends State<_ForgotPasswordEnterLogin> {
           ),
           BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
             listener: (context, state) => state.mapOrNull(
-                success: (state) => context.router.pop(true),
+                success: (state) => context.router.pop(email.text),
                 failure: (state) => setState(() {
                       errorMessage = state.exception.message(context);
                     })),

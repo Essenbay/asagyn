@@ -47,6 +47,8 @@ class AppTheme {
       )),
       unselectedWidgetColor: AppColors.primary300,
       dialogTheme: const DialogTheme(
-          titleTextStyle: TextStyle(color: AppColors.black),
-          contentTextStyle: TextStyle(color: AppColors.black)));
+        titleTextStyle: TextStyle(color: AppColors.black),
+        contentTextStyle: TextStyle(color: AppColors.black),
+        backgroundColor: AppColors.white,
+      ));
 }

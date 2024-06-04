@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:zakazflow/core/di/injection_container.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/ui_util.dart';
@@ -90,15 +89,12 @@ class __ResetPasswordState extends State<_ResetPassword> {
           BlocConsumer<ChangeProfileBloc, ChangeProfileState>(
             listener: (context, state) {
               state.mapOrNull(
-                loading: (state) => context.loaderOverlay.show(),
                 failure: (state) {
-                  context.loaderOverlay.hide();
                   setState(() {
                     errorMessage = state.exception.message(context);
                   });
                 },
                 success: (state) {
-                  context.loaderOverlay.hide();
                   context.router.pop();
                 },
               );
@@ -116,6 +112,8 @@ class __ResetPasswordState extends State<_ResetPassword> {
                             currProfile: widget.data,
                             password: password.text,
                             confirmPassword: confirmPassword.text,
+                            email: widget.data.email,
+                            username: widget.data.username,
                           ),
                         );
                   }

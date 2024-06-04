@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:zakazflow/core/config/colors.dart';
+import 'package:zakazflow/core/di/injection_container.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/ui_util.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
+import 'package:zakazflow/feat/session/logic/session_repository.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
 
 class AskBillButton extends StatelessWidget {
@@ -24,14 +27,28 @@ class AskBillButton extends StatelessWidget {
             content: IntrinsicHeight(
               child: Align(
                 alignment: Alignment.center,
-                child: _AskBillDialogContent(methods: []),
+                child: _AskBillDialogContent(
+                  methods: model.establishmentDTO.paymentMethods ?? [],
+                ),
               ),
             ),
           ),
         );
         if (result != null) {
-          Util.showSuccessDialog(context, context.localized.success,
-              context.localized.waiters_will_be_soon);
+          context.loaderOverlay.show();
+          final requestResult = await getIt<SessionRepository>()
+              .askSessionClosing(model.id, result);
+          requestResult.whenOrNull(
+            success: (data) {
+              context.loaderOverlay.hide();
+              Util.showSuccessDialog(context, context.localized.success,
+                  context.localized.waiters_will_be_soon);
+            },
+            failure: (exception) {
+              context.loaderOverlay.hide();
+              Util.showErrorAlert(context, exception.message(context));
+            },
+          );
         }
       },
       text: context.localized.ask_bill,

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:zakazflow/core/services/network/network_service.dart';
 import 'package:zakazflow/core/services/preference_service.dart';
 import 'package:zakazflow/core/services/secure_storage_service.dart';
 
@@ -25,10 +26,12 @@ class AppEvent with _$AppEvent {
 
 @Injectable()
 class AppBloc extends Bloc<AppEvent, AppState> {
+  final NetworkService _service;
   final SecureStorage _secureStorage;
   final PreferencesService _prefs;
 
-  AppBloc(this._secureStorage, this._prefs) : super(AppState.launching) {
+  AppBloc(this._service, this._secureStorage, this._prefs)
+      : super(AppState.launching) {
     on<AppEvent>((event, emit) => event.map(
           checkAuth: (event) async => await _checkAuth(event, emit),
           login: (event) async => await _login(event, emit),
@@ -37,6 +40,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<void> _checkAuth(CheckAuthEvent event, Emitter<AppState> emit) async {
+    await _service.setBaseUrl();
+
     final token = await _secureStorage.getTokenKey();
     if (token.isNotEmpty) {
       log(token);

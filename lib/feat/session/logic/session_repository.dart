@@ -17,6 +17,8 @@ abstract class SessionRepository {
   Future<Result<SessionModel>> createSession(String estabCode, String table);
   Future<Result<EstablishmentModel>> getEstablishmentInfo(String estabCode);
   Future<Result<void>> callWaiter(ProfileModel profile);
+  Future<Result<void>> askSessionClosing(
+      int sessionId, PaymentMethod paymentMethod);
 }
 
 @LazySingleton(as: SessionRepository)
@@ -119,6 +121,22 @@ class SessionRepositoryImpl implements SessionRepository {
           'code': prefs.currentSessionTable,
           'userDto': profile.toJson(),
         },
+      ),
+      fromJson: (json) {
+        return null;
+      },
+    );
+    return result;
+  }
+
+  @override
+  Future<Result<void>> askSessionClosing(
+      int sessionId, PaymentMethod paymentMethod) async {
+    final data = paymentMethod.toJson();
+    final result = await service.request(
+      request: (dio) => dio.post(
+        '/dining-session/close-session/$sessionId',
+        data: data,
       ),
       fromJson: (json) {
         return null;

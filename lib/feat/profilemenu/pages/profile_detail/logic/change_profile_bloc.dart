@@ -44,10 +44,11 @@ class ChangeProfileBloc extends Bloc<ChangeProfileEvent, ChangeProfileState> {
       _ChangeEvent event, Emitter<ChangeProfileState> emit) async {
     emit(const ChangeProfileState.loading());
     final result = await _repository.changeProfile(
-        password: event.password,
-        confirmPassword: event.confirmPassword,
-        email: event.email,
-        username: event.username);
+      password: event.password,
+      confirmPassword: event.confirmPassword,
+      email: event.email,
+      username: event.username,
+    );
 
     result.map(
         success: (result) => emit(

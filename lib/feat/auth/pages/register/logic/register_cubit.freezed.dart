@@ -21,6 +21,7 @@ mixin _$RegisterState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() codeSent,
     required TResult Function(NetworkException exception) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$RegisterState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? codeSent,
     TResult? Function(NetworkException exception)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$RegisterState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? codeSent,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$RegisterState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
+    required TResult Function(_CodeSendSuccessState value) codeSent,
     required TResult Function(_FailureState value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$RegisterState {
     TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
+    TResult? Function(_CodeSendSuccessState value)? codeSent,
     TResult? Function(_FailureState value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$RegisterState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
+    TResult Function(_CodeSendSuccessState value)? codeSent,
     TResult Function(_FailureState value)? failure,
     required TResult orElse(),
   }) =>
@@ -127,6 +133,7 @@ class _$InitialStateImpl implements _InitialState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() codeSent,
     required TResult Function(NetworkException exception) failure,
   }) {
     return initial();
@@ -138,6 +145,7 @@ class _$InitialStateImpl implements _InitialState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? codeSent,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return initial?.call();
@@ -149,6 +157,7 @@ class _$InitialStateImpl implements _InitialState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? codeSent,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -164,6 +173,7 @@ class _$InitialStateImpl implements _InitialState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
+    required TResult Function(_CodeSendSuccessState value) codeSent,
     required TResult Function(_FailureState value) failure,
   }) {
     return initial(this);
@@ -175,6 +185,7 @@ class _$InitialStateImpl implements _InitialState {
     TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
+    TResult? Function(_CodeSendSuccessState value)? codeSent,
     TResult? Function(_FailureState value)? failure,
   }) {
     return initial?.call(this);
@@ -186,6 +197,7 @@ class _$InitialStateImpl implements _InitialState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
+    TResult Function(_CodeSendSuccessState value)? codeSent,
     TResult Function(_FailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -241,6 +253,7 @@ class _$LoadingStateImpl implements _LoadingState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() codeSent,
     required TResult Function(NetworkException exception) failure,
   }) {
     return loading();
@@ -252,6 +265,7 @@ class _$LoadingStateImpl implements _LoadingState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? codeSent,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return loading?.call();
@@ -263,6 +277,7 @@ class _$LoadingStateImpl implements _LoadingState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? codeSent,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -278,6 +293,7 @@ class _$LoadingStateImpl implements _LoadingState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
+    required TResult Function(_CodeSendSuccessState value) codeSent,
     required TResult Function(_FailureState value) failure,
   }) {
     return loading(this);
@@ -289,6 +305,7 @@ class _$LoadingStateImpl implements _LoadingState {
     TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
+    TResult? Function(_CodeSendSuccessState value)? codeSent,
     TResult? Function(_FailureState value)? failure,
   }) {
     return loading?.call(this);
@@ -300,6 +317,7 @@ class _$LoadingStateImpl implements _LoadingState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
+    TResult Function(_CodeSendSuccessState value)? codeSent,
     TResult Function(_FailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -355,6 +373,7 @@ class _$SuccessStateImpl implements _SuccessState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() codeSent,
     required TResult Function(NetworkException exception) failure,
   }) {
     return success();
@@ -366,6 +385,7 @@ class _$SuccessStateImpl implements _SuccessState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? codeSent,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return success?.call();
@@ -377,6 +397,7 @@ class _$SuccessStateImpl implements _SuccessState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? codeSent,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -392,6 +413,7 @@ class _$SuccessStateImpl implements _SuccessState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
+    required TResult Function(_CodeSendSuccessState value) codeSent,
     required TResult Function(_FailureState value) failure,
   }) {
     return success(this);
@@ -403,6 +425,7 @@ class _$SuccessStateImpl implements _SuccessState {
     TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
+    TResult? Function(_CodeSendSuccessState value)? codeSent,
     TResult? Function(_FailureState value)? failure,
   }) {
     return success?.call(this);
@@ -414,6 +437,7 @@ class _$SuccessStateImpl implements _SuccessState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
+    TResult Function(_CodeSendSuccessState value)? codeSent,
     TResult Function(_FailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -426,6 +450,127 @@ class _$SuccessStateImpl implements _SuccessState {
 
 abstract class _SuccessState implements RegisterState {
   const factory _SuccessState() = _$SuccessStateImpl;
+}
+
+/// @nodoc
+abstract class _$$CodeSendSuccessStateImplCopyWith<$Res> {
+  factory _$$CodeSendSuccessStateImplCopyWith(_$CodeSendSuccessStateImpl value,
+          $Res Function(_$CodeSendSuccessStateImpl) then) =
+      __$$CodeSendSuccessStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CodeSendSuccessStateImplCopyWithImpl<$Res>
+    extends _$RegisterStateCopyWithImpl<$Res, _$CodeSendSuccessStateImpl>
+    implements _$$CodeSendSuccessStateImplCopyWith<$Res> {
+  __$$CodeSendSuccessStateImplCopyWithImpl(_$CodeSendSuccessStateImpl _value,
+      $Res Function(_$CodeSendSuccessStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CodeSendSuccessStateImpl implements _CodeSendSuccessState {
+  const _$CodeSendSuccessStateImpl();
+
+  @override
+  String toString() {
+    return 'RegisterState.codeSent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CodeSendSuccessStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() codeSent,
+    required TResult Function(NetworkException exception) failure,
+  }) {
+    return codeSent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? codeSent,
+    TResult? Function(NetworkException exception)? failure,
+  }) {
+    return codeSent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? codeSent,
+    TResult Function(NetworkException exception)? failure,
+    required TResult orElse(),
+  }) {
+    if (codeSent != null) {
+      return codeSent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialState value) initial,
+    required TResult Function(_LoadingState value) loading,
+    required TResult Function(_SuccessState value) success,
+    required TResult Function(_CodeSendSuccessState value) codeSent,
+    required TResult Function(_FailureState value) failure,
+  }) {
+    return codeSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialState value)? initial,
+    TResult? Function(_LoadingState value)? loading,
+    TResult? Function(_SuccessState value)? success,
+    TResult? Function(_CodeSendSuccessState value)? codeSent,
+    TResult? Function(_FailureState value)? failure,
+  }) {
+    return codeSent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialState value)? initial,
+    TResult Function(_LoadingState value)? loading,
+    TResult Function(_SuccessState value)? success,
+    TResult Function(_CodeSendSuccessState value)? codeSent,
+    TResult Function(_FailureState value)? failure,
+    required TResult orElse(),
+  }) {
+    if (codeSent != null) {
+      return codeSent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CodeSendSuccessState implements RegisterState {
+  const factory _CodeSendSuccessState() = _$CodeSendSuccessStateImpl;
 }
 
 /// @nodoc
@@ -496,6 +641,7 @@ class _$FailureStateImpl implements _FailureState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() codeSent,
     required TResult Function(NetworkException exception) failure,
   }) {
     return failure(exception);
@@ -507,6 +653,7 @@ class _$FailureStateImpl implements _FailureState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? codeSent,
     TResult? Function(NetworkException exception)? failure,
   }) {
     return failure?.call(exception);
@@ -518,6 +665,7 @@ class _$FailureStateImpl implements _FailureState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? codeSent,
     TResult Function(NetworkException exception)? failure,
     required TResult orElse(),
   }) {
@@ -533,6 +681,7 @@ class _$FailureStateImpl implements _FailureState {
     required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_SuccessState value) success,
+    required TResult Function(_CodeSendSuccessState value) codeSent,
     required TResult Function(_FailureState value) failure,
   }) {
     return failure(this);
@@ -544,6 +693,7 @@ class _$FailureStateImpl implements _FailureState {
     TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_SuccessState value)? success,
+    TResult? Function(_CodeSendSuccessState value)? codeSent,
     TResult? Function(_FailureState value)? failure,
   }) {
     return failure?.call(this);
@@ -555,6 +705,7 @@ class _$FailureStateImpl implements _FailureState {
     TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_SuccessState value)? success,
+    TResult Function(_CodeSendSuccessState value)? codeSent,
     TResult Function(_FailureState value)? failure,
     required TResult orElse(),
   }) {

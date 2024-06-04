@@ -6,9 +6,10 @@ import 'package:zakazflow/feat/menu/widgets/product_detail.dart';
 import 'package:zakazflow/feat/menu/widgets/menu_product_grid_item.dart';
 
 class MenuTabBar extends StatefulWidget {
-  const MenuTabBar({super.key, required this.model});
+  const MenuTabBar(
+      {super.key, required this.model, required this.filteredProducts});
   final MenuModel model;
-
+  final List<ProductModel> filteredProducts;
   @override
   State<MenuTabBar> createState() => _MenuTabBarState();
 }
@@ -65,7 +66,7 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
     if (category == null) {
       return GridView.builder(
         padding: const EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 10),
-        itemCount: widget.model.productItemDTOs.length,
+        itemCount: widget.filteredProducts.length,
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
           mainAxisSpacing: 16,
@@ -74,16 +75,16 @@ class _MenuTabBarState extends State<MenuTabBar> with TickerProviderStateMixin {
         ),
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
-            showProductDetail(context, widget.model.productItemDTOs[index]);
+            showProductDetail(context, widget.filteredProducts[index]);
           },
           child: MenuProductGridItem(
-            model: widget.model.productItemDTOs[index],
+            model: widget.filteredProducts[index],
           ),
         ),
       );
     }
 
-    final products = widget.model.productItemDTOs
+    final products = widget.filteredProducts
         .where((product) =>
             product.categoryDTOS.where((c) => c.id == category.id).isNotEmpty)
         .toList();

@@ -18,13 +18,13 @@ class MenuTile extends StatelessWidget {
   final String text;
   final FontWeight titleWeigh;
   final String? subText;
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final bool showArrow;
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        onTap: () => {onClick()},
+        onTap: onClick,
         child: Padding(
           padding: const EdgeInsets.only(left: 16),
           child: Row(
@@ -57,7 +57,7 @@ class MenuTile extends StatelessWidget {
               ),
               showArrow
                   ? IconButton(
-                      onPressed: () => onClick(),
+                      onPressed: onClick,
                       icon: const Icon(
                         CupertinoIcons.chevron_right,
                         size: 22,

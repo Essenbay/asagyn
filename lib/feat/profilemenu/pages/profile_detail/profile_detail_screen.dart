@@ -5,9 +5,6 @@ import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/ui_util.dart';
 import 'package:zakazflow/feat/profilemenu/logic/fetch_profile_bloc.dart';
-import 'package:zakazflow/feat/profilemenu/logic/profile_model.dart';
-import 'package:zakazflow/feat/profilemenu/pages/profile_detail/widgets/change_email_modal.dart';
-import 'package:zakazflow/feat/profilemenu/pages/profile_detail/widgets/change_name_modal.dart';
 import 'package:zakazflow/feat/profilemenu/pages/profile_detail/widgets/change_password.dart';
 import 'package:zakazflow/feat/profilemenu/widgets/menu_tile.dart';
 import 'package:zakazflow/feat/widgets/back_leading_app_bar.dart';
@@ -40,38 +37,14 @@ class ProfileDetailScreen extends StatelessWidget {
                     MenuTile(
                       text: context.localized.name_label,
                       subText: state.data.username,
-                      onClick: () async {
-                        final result =
-                            await changeNameModal(context, state.data);
-                        if (result != null) {
-                          context.read<FetchProfileBloc>().add(
-                                FetchProfileEvent.set(
-                                  ProfileModel(
-                                      id: state.data.id,
-                                      username: result,
-                                      email: state.data.email),
-                                ),
-                              );
-                        }
-                      },
+                      onClick: null,
+                      showArrow: false,
                     ),
                     MenuTile(
                       text: context.localized.email_lable,
                       subText: state.data.email,
-                      onClick: () async {
-                        final result =
-                            await changeEmailModal(context, state.data);
-                        if (result != null) {
-                          context.read<FetchProfileBloc>().add(
-                                FetchProfileEvent.set(
-                                  ProfileModel(
-                                      id: state.data.id,
-                                      email: result,
-                                      username: state.data.username),
-                                ),
-                              );
-                        }
-                      },
+                      onClick: null,
+                      showArrow: false,
                     ),
                     MenuTile(
                       text: context.localized.password,

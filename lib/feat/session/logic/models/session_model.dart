@@ -31,6 +31,8 @@ class PaymentMethod {
 
   factory PaymentMethod.fromJson(Map<String, Object?> json) =>
       _$PaymentMethodFromJson(json);
+
+  Map<String, Object?> toJson() => _$PaymentMethodToJson(this);
 }
 
 enum OrderStatus {

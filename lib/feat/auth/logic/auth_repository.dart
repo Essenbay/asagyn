@@ -7,13 +7,14 @@ import 'package:zakazflow/feat/profilemenu/logic/profile_model.dart';
 abstract class AuthRepository {
   Future<Result<String>> login(
       {required String login, required String password});
-  Future<Result<void>> register(
-      {required String email,
-      required String password,
-      required String confirmPassword,
-      required String fullname});
-  Future<Result<void>> getCode({required String phoneNumber});
-  Future<Result<String>> sendCode({required String code});
+  Future<Result<void>> sendConfirmCode(String email);
+  Future<Result<void>> register({
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String fullname,
+    required String code,
+  });
   Future<Result<void>> changeProfile({
     String? password,
     String? confirmPassword,
@@ -21,6 +22,9 @@ abstract class AuthRepository {
     String? username,
   });
   Future<Result<ProfileModel>> getProfile();
+  Future<Result<void>> sendPasswordResetCode(String email);
+  Future<Result<void>> resetPassword(String email, String password,
+      String confirmPassword, String confirmCode);
 }
 
 @LazySingleton(as: AuthRepository)
@@ -28,10 +32,6 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthDatasource datasource;
   final SecureStorage storage;
   AuthRepositoryImpl(this.storage, {required this.datasource});
-
-  @override
-  Future<Result<void>> getCode({required String phoneNumber}) =>
-      datasource.getCode(phoneNumber: phoneNumber);
 
   @override
   Future<Result<String>> login(
@@ -46,20 +46,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Result<String>> sendCode({required String code}) =>
-      sendCode(code: code);
-
-  @override
-  Future<Result<void>> register(
-          {required String email,
-          required String password,
-          required String confirmPassword,
-          required String fullname}) =>
+  Future<Result<void>> register({
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String fullname,
+    required String code,
+  }) =>
       datasource.register(
-          email: email,
-          password: password,
-          fullname: fullname,
-          confirmPassword: confirmPassword);
+        email: email,
+        password: password,
+        fullname: fullname,
+        confirmPassword: confirmPassword,
+        code: code,
+      );
 
   @override
   Future<Result<void>> changeProfile(
@@ -75,4 +75,17 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Result<ProfileModel>> getProfile() => datasource.getProfile();
+
+  @override
+  Future<Result<void>> resetPassword(String email, String password,
+          String confirmPassword, String confirmCode) =>
+      datasource.resetPassword(email, password, confirmPassword, confirmCode);
+
+  @override
+  Future<Result<void>> sendPasswordResetCode(String email) =>
+      datasource.sendPasswordResetCode(email);
+
+  @override
+  Future<Result<void>> sendConfirmCode(String email) =>
+      datasource.sendConfirmCode(email);
 }
