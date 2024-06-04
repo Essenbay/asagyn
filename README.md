@@ -1,1 +1,3 @@
-'https://asagyn.free.beeceptor.com'
+{
+"link":"https://asagyn.free.beeceptor.com"
+}
