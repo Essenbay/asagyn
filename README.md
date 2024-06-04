@@ -1,3 +1,3 @@
 {
-"link":"https://asagyn.free.beeceptor.com"
+"baseURL":"https://asagyn.free.beeceptor.com"
 }
