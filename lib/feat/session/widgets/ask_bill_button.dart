@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:zakazflow/core/config/colors.dart';
 import 'package:zakazflow/core/di/injection_container.dart';
 import 'package:zakazflow/core/extensions/context.dart';
 import 'package:zakazflow/core/util/ui_util.dart';
 import 'package:zakazflow/feat/session/logic/models/session_model.dart';
+import 'package:zakazflow/feat/session/logic/pusher_provider.dart';
 import 'package:zakazflow/feat/session/logic/session_repository.dart';
 import 'package:zakazflow/feat/widgets/primary_filled_text_button.dart';
 
@@ -16,6 +18,17 @@ class AskBillButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PrimaryFilledTextButton(
       onPressed: () async {
+        bool allow = context
+            .read<PusherProvider>()
+            .orders
+            .where((element) =>
+                element.orderStatus != OrderStatus.cancelled &&
+                element.orderStatus != OrderStatus.served)
+            .isEmpty;
+        if (!allow) {
+          Util.showSnackBar(context, context.localized.wait_untill_order_close);
+          return;
+        }
         final result = await showDialog<PaymentMethod>(
           context: context,
           builder: (context) => AlertDialog(

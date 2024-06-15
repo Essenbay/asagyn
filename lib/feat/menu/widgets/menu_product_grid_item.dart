@@ -112,7 +112,7 @@ class MenuProductGridItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 5),
                           Text(
-                            '${model.readyDuration!} ${context.localized.minutes}',
+                            '${(model.readyDuration! / 60).round()} ${context.localized.minutes}',
                             style: const TextStyle(fontSize: 14),
                           ),
                         ],

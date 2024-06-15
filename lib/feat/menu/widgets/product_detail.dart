@@ -104,7 +104,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      '${widget.model.readyDuration} ${context.localized.minutes}',
+                      '${(widget.model.readyDuration! / 60).round()} ${context.localized.minutes}',
                       style: const TextStyle(
                           color: AppColors.grey800, fontSize: 15),
                     ),

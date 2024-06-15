@@ -122,5 +122,6 @@
   "change_email": "Change email",
   "all": "All",
   "minutes": "minutes",
-  "call_waiter_success": "Waiter will be right in time!"
+  "call_waiter_success": "Waiter will be right in time!",
+  "wait_untill_order_close": "Wait until all orders are closed! Or call the waiter"
 }
